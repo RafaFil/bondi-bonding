@@ -1,8 +1,64 @@
-<form>
-    <!--NAME-->
-    <mat-form-field appearance="fill">
+<form [formGroup]="signUpForm">
+    <!--Name-->
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>person</mat-icon>
         <mat-label>Name</mat-label>
-        <input matInput>
+        <input matInput placeholder="Name" [formControl]="signUpForm.controls.name">
+        <mat-error *ngIf="signUpForm.controls.name.invalid">{{errorMessage()}}</mat-error>
     </mat-form-field>
-    <!--USERNAME-->
+
+    <!--Username-->
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>user</mat-icon>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="Username" [formControl]="signUpForm.controls.username">
+        <mat-error *ngIf="signUpForm.controls.username.invalid">Username must be between 3 and 10 characters</mat-error>
+    </mat-form-field>
+
+    <!--Password-->
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix>lock</mat-icon>
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="signUpForm.controls.password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="signUpForm.controls.password.invalid">Invalid password</mat-error>
+    </mat-form-field>
+
+    <!--Age and gender-->
+    <div class="two-col">
+        <div class="left">
+            <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="Age" [formControl]="signUpForm.controls.birthdate">
+                <mat-icon matPrefix>event</mat-icon>
+                <mat-error *ngIf="signUpForm.controls.birthdate.invalid">{{errorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="right">
+        <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <input matInput placeholder="Gender" [formControl]="signUpForm.controls.gender">
+            <mat-error *ngIf="signUpForm.controls.gender.invalid">{{errorMessage()}}</mat-error>
+        </mat-form-field>
+        </div>
+    </div>
+
+    <!--Phone-->
+    <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input tpye="tel" matInput placeholder="Phone" [formControl]="signUpForm.controls.phone">
+        <mat-icon matPrefix>phone</mat-icon>
+        <mat-error *ngIf="signUpForm.controls.phone.invalid">Invalid phone</mat-error>
+    </mat-form-field>
+
+    <!--Email-->
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" [formControl]="signUpForm.controls.email">
+        <mat-icon matPrefix>mail</mat-icon>
+        <mat-error *ngIf="signUpForm.controls.email.invalid">Invalid email</mat-error>
+    </mat-form-field>
+
 </form>
