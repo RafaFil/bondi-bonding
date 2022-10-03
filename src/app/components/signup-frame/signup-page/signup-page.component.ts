@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SignupFormsComponent } from '../signup-forms/signup-forms.component';
+import { TosComponent } from '../tos/tos.component';
 
 @Component({
   selector: 'app-signup-page',
@@ -9,12 +10,17 @@ import { SignupFormsComponent } from '../signup-forms/signup-forms.component';
 export class SignupPageComponent implements OnInit {
 
   @ViewChild('signUpForm') formData!: SignupFormsComponent;
+  @ViewChild('#ToS_form') tos ! : TosComponent;
 
-
+  everythingIsOk = false;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+  
+  ngAfterViewInit(){
+    this.everythingIsOk = this.tos.accepted;
   }
 
   pullFormData(){
@@ -26,6 +32,13 @@ export class SignupPageComponent implements OnInit {
       gender : data.gender.value,
       phone : data.phone.value,
       email : data.email.value,
+    }
+    let age = "";
+    if (typeof person.birthdate === "string"){
+      age = person.birthdate;
+    }
+    if (Number.parseInt(age) < 18) {
+      alert("u r a minor")
     }
     alert(
       "User created"

@@ -10,6 +10,8 @@ import { LogoImageComponent } from './components/general/logo-image/logo-image.c
 import { SignupFormsComponent } from './components/signup-frame/signup-forms/signup-forms.component';
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TosComponent } from './components/signup-frame/tos/tos.component';
+import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogoImageComponent,
     InitHomeComponent,
     SignupFormsComponent,
-    SignupPageComponent
+    SignupPageComponent,
+    TosComponent,
+    ValidationFromComponent,
   ],
   imports: [
     BrowserModule,
