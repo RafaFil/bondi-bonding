@@ -21,7 +21,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleLoginSubmit() {
+  handleLoginSubmit(): void {
     if (!this.loginForm.valid) {
       return;
     }
