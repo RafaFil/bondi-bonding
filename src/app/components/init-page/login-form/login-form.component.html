@@ -5,23 +5,26 @@
     </div>
     <div class="col bb-flex-center">
       <mat-form-field class="bb-form-field bb-w-100" appearance="outline" [hideRequiredMarker]="true">
-        <mat-icon class="bb-input-icon" matPrefix>person</mat-icon>
+        <mat-icon class="bb-icon bb-input-icon" matPrefix>person</mat-icon>
         <mat-label class="bb-login-field">Username</mat-label>
         <input matInput [formControl]="loginForm.controls.username">
       </mat-form-field>
     </div>
     <div class="col bb-flex-center">
       <mat-form-field class="bb-form-field bb-w-100" appearance="outline" [hideRequiredMarker]="true">
-        <mat-icon class="bb-input-icon" matPrefix>lock</mat-icon>
+        <mat-icon class="bb-icon bb-input-icon" matPrefix>lock</mat-icon>
         <mat-label class="bb-login-field">Password</mat-label>
         <input matInput type="password" [formControl]="loginForm.controls.password">
       </mat-form-field>
     </div>
     <div class="col bb-flex-center">
       <div class="bb-w-100">
-        <button mat-raised-button class="bb-btn-primary bb-login-button">Log In</button>
+        <button mat-raised-button class="bb-btn-primary bb-login-button">LOG IN</button>
         <p class="bb-login-forgot-password-text">
-          <a class="bb-login-forgot-password-link" routerLink="">Forgot password?</a>
+          <a class="bb-link-text"
+            routerLink="/init/resetPassword"
+          >Forgot password?
+          </a>
         </p>
       </div>
     </div>
