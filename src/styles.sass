@@ -1,8 +1,12 @@
 $bb-primary-green:  #419400
+$bb-primary-dark-green: #357a00
 
 .bb-btn-primary
   background: $bb-primary-green
   color: white
+
+  &:hover
+    background: $bb-primary-dark-green
 
 .bb-btn-basic
   background: white
@@ -12,7 +16,7 @@ $bb-primary-green:  #419400
   color: $bb-primary-green
 
 .bb-input-icon
-  color: $bb-primary-green
+  color: $bb-primary-dark-green
   padding-right: 0.8rem
 
 .bb-w-100
@@ -22,15 +26,39 @@ $bb-primary-green:  #419400
   display: flex
   justify-content: center
 
-//input outline color
-:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline
-  color: black !important
-  opacity: 40% !important
 
-//outline color focused
-:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick
-  color: $bb-primary-green !important
+// Material form field overrides
+// default
+.mat-form-field
+  .mat-form-field-label
+    color: $bb-primary-dark-green
 
-//input label color
-:host ::ng-deep .mat-form-field-label
-  color: $bb-primary-green !important
+  .mat-form-field-outline
+    color: black
+    opacity: 80%
+
+  .mat-form-field-required-marker
+    color: red
+
+  &:hover
+    .mat-form-field-outline
+      color: $bb-primary-green
+
+// focused
+.mat-form-field.mat-focused
+  .mat-form-field-label
+    color: black
+
+  .mat-form-field-outline
+    color: $bb-primary-green
+
+// invalid
+.mat-form-field.mat-form-field-invalid
+  .mat-form-field-required-marker
+    color: red
+
+  .mat-form-field-outline
+    color: red
+
+  .bb-input-icon
+    color: red
