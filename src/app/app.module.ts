@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LogoImageComponent } from './components/general/logo-image/logo-image.component';
 import { InitHomeComponent } from './components/init-home/init-home.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { InitHomeComponent } from './components/init-home/init-home.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
