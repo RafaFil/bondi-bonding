@@ -7,7 +7,7 @@ import { AuthRequest } from 'src/app/interfaces/AuthRequest';
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.sass'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginFormComponent implements OnInit {
   @Output() authRequestEvent = new EventEmitter<AuthRequest>();

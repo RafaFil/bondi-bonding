@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
+import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
 import { LogoImageComponent } from './components/general/logo-image/logo-image.component';
 import { InitPageComponent } from './components/init-page/init-page/init-page.component';
 import { InitHomeComponent } from './components/init-page/init-home/init-home.component';
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     LoginFormComponent,
+    ResetPasswordFormComponent,
     LogoImageComponent,
     InitPageComponent,
     InitHomeComponent
