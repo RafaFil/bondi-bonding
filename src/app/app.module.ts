@@ -12,6 +12,7 @@ import { SignupPageComponent } from './components/signup-frame/signup-page/signu
 import { ReactiveFormsModule } from '@angular/forms';
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ValidationFromComponent } from './components/signup-frame/validation-fr
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

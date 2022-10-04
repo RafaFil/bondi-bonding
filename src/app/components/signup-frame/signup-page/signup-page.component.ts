@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, Validators} from '@angular/forms';
 import { SignupFormsComponent } from '../signup-forms/signup-forms.component';
-import { TosComponent } from '../tos/tos.component';
+
 
 @Component({
   selector: 'app-signup-page',
@@ -10,17 +11,28 @@ import { TosComponent } from '../tos/tos.component';
 export class SignupPageComponent implements OnInit {
 
   @ViewChild('signUpForm') formData!: SignupFormsComponent;
-  @ViewChild('#ToS_form') tos ! : TosComponent;
 
+  accepted = false;
   everythingIsOk = false;
 
-  constructor() { }
+  firstFormGroup = this.formData.signUpForm;
+
+  secondFormGroup = this._formBuilder.group({
+    secondCtrl: '',
+  });
+
+  thirdFormGroup = this._formBuilder.group({
+    secondCtrl: '',
+  });
+
+
+  constructor(private _formBuilder : FormBuilder) { }
 
   ngOnInit(): void {
   }
   
-  ngAfterViewInit(){
-    this.everythingIsOk = this.tos.accepted;
+  step1validator() : boolean{
+    return this.formData.signUpForm.valid;
   }
 
   pullFormData(){
@@ -40,10 +52,18 @@ export class SignupPageComponent implements OnInit {
     if (Number.parseInt(age) < 18) {
       alert("u r a minor")
     }
-    alert(
-      "User created"
-    )
-
+    alert(this.formData.signUpForm.valid)
   }
+
+
+  acceptTerms(){
+    if (this.accepted) {
+      this.accepted = false;
+    }
+    else{
+      this.accepted = true;
+    }
+  }
+
 
 }

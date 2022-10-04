@@ -14,13 +14,14 @@ export class SignupFormsComponent implements OnInit {
     {
       name : ['',[Validators.required,Validators.minLength(3)]],
       username : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]],
-      birthdate : ['',[Validators.required]], // ??? just put the age (?) dunno
+      birthdate : ['',[Validators.required]],
       password : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(16)]],
-      gender : ['',[Validators.required]], // is it necesary?
+      gender : ['',[Validators.required]],
       phone : ['',[Validators.required]], // how to validate it :)
       email : ['',[Validators.required,Validators.email]],
     }
   )
+
   constructor( private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {

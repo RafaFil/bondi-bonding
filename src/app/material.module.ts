@@ -6,6 +6,8 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -13,7 +15,9 @@ const MaterialComponents = [
     MatSliderModule,
     MatButtonModule,
     MatInputModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSelectModule,
+    MatDatepickerModule
 ];
 
 @NgModule({

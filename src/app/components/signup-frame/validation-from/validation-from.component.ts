@@ -14,6 +14,8 @@ export class ValidationFromComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  photoPath(path : string){
+    alert(path)
+  }
 
 }

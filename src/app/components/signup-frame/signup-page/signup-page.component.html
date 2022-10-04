@@ -1,5 +1,5 @@
-<mat-stepper>
-    <mat-step label="Information">
+<mat-stepper [linear]="true">
+    <mat-step label="Information" [stepControl]="firstFormGroup" > <!--[stepControl]="firstFormGroup"-->
         <div class="forms-body-container">
             <app-signup-forms #signUpForm ></app-signup-forms>
         </div>
@@ -7,18 +7,20 @@
             <button mat-button matStepperNext>Next</button>
         </div>
     </mat-step>
-    <mat-step label="Validation">
+    <mat-step label="Validation" [stepControl]="secondFormGroup">
         <app-validation-from></app-validation-from>
         <div class="next-button">
             <button mat-button matStepperNext>Next</button>
         </div>
     </mat-step>
-    <mat-step label="Tos">
+    <mat-step label="Tos"> 
         <app-tos #ToS_form></app-tos>
-        <div class="next-button" *ngIf="everythingIsOk">
+        <input type="checkbox" (click)="acceptTerms()"><label>I agree the terms of the Bondi-Bonding service and the privacy policy as well as the possible sanctions of any misuse of the aplication</label>
+        <div class="next-button" *ngIf="accepted">
             <button mat-button matStepperNext>SignUp</button>
         </div>
     </mat-step>
+
 </mat-stepper>
 
 
