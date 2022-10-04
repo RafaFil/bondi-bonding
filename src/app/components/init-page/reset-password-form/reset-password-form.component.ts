@@ -9,22 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset-password-form.component.sass']
 })
 export class ResetPasswordFormComponent implements OnInit {
-  resetPasswordForm = this.formBuilder.group({
-    username:  ['', Validators.minLength(4)],
-    recoveryCode: [{value: '', disabled: true, },
-    [ Validators.minLength(6), Validators.maxLength(6) ]]
-  });
+  usernameControl = new FormControl(
+    '', Validators.minLength(4) );
+  recoveryCodeControl = new FormControl(
+    {value: '', disabled: true, },
+    [ Validators.minLength(6), Validators.maxLength(6) ]);
 
-  get recoveryCodeControl(): FormControl {
-    return this.resetPasswordForm.controls.recoveryCode;
-  }
-
-  get usernameControl(): FormControl {
-    return this.resetPasswordForm.controls.username;
-  }
-
-  constructor(private formBuilder: FormBuilder,
-              private passwordResetService: PasswordResetService,
+  constructor(private passwordResetService: PasswordResetService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -37,7 +28,9 @@ export class ResetPasswordFormComponent implements OnInit {
     }
   }
 
-  handlePasswordRecovery() {
+  handlePasswordRecovery($event: SubmitEvent) {
+    $event.preventDefault();
+
     if (this.recoveryCodeControl.disabled) {
       this.sendRecoveryCode();
     } else {
