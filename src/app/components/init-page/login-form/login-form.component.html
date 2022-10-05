@@ -1,0 +1,47 @@
+<form class="bb-init-form"
+  [formGroup]="loginForm"
+  (ngSubmit)="handleLoginSubmit()">
+
+  <div class="row">
+
+    <div class="bb-flex-center bb-text-green bb-init-top-text">
+      Log in
+    </div>
+
+    <div class="bb-flex-center">
+      <mat-form-field class="bb-w-100" appearance="outline" [hideRequiredMarker]="true">
+        <mat-icon class="bb-icon bb-input-icon" matPrefix>person</mat-icon>
+        <mat-label>Username</mat-label>
+        <input matInput [formControl]="usernameControl">
+        <mat-error>
+          Username must have 4 characters or more
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="bb-flex-center">
+      <mat-form-field class="bb-w-100" appearance="outline" [hideRequiredMarker]="true">
+        <mat-icon class="bb-icon bb-input-icon" matPrefix>lock</mat-icon>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [formControl]="passwordControl">
+        <mat-error>
+          Password must have 8 characters or more
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="bb-flex-center bb-submit-button-margin">
+      <div class="bb-w-100">
+        <button mat-raised-button class="bb-btn-primary bb-init-submit-button">LOG IN</button>
+        <p class="bb-login-forgot-password-text">
+          <a class="bb-link-text"
+            routerLink="/init/resetPassword"
+          >Forgot password?
+          </a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</form>
