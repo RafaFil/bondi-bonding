@@ -17,7 +17,7 @@ export class PasswordResetService {
     return true;
   }
 
-  updatePassword(newPassword: string, username?: string) {
-
+  updatePassword(newPassword: string, username?: string): boolean {
+    return true;
   }
 }

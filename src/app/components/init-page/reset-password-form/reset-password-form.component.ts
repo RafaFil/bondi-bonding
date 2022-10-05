@@ -1,7 +1,8 @@
-import { PasswordResetService } from './../../../services/password-reset.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { PasswordResetService } from './../../../services/password-reset.service';
 
 @Component({
   selector: 'app-reset-password-form',
@@ -9,13 +10,26 @@ import { Router } from '@angular/router';
   styleUrls: ['./reset-password-form.component.sass']
 })
 export class ResetPasswordFormComponent implements OnInit {
-  usernameControl = new FormControl(
-    '', Validators.minLength(4) );
-  recoveryCodeControl = new FormControl(
-    {value: '', disabled: true, },
-    [ Validators.minLength(6), Validators.maxLength(6) ]);
+
+  passwordRecoveryForm = this.formBuilder.group({
+    username: [ '',
+      [ Validators.minLength(4), Validators.required ]
+    ],
+    recoveryCode: [ { value: '', disabled: true },
+      [ Validators.minLength(6), Validators.maxLength(6) ]
+    ]
+  });
+
+  get usernameControl(): FormControl {
+    return this.passwordRecoveryForm.controls.username;
+  }
+
+  get recoveryCodeControl(): FormControl {
+    return this.passwordRecoveryForm.controls.recoveryCode;
+  }
 
   constructor(private passwordResetService: PasswordResetService,
+              private formBuilder: FormBuilder,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -25,11 +39,15 @@ export class ResetPasswordFormComponent implements OnInit {
     if (!this.recoveryCodeControl.disabled) {
       this.recoveryCodeControl.setValue('');
       this.recoveryCodeControl.disable();
+      this.recoveryCodeControl.removeValidators(Validators.required);
     }
   }
 
-  handlePasswordRecovery($event: SubmitEvent) {
-    $event.preventDefault();
+  handlePasswordRecovery() {
+    this.recoveryCodeControl.updateValueAndValidity();
+    if (!this.passwordRecoveryForm.valid) {
+      return;
+    }
 
     if (this.recoveryCodeControl.disabled) {
       this.sendRecoveryCode();
@@ -40,14 +58,13 @@ export class ResetPasswordFormComponent implements OnInit {
 
   sendRecoveryCode() {
     const username = this.usernameControl.value;
-    if (this.passwordResetService.sendPasswordRecoveryCode(username!)) {
+    if (this.passwordResetService.sendPasswordRecoveryCode(username)) {
       this.recoveryCodeControl.enable();
+      this.recoveryCodeControl.addValidators(Validators.required);
     }
   }
 
   verifyRecoveryCode() {
-    if (!this.recoveryCodeControl.valid) return;
-
     const recoveryCode = this.recoveryCodeControl.value;
     if (this.passwordResetService.verifyPasswordRecoveryCode(recoveryCode!)) {
       this.router.navigate(['/init/updatePassword']);
