@@ -9,8 +9,11 @@
     </div>
 
     <div class="bb-flex-center">
-      <mat-form-field class="bb-w-100" appearance="outline" [hideRequiredMarker]="true">
-        <mat-icon class="bb-icon bb-input-icon" matPrefix>person</mat-icon>
+      <mat-form-field class="bb-w-100"
+        appearance="outline"
+        [hideRequiredMarker]="true"
+        color="primary">
+        <mat-icon matPrefix class="bb-input-icon" color="primary">person</mat-icon>
         <mat-label>Username</mat-label>
         <input matInput [formControl]="usernameControl">
         <mat-error>
@@ -20,8 +23,12 @@
     </div>
 
     <div class="bb-flex-center">
-      <mat-form-field class="bb-w-100" appearance="outline" [hideRequiredMarker]="true">
-        <mat-icon class="bb-icon bb-input-icon" matPrefix>lock</mat-icon>
+      <mat-form-field
+        class="bb-w-100"
+        appearance="outline"
+        [hideRequiredMarker]="true"
+        color="primary">
+        <mat-icon matPrefix class="bb-input-icon" color="primary">lock</mat-icon>
         <mat-label>Password</mat-label>
         <input matInput type="password" [formControl]="passwordControl">
         <mat-error>
@@ -32,7 +39,7 @@
 
     <div class="bb-flex-center bb-submit-button-margin">
       <div class="bb-w-100">
-        <button mat-raised-button class="bb-btn-primary bb-init-submit-button">LOG IN</button>
+        <button mat-raised-button class="bb-init-submit-button" color="primary">LOG IN</button>
         <p class="bb-login-forgot-password-text">
           <a class="bb-link-text"
             routerLink="/init/resetPassword"
