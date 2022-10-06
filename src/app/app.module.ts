@@ -12,11 +12,20 @@ import { InitHomeComponent } from './components/init-page/init-home/init-home.co
 import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SignupFormsComponent } from './components/signup-frame/signup-forms/signup-forms.component';
+import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TosComponent } from './components/signup-frame/tos/tos.component';
+import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SignupFormsComponent,
+    SignupPageComponent,
+    TosComponent,
+    ValidationFromComponent,
     LoginFormComponent,
     ResetPasswordFormComponent,
     UpdatePasswordFormComponent,
@@ -30,7 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
