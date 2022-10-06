@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$bb-primary-palette: (
+  50: #d5f0c3,
+  100: #b5d69b,
+  200: #b7d89d,
+  300: #94c16e,
+  400: #88c55a,
+  500: #60a62a,
+  600: #4f9718,
+  700: #4d9f0f,
+  800: #419400,
+  900: #357a00,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+);
+
+$bb-primary: mat.define-palette($bb-primary-palette);
+$bb-accent: mat.define-palette($bb-primary-palette);
+
+$bb-light: mat.define-light-theme((
+ color: (
+   primary: $bb-primary,
+   accent: $bb-accent
+ )
+));
+
+@include mat.core-theme($bb-light);
+@include mat.all-component-themes($bb-light);
