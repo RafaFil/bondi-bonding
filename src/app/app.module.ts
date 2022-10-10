@@ -18,7 +18,8 @@ import { SignupFormsComponent } from './components/signup-frame/signup-forms/sig
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
-import { BusStopComponent } from './components/home-page/bus-stop/bus-stop.component';
+import { BusStopComponent } from './components/general/bus-stop/bus-stop.component';
+import { SearchButtonComponent } from './components/general/search-button/search-button.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BusStopComponent } from './components/home-page/bus-stop/bus-stop.compo
     LogoImageComponent,
     InitPageComponent,
     InitHomeComponent,
-    BusStopComponent
+    BusStopComponent,
+    SearchButtonComponent
   ],
   imports: [
     BrowserModule,
