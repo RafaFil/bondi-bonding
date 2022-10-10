@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
 import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
@@ -14,10 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupFormsComponent } from './components/signup-frame/signup-forms/signup-forms.component';
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { BusStopComponent } from './components/home-page/bus-stop/bus-stop.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     PasswordUpdatedDialogComponent,
     LogoImageComponent,
     InitPageComponent,
-    InitHomeComponent
+    InitHomeComponent,
+    BusStopComponent
   ],
   imports: [
     BrowserModule,
