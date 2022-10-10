@@ -1,21 +1,27 @@
-<mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+<mat-tab-group class="bb-navbar" mat-align-tabs="center">
 
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon">chat</mat-icon>
-            </ng-template>
-        </mat-tab>
+  <mat-tab>
+      <ng-template mat-tab-label>
+        <a routerLink="/home">
+          <mat-icon>directions_bus</mat-icon>
+        </a>
+      </ng-template>
+  </mat-tab>
 
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon">directions_bus</mat-icon>
-            </ng-template>
-        </mat-tab>
+  <mat-tab>
+      <ng-template mat-tab-label>
+        <a routerLink="/chat">
+          <mat-icon>chat</mat-icon>
+        </a>
+      </ng-template>
+  </mat-tab>
 
-        <mat-tab>
-            <ng-template mat-tab-label>
-                <mat-icon class="example-tab-icon">person</mat-icon>
-            </ng-template>
-        </mat-tab>
+  <mat-tab>
+      <ng-template mat-tab-label>
+        <a routerLink="/profile">
+          <mat-icon>person</mat-icon>
+        </a>
+      </ng-template>
+  </mat-tab>
 
 </mat-tab-group>
