@@ -19,7 +19,9 @@ import { SignupPageComponent } from './components/signup-frame/signup-page/signu
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
 import { BusStopComponent } from './components/general/bus-stop/bus-stop.component';
-import { SearchButtonComponent } from './components/general/search-button/search-button.component';
+import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
+import { SearchComponent } from './components/general/search/search.component';
+import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { SearchButtonComponent } from './components/general/search-button/search
     InitPageComponent,
     InitHomeComponent,
     BusStopComponent,
-    SearchButtonComponent
+    SearchButtonComponent,
+    SearchFormComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
