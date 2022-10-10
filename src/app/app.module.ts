@@ -44,6 +44,7 @@ import { CreateTripFiltersModalComponent } from './components/general/create-tri
 import { CreateTripFormComponent } from './components/general/create-trip/create-trip-form/create-trip-form.component';
 import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component'
 import { FaqAccordionComponent } from './components/faq-page/faq-accordion/faq-accordion.component'
+import { NavbarComponent } from './components/general/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { FaqAccordionComponent } from './components/faq-page/faq-accordion/faq-a
     CreateTripFiltersModalComponent,
     CreateTripFormComponent,
     FaqPageComponent,
-    FaqAccordionComponent
+    FaqAccordionComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
