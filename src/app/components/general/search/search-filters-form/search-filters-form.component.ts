@@ -14,6 +14,11 @@ export class SearchFiltersFormComponent implements OnInit {
     gender: [ '' ]
   });
 
+  // poner en funcion y lnkear a atributo disabled del formcontrol
+  get disableMaxAge(): boolean {
+    return !this.filterForm.controls.minAge.value &&
+           !this.filterForm.controls.minAge.valid;
+  }
 
   constructor(private formBuilder: FormBuilder,
               private dialogRef: MatDialogRef<SearchFiltersFormComponent>) { }
@@ -21,13 +26,10 @@ export class SearchFiltersFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // DESHABILITAR CAMPO SI NO HAY MINAGE
   checkMaxAge(): void {
-    if (this.filterForm.controls.minAge.value === ''
-        || !this.filterForm.controls.minAge.valid
-        || !this.filterForm.controls.maxAge.valid) {
-          console.log(!this.filterForm.controls.minAge.value);
-          console.log(!this.filterForm.controls.minAge.valid);
-          console.log(!this.filterForm.controls.maxAge.valid);
+    console.log()
+    if (!this.filterForm.controls.maxAge.valid) {
       return;
     }
 
