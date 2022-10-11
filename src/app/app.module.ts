@@ -22,6 +22,8 @@ import { BusStopComponent } from './components/general/bus-stop/bus-stop.compone
 import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
 import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
+import { SearchFiltersFormComponent } from './components/general/search/search-filters-form/search-filters-form.component';
+import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { SearchFormComponent } from './components/general/search/search-form/sea
     BusStopComponent,
     SearchButtonComponent,
     SearchFormComponent,
-    SearchComponent
+    SearchComponent,
+    SearchFiltersModalComponent,
+    SearchFiltersFormComponent
   ],
   imports: [
     BrowserModule,

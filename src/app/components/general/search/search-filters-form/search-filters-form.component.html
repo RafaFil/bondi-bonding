@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>Filters</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="filterForm" (ngSubmit)="handleSearchSubmit()">
+
+    <mat-grid-list [cols]="2" [gutterSize]="'1rem'">
+      <p>Age</p>
+      <mat-grid-tile>
+        <mat-form-field class="bb-age-field"
+          appearance="outline"
+          color="primary">
+          <mat-label>Min</mat-label>
+          <input matInput
+                 [formControl]="filterForm.controls.minAge"
+                 maxlength="3">
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <mat-form-field class="bb-age-field"
+          appearance="outline"
+          color="primary">
+          <mat-label>Max</mat-label>
+          <input matInput
+                 [formControl]="filterForm.controls.maxAge"
+                 maxlength="3"
+                 (input)="checkMaxAge()">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="bb-btn"
+          mat-raised-button
+          color="primary"
+          (click)="handleSearchSubmit()">
+          APPLY FILTERS
+  </button>
+</mat-dialog-actions>

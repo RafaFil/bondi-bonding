@@ -20,11 +20,7 @@
     <input matInput [formControl]="descriptionControl">
   </mat-form-field>
 
-  <button
-    mat-stroked-button
-    class="bb-search-form-btn bb-filter-btn">
-    FILTERS
-  </button>
+  <app-search-filters-modal [filterControl]="filtersControl"></app-search-filters-modal>
 
   <button
     mat-raised-button
