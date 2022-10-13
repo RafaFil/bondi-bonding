@@ -1,43 +1,37 @@
-<h2 mat-dialog-title>Filters</h2>
+<form [formGroup]="filterForm" (ngSubmit)="handleSearchSubmit()">
 
-<mat-dialog-content class="mat-typography">
-  <form [formGroup]="filterForm" (ngSubmit)="handleSearchSubmit()">
-
-    <mat-grid-list [cols]="2" [gutterSize]="'1rem'">
-      <p>Age</p>
-      <mat-grid-tile>
-        <mat-form-field class="bb-age-field"
+      <div class="d-flex flex-wrap">
+        <p class="col-12">Age</p>
+        <!-- Age range field -->
+        <mat-form-field
+          class="col-6 pe-2"
           appearance="outline"
           color="primary">
           <mat-label>Min</mat-label>
           <input matInput
-                 [formControl]="filterForm.controls.minAge"
-                 maxlength="3">
+                  [formControl]="filterForm.controls.minAge"
+                  maxlength="3">
         </mat-form-field>
-      </mat-grid-tile>
-
-      <mat-grid-tile>
-        <mat-form-field class="bb-age-field"
+        <mat-form-field
+          class="col-6"
           appearance="outline"
           color="primary">
           <mat-label>Max</mat-label>
           <input matInput
-                 [formControl]="filterForm.controls.maxAge"
-                 maxlength="3"
-                 (input)="checkMaxAge()">
+                  [formControl]="filterForm.controls.maxAge"
+                  maxlength="3"
+                  (input)="checkMaxAge()">
         </mat-form-field>
-      </mat-grid-tile>
-    </mat-grid-list>
 
+        <!-- Gender field -->
+        <mat-form-field
+          class="col-6"
+          appearance="outline"
+          color="primary">
+          <mat-label>Max</mat-label>
+          <input matInput
+                [formControl]="filterForm.controls.maxAge">
+        </mat-form-field>
+      </div>
 
-  </form>
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button class="bb-btn"
-          mat-raised-button
-          color="primary"
-          (click)="handleSearchSubmit()">
-          APPLY FILTERS
-  </button>
-</mat-dialog-actions>
+</form>

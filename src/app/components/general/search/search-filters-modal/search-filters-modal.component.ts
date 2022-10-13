@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
-import { SearchFiltersFormComponent } from './../search-filters-form/search-filters-form.component';
+import { SearchFiltersModalContentComponent } from './../search-filters-modal-content/search-filters-modal-content.component';
 import { SearchFilters } from './../../../../interfaces/SearchFilters';
 
 @Component({
@@ -20,8 +20,7 @@ export class SearchFiltersModalComponent implements OnInit {
 
   openFiltersDialog() {
     this.dialog.open(
-      SearchFiltersFormComponent
-      //,{ data: DATA }
+      SearchFiltersModalContentComponent
     );
   }
 }

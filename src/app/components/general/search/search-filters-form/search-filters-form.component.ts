@@ -1,6 +1,7 @@
-import { AbstractControl, FormBuilder, ValidationErrors, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+
+import { SearchFilters } from './../../../../interfaces/SearchFilters';
 
 @Component({
   selector: 'app-search-filters-form',
@@ -8,6 +9,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./search-filters-form.component.sass']
 })
 export class SearchFiltersFormComponent implements OnInit {
+  @Output() searchFiltersSubmit = new EventEmitter<SearchFilters>()
+
   filterForm = this.formBuilder.group({
     minAge: [ '', [ Validators.pattern('^[0-9]{2,3}$'), Validators.min(18)] ],
     maxAge: [ '', [ Validators.pattern('^[0-9]{2,3}$') ] ],
@@ -20,8 +23,7 @@ export class SearchFiltersFormComponent implements OnInit {
            !this.filterForm.controls.minAge.valid;
   }
 
-  constructor(private formBuilder: FormBuilder,
-              private dialogRef: MatDialogRef<SearchFiltersFormComponent>) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -41,10 +43,17 @@ export class SearchFiltersFormComponent implements OnInit {
   }
 
   handleSearchSubmit() {
-    console.log(this.filterForm.getRawValue());
-    console.log(this.filterForm.valid);
-    if (this.filterForm.valid) {
-      this.dialogRef.close();
+    if (!this.filterForm.valid)   return;
+
+    const formValues = this.filterForm.getRawValue();
+    const filters: SearchFilters = {
+      gender: formValues.gender
+    };
+
+    if (formValues.minAge && formValues.maxAge) {
+      filters.ageRange = { min: +formValues.minAge, max: +formValues.maxAge };
     }
+
+    this.searchFiltersSubmit.emit( filters );
   }
 }

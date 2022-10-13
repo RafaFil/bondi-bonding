@@ -3,5 +3,5 @@ export interface SearchFilters {
     min: number,
     max: number
   }
-  gender?: string
+  gender?: string | null
 }

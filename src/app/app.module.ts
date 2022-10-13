@@ -24,6 +24,7 @@ import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
 import { SearchFiltersFormComponent } from './components/general/search/search-filters-form/search-filters-form.component';
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
+import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SearchFiltersModalComponent } from './components/general/search/search-
     SearchFormComponent,
     SearchComponent,
     SearchFiltersModalComponent,
-    SearchFiltersFormComponent
+    SearchFiltersFormComponent,
+    SearchFiltersModalContentComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { SearchFiltersModalComponent } from './components/general/search/search-
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
