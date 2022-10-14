@@ -15,6 +15,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -31,7 +32,8 @@ const MaterialComponents = [
     OverlayModule,
     MatExpansionModule,
     MatNativeDateModule,
-    MatTabsModule
+    MatTabsModule,
+    MatToolbarModule
 ];
 
 @NgModule({
