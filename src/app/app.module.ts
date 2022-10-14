@@ -45,6 +45,10 @@ import { CreateTripFormComponent } from './components/general/create-trip/create
 import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component'
 import { FaqAccordionComponent } from './components/faq-page/faq-accordion/faq-accordion.component'
 import { NavbarComponent } from './components/general/navbar/navbar.component';
+import { SpeechBubbleComponent } from './components/chat-page/speech-bubble/speech-bubble.component';
+import { ChatFeedComponent } from './components/chat-page/chat-feed/chat-feed.component';
+import { ChatFeedHeaderComponent } from './components/chat-page/chat-feed-header/chat-feed-header.component';
+
 
 @NgModule({
   declarations: [
@@ -85,7 +89,10 @@ import { NavbarComponent } from './components/general/navbar/navbar.component';
     CreateTripFormComponent,
     FaqPageComponent,
     FaqAccordionComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpeechBubbleComponent,
+    ChatFeedComponent,
+    ChatFeedHeaderComponent
   ],
   imports: [
     BrowserModule,
