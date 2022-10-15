@@ -9,7 +9,8 @@ import { ChatMessage } from 'src/app/interfaces/ChatMessage';
 export class ChatFeedComponent implements OnInit {
 
   messages : ChatMessage[] = [
-    {msg_text:"When we were young the future was so bright",fromYou:true},
+    {msg_text:"When we were young the future was so brightso brightso brightso brightso brightso brightso brightso brightso brightso bright"
+    ,fromYou:true},
     {msg_text:"woah-oh",fromYou:false},
     {msg_text:"The old neighborhood was so alive",fromYou:true},
     {msg_text:"woah-oh",fromYou:false},

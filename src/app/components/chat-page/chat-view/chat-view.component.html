@@ -1,14 +1,35 @@
-<div class="app-chat-feed-header">
-    <app-chat-feed-header></app-chat-feed-header>
+<!--mobile-->
+<div *ngIf="(isMobile | async)?.matches">
+    <div class="app-chat-feed-header">
+        <app-chat-feed-header></app-chat-feed-header>
+    </div>
+
+    <section>
+        <app-chat-feed></app-chat-feed>
+    </section>
+
+    <div class="bb-chat-feed-footer">
+        <input type="text" class="bb-chat-text-input" placeholder=" Tpye something...">
+        <button mat-button color="primary" style="width: 15%; height: 100%;">
+            <mat-icon>send</mat-icon>
+        </button>
+    </div>
 </div>
 
-<app-chat-feed></app-chat-feed>
+<!--desktop-->
+<div *ngIf="!(isMobile | async)?.matches">
+    <mat-grid-list cols="4">
+        <mat-grid-tile
+        [colspan]="1"
+        [rowspan]="2"
+        [style.background]="'green'">
+        </mat-grid-tile>
 
-
-<div class="bb-chat-feed-footer">
-    <input type="text" class="bb-chat-text-input" placeholder=" Tpye something...">
-    <button mat-button color="primary" style="width: 15%; height: 100%;">
-        <mat-icon>send</mat-icon>
-    </button>
+        <mat-grid-tile
+        [colspan]="3"
+        [rowspan]="2"
+        [style.background]="'lightblue'">
+            <app-chat-feed></app-chat-feed>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
-

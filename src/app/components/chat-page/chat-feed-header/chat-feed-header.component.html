@@ -1,6 +1,6 @@
 <mat-toolbar class="bb-chat-feed-header">
     <mat-toolbar-row style="display:flex; justify-content: space-between;">
-      <a routerLink="/chat" style="color:inherit">
+      <a routerLink="/chat" style="color:inherit" *ngIf="showIcons">
         <button mat-icon-button>
           <mat-icon>arrow_back</mat-icon>
         </button>
@@ -8,7 +8,7 @@
       <div>
         <span>Chat name</span>
       </div>
-      <button mat-icon-button>
+      <button mat-icon-button *ngIf="showIcons">
         <mat-icon>more_vert</mat-icon>
       </button>
     </mat-toolbar-row>

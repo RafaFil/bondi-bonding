@@ -49,6 +49,9 @@ import { SpeechBubbleComponent } from './components/chat-page/speech-bubble/spee
 import { ChatFeedComponent } from './components/chat-page/chat-feed/chat-feed.component';
 import { ChatFeedHeaderComponent } from './components/chat-page/chat-feed-header/chat-feed-header.component';
 import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
+import { ChatPreviewComponent } from './components/chats-section/chat-preview/chat-preview.component';
+import { ChatsListComponent } from './components/chats-section/chats-list/chats-list.component';
+import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
 
 
 @NgModule({
@@ -94,7 +97,10 @@ import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.co
     SpeechBubbleComponent,
     ChatFeedComponent,
     ChatFeedHeaderComponent,
-    ChatViewComponent
+    ChatViewComponent,
+    ChatPreviewComponent,
+    ChatsListComponent,
+    ChatsViewComponent
   ],
   imports: [
     BrowserModule,
