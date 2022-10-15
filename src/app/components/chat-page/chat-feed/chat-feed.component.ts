@@ -15,6 +15,12 @@ export class ChatFeedComponent implements OnInit {
     {msg_text:"woah-oh",fromYou:false},
     {msg_text:"And every kid on the whole damn street",fromYou:true},
     {msg_text:"woah-oh",fromYou:false},
+    {msg_text:"When we were young the future was so bright",fromYou:true},
+    {msg_text:"woah-oh",fromYou:false},
+    {msg_text:"The old neighborhood was so alive",fromYou:true},
+    {msg_text:"woah-oh",fromYou:false},
+    {msg_text:"And every kid on the whole damn street",fromYou:true},
+    {msg_text:"woah-oh",fromYou:false},
   ];
 
   constructor() { }

@@ -1,9 +1,14 @@
 <!--speech bubble for the user-->
-<div class="speech-bubble user" *ngIf="message.fromYou">
-    {{message.msg_text}}
+<div style="margin-left: 25%;">
+    <div class="speech-bubble user" *ngIf="message.fromYou">
+        {{message.msg_text}}
+    </div>
 </div>
 
+
 <!--speech bubble for the sender-->
-<div class="speech-bubble sender" *ngIf="!message.fromYou">
-    {{message.msg_text}}
+<div style="width:75%">
+    <div class="speech-bubble sender" *ngIf="!message.fromYou">
+        {{message.msg_text}}
+    </div>
 </div>

@@ -1,6 +1,16 @@
-<mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <span>Chat name</span>
+<mat-toolbar class="bb-chat-feed-header">
+    <mat-toolbar-row style="display:flex; justify-content: space-between;">
+      <a routerLink="/chat" style="color:inherit">
+        <button mat-icon-button>
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </a>
+      <div>
+        <span>Chat name</span>
+      </div>
+      <button mat-icon-button>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </mat-toolbar-row>
 </mat-toolbar>
+
