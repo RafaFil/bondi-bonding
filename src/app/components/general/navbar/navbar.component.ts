@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  hidden : boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {

@@ -16,6 +16,9 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -33,7 +36,9 @@ const MaterialComponents = [
     MatExpansionModule,
     MatNativeDateModule,
     MatTabsModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDividerModule,
+    MatBadgeModule
 ];
 
 @NgModule({
