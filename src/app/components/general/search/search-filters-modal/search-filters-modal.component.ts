@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 import { SearchFiltersModalContentComponent } from './../search-filters-modal-content/search-filters-modal-content.component';
-import { SearchFilters } from './../../../../interfaces/SearchFilters';
+import { TripFilters } from '../../../../interfaces/Trip';
 
 @Component({
   selector: 'app-search-filters-modal',
@@ -11,7 +11,7 @@ import { SearchFilters } from './../../../../interfaces/SearchFilters';
   styleUrls: ['./search-filters-modal.component.sass']
 })
 export class SearchFiltersModalComponent implements OnInit {
-  @Input() filterControl!: FormControl<SearchFilters>;
+  @Input() filterControl!: FormControl<TripFilters>;
 
   constructor(private dialog: MatDialog) { }
 
@@ -20,7 +20,8 @@ export class SearchFiltersModalComponent implements OnInit {
 
   openFiltersDialog() {
     this.dialog.open(
-      SearchFiltersModalContentComponent
+      SearchFiltersModalContentComponent,
+      { data: { filterControl: this.filterControl } }
     );
   }
 }

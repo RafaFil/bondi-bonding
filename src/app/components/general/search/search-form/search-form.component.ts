@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
-import { SearchFilters } from './../../../../interfaces/SearchFilters';
+import { TripFilters } from '../../../../interfaces/Trip';
 
 @Component({
   selector: 'app-search-form',
@@ -24,8 +24,8 @@ export class SearchFormComponent implements OnInit {
     return this.searchForm.get('description') as FormControl;
   }
 
-  get filtersControl(): FormControl<SearchFilters> {
-    return this.searchForm.get('filters') as FormControl<SearchFilters>;
+  get filtersControl(): FormControl<TripFilters> {
+    return this.searchForm.get('filters') as FormControl<TripFilters>;
   }
 
   get clickedBondControl(): FormControl {

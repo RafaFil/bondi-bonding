@@ -1,22 +1,22 @@
-<form [formGroup]="filterForm" (ngSubmit)="handleSearchSubmit()">
+<form [formGroup]="filterForm" (ngSubmit)="handleTripFiltersSubmit()">
 
       <div class="d-flex flex-wrap">
-        <p class="col-12">Age</p>
         <!-- Age range field -->
         <mat-form-field
-          class="col-6 pe-2"
+          class="col-6 pe-1"
           appearance="outline"
           color="primary">
-          <mat-label>Min</mat-label>
+          <mat-label>Min Age</mat-label>
           <input matInput
                   [formControl]="filterForm.controls.minAge"
-                  maxlength="3">
+                  maxlength="3"
+                  (input)="checkMaxAge()">
         </mat-form-field>
         <mat-form-field
-          class="col-6"
+          class="col-6 ps-1"
           appearance="outline"
           color="primary">
-          <mat-label>Max</mat-label>
+          <mat-label>Max Age</mat-label>
           <input matInput
                   [formControl]="filterForm.controls.maxAge"
                   maxlength="3"
@@ -25,12 +25,13 @@
 
         <!-- Gender field -->
         <mat-form-field
-          class="col-6"
+          class="col-6 pe-1"
           appearance="outline"
           color="primary">
-          <mat-label>Max</mat-label>
-          <input matInput
-                [formControl]="filterForm.controls.maxAge">
+          <mat-label>Gender</mat-label>
+          <mat-select [formControl]="filterForm.controls.gender">
+            <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</mat-option>
+          </mat-select>
         </mat-form-field>
       </div>
 

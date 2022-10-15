@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { SearchFilters } from 'src/app/interfaces/SearchFilters';
+import { TripFilters } from 'src/app/interfaces/Trip';
 import { SearchFormComponent } from './search-form/search-form.component';
 
 @Component({
@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
     from: [ '' ],
     to: [ '' ],
     description: [ '' ],
-    filters: new FormControl<SearchFilters>({}),
+    filters: new FormControl<TripFilters>({}),
     clickedBond: false
   });
 

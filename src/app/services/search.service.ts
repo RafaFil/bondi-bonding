@@ -1,19 +1,15 @@
-import { SearchFilters } from 'src/app/interfaces/SearchFilters';
 import { Injectable } from '@angular/core';
+
+import { Trip } from './../interfaces/Trip';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  searchFilters?: SearchFilters;
 
   constructor() { }
 
-  setSearchFilters(searchFilters: SearchFilters) {
-    this.searchFilters = searchFilters;
-  }
-
-  search() {
-    // TODO: Return mocked search data
+  search(tripData: Trip): Trip[] {
+    return [];
   }
 }
