@@ -22,7 +22,7 @@ import { BusStopComponent } from './components/general/bus-stop/bus-stop.compone
 import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
 import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
-import { TripFiltersFormComponent } from './components/general/search/trip-filters-form/trip-filters-form.component';
+import { TripFiltersFormComponent } from './components/general/trip-filters-form/trip-filters-form.component';
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
 import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
 

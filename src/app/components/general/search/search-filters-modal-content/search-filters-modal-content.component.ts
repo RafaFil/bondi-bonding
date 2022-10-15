@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { TripFiltersFormComponent } from '../trip-filters-form/trip-filters-form.component';
+import { TripFiltersFormComponent } from '../../trip-filters-form/trip-filters-form.component';
 import { TripFilters } from 'src/app/interfaces/Trip';
 
 @Component({
