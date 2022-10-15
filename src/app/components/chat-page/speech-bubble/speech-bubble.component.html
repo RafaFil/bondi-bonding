@@ -1,5 +1,5 @@
 <!--speech bubble for the user-->
-<div style="margin-left: 25%;">
+<div class="bb-user-speech">
     <div class="speech-bubble user" *ngIf="message.fromYou">
         {{message.msg_text}}
     </div>
@@ -7,7 +7,7 @@
 
 
 <!--speech bubble for the sender-->
-<div style="width:75%">
+<div class="bb-sender-speech">
     <div class="speech-bubble sender" *ngIf="!message.fromYou">
         {{message.msg_text}}
     </div>
