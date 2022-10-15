@@ -25,6 +25,7 @@ import { SearchFormComponent } from './components/general/search/search-form/sea
 import { TripFiltersFormComponent } from './components/general/trip-filters-form/trip-filters-form.component';
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
 import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
+import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SearchFiltersModalContentComponent } from './components/general/search/
     SearchComponent,
     SearchFiltersModalComponent,
     TripFiltersFormComponent,
-    SearchFiltersModalContentComponent
+    SearchFiltersModalContentComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
