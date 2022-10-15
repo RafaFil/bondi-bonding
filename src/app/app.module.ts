@@ -52,6 +52,7 @@ import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.co
 import { ChatPreviewComponent } from './components/chats-section/chat-preview/chat-preview.component';
 import { ChatsListComponent } from './components/chats-section/chats-list/chats-list.component';
 import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
+import { ChatFeedInputComponent } from './components/chat-page/chat-feed-input/chat-feed-input.component';
 
 
 @NgModule({
@@ -100,7 +101,8 @@ import { ChatsViewComponent } from './components/chats-section/chats-view/chats-
     ChatViewComponent,
     ChatPreviewComponent,
     ChatsListComponent,
-    ChatsViewComponent
+    ChatsViewComponent,
+    ChatFeedInputComponent
   ],
   imports: [
     BrowserModule,

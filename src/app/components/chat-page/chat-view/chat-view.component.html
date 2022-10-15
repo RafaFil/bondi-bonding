@@ -8,28 +8,21 @@
         <app-chat-feed></app-chat-feed>
     </section>
 
-    <div class="bb-chat-feed-footer">
-        <input type="text" class="bb-chat-text-input" placeholder=" Tpye something...">
-        <button mat-button color="primary" style="width: 15%; height: 100%;">
-            <mat-icon>send</mat-icon>
-        </button>
-    </div>
+    <app-chat-feed-input></app-chat-feed-input>
 </div>
 
 <!--desktop-->
-<div *ngIf="!(isMobile | async)?.matches">
-    <mat-grid-list cols="4">
-        <mat-grid-tile
-        [colspan]="1"
-        [rowspan]="2"
-        [style.background]="'green'">
-        </mat-grid-tile>
-
-        <mat-grid-tile
-        [colspan]="3"
-        [rowspan]="2"
-        [style.background]="'lightblue'">
+<div *ngIf="!(isMobile | async)?.matches" style="display:flex; width:100%">
+    <div class="bb-chats-list" style="width:25% ; background-color: aqua;">
+        <p>lista de chats</p>
+    </div>
+    <div style="width:75%; overflow-y:hidden; ">
+        <div>
+            <app-chat-feed-header></app-chat-feed-header>
+        </div>
+    
+        <section style="overflow-y: scroll;">
             <app-chat-feed></app-chat-feed>
-        </mat-grid-tile>
-    </mat-grid-list>
+        </section>
+    </div>
 </div>
