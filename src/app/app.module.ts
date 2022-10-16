@@ -18,7 +18,8 @@ import { SignupFormsComponent } from './components/signup-frame/signup-forms/sig
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
-import { BusStopComponent } from './components/general/bus-stop/bus-stop.component';
+import { BusStopComponent } from './components/general/stop-map/bus-stop/bus-stop.component';
+import { StopMapComponent } from './components/general/stop-map/stop-map.component';
 import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
 import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
@@ -26,6 +27,7 @@ import { TripFiltersFormComponent } from './components/general/trip-filters-form
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
 import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
+import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { HomePageComponent } from './components/home-page/home-page/home-page.co
     SearchFiltersModalComponent,
     TripFiltersFormComponent,
     SearchFiltersModalContentComponent,
-    HomePageComponent
+    HomePageComponent,
+    StopMapComponent,
+    HomeStopMapComponent
   ],
   imports: [
     BrowserModule,

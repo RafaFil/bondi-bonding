@@ -1,4 +1,4 @@
 export interface GeoPoint{
   type?: string,
-  coordinates?: number[]
+  coordinates?: [ number, number ] // ( long, lat )
 }

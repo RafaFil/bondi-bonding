@@ -1,0 +1,8 @@
+<div class="map" #map (click)="emitMapClick($event)">
+  <app-bus-stop
+      *ngFor="let busStopMarker of busStopMarkers"
+      [busStop]="busStopMarker"
+      [showIcon]="showStops"
+      (stopClick)="emitSelectedStop($event)">
+  </app-bus-stop>
+</div>
