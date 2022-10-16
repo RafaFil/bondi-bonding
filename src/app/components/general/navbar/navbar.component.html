@@ -1,5 +1,5 @@
-<mat-toolbar class="bb-navbar" style="background-color:white;">
-  <mat-divider style="border-top-color:black;"></mat-divider>
+<mat-toolbar class="bb-navbar">
+  <mat-divider class="bb-divider"></mat-divider>
   <mat-toolbar-row class="row">
       <div class="col">
         <a routerLink="/home">
@@ -8,7 +8,7 @@
       </div>
       <div class="col">
         <a routerLink="/chat">
-          <mat-icon color="primary" matBadge="2" matBadgeColor="warn" [matBadgeHidden]="hidden">chat</mat-icon>
+          <mat-icon color="primary" matBadge="{{unreadedChats}}" matBadgeColor="warn" [matBadgeHidden]="isBadgeHidden">chat</mat-icon>
         </a>
       </div>
       <div class="col">
