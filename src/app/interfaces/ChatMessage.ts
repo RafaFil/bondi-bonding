@@ -1,4 +1,3 @@
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 export interface ChatMessage {
     msg_text : string;

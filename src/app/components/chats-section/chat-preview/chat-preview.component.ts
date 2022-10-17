@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Chat } from 'src/app/interfaces/Chat';
 
 @Component({
   selector: 'app-chat-preview',
@@ -6,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-preview.component.sass']
 })
 export class ChatPreviewComponent implements OnInit {
+
+  @Input() chat !: Chat;
+
+  getUserName(){
+    const username = ""; //get the username
+    return username;
+  }
+  getlastChat () {
+    return this.chat.chatMessages[this.chat.chatMessages.length-1]
+  };
 
   constructor() { }
 

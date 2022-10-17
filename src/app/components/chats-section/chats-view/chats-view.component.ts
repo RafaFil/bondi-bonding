@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Chat } from 'src/app/interfaces/Chat';
 
 @Component({
   selector: 'app-chats-view',
@@ -6,6 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chats-view.component.sass']
 })
 export class ChatsViewComponent implements OnInit {
+
+  temporalChats : Chat[] = [];
+
+  friendsChats : Chat[] = [];
+
+  unrededTemporalChats !: string;
+  unrededFriendasChats !: string;
 
   constructor() { }
 

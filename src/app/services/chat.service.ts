@@ -11,9 +11,14 @@ export class ChatService {
     
   }
 
-  getAllUserChats(username : string){
+  getAllUserChats(username : string) {
 
   }
+
+  getUnrededChats(){
+
+  }
+
 
   getChats(){
 
@@ -22,4 +27,5 @@ export class ChatService {
   updateChat(){
 
   }
+
 }
