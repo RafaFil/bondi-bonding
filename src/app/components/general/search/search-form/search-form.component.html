@@ -1,4 +1,4 @@
-<form class="bb-search-form" [formGroup]="searchForm">
+<form class="bb-search-form" [formGroup]="searchService.searchForm">
   <mat-form-field class="bb-search-form-field"
     appearance="outline"
     color="primary">
@@ -13,14 +13,7 @@
     <input matInput [formControl]="toControl">
   </mat-form-field>
 
-  <mat-form-field class="bb-search-form-field"
-    appearance="outline"
-    color="primary">
-    <mat-label>DESCRIPTION</mat-label>
-    <input matInput [formControl]="descriptionControl">
-  </mat-form-field>
-
-  <app-search-filters-modal [filterControl]="filtersControl"></app-search-filters-modal>
+  <app-search-filters-modal></app-search-filters-modal>
 
   <button
     mat-raised-button

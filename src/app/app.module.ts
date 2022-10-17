@@ -28,6 +28,7 @@ import { SearchFiltersModalComponent } from './components/general/search/search-
 import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
+import { UserIconComponent } from './components/general/user/user-icon/user-icon.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-
     SearchFiltersModalContentComponent,
     HomePageComponent,
     StopMapComponent,
-    HomeStopMapComponent
+    HomeStopMapComponent,
+    UserIconComponent
   ],
   imports: [
     BrowserModule,

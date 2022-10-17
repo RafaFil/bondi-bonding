@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { TripFilters } from 'src/app/interfaces/Trip';
 import { SearchFormComponent } from './search-form/search-form.component';
+
+import { SearchResult } from './../../../interfaces/SearchResult';
+import { SearchService } from './../../../services/search.service';
 
 @Component({
   selector: 'app-search',
@@ -10,35 +11,24 @@ import { SearchFormComponent } from './search-form/search-form.component';
   styleUrls: ['./search.component.sass']
 })
 export class SearchComponent implements OnInit {
-  searchForm = this.formBuilder.group({
-    from: [ '' ],
-    to: [ '' ],
-    description: [ '' ],
-    filters: new FormControl<TripFilters>({}),
-    clickedBond: false
-  });
+  @Output() search = new EventEmitter<SearchResult>();
 
   constructor(private bottomSheet: MatBottomSheet,
-              private formBuilder: FormBuilder) { }
+              private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
 
   displaySearchForm(): void {
-    const bottomSheetRef = this.bottomSheet.open(SearchFormComponent, {
-      data: {
-        searchForm: this.searchForm
-      }
-    });
+    const bottomSheetRef = this.bottomSheet.open(SearchFormComponent);
 
     bottomSheetRef.afterDismissed().subscribe(() => this.handleFormSubmit());
   }
 
   handleFormSubmit(): void {
-    const formRawValue = this.searchForm.getRawValue();
+    const searchResult = this.searchService.search();
+    if (!searchResult)  return;
 
-    if (!formRawValue.clickedBond) return;
-
-    console.log(formRawValue);
+    this.search.emit(searchResult);
   }
 }

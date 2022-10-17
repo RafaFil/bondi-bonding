@@ -1,8 +1,8 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import { SearchService } from './../../../../services/search.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
-import { TripFilters } from '../../../../interfaces/Trip';
 
 @Component({
   selector: 'app-search-form',
@@ -10,33 +10,22 @@ import { TripFilters } from '../../../../interfaces/Trip';
   styleUrls: ['./search-form.component.sass']
 })
 export class SearchFormComponent implements OnInit {
-  searchForm!: FormGroup;
 
   get fromControl(): FormControl {
-    return this.searchForm.get('from') as FormControl;
+    return this.searchService.searchForm.controls.from;
   }
 
   get toControl(): FormControl {
-    return this.searchForm.get('to') as FormControl;
-  }
-
-  get descriptionControl(): FormControl {
-    return this.searchForm.get('description') as FormControl;
-  }
-
-  get filtersControl(): FormControl<TripFilters> {
-    return this.searchForm.get('filters') as FormControl<TripFilters>;
+    return this.searchService.searchForm.controls.to;
   }
 
   get clickedBondControl(): FormControl {
-    return this.searchForm.get('clickedBond') as FormControl;
+    return this.searchService.searchForm.controls.clickedBond;
   }
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) private data: {searchForm: FormGroup},
+  constructor(public searchService: SearchService,
               private bottomSheetRef: MatBottomSheetRef<SearchFormComponent>)
-  {
-    this.searchForm = this.data.searchForm;
-  }
+  { }
 
   ngOnInit(): void {
     this.clickedBondControl.setValue(false);

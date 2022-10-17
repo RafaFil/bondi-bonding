@@ -6,6 +6,7 @@ import { BusStop } from '../../../interfaces/BusStop';
 import { BusStopComponent } from './bus-stop/bus-stop.component';
 
 const ZOOM_LEVELS = {
+  ZOOM_IN: 16,
   ACCURATE: 15,
   INACCURATE: 14,
   NO_LOCATION: 10
@@ -27,7 +28,7 @@ export class StopMapComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren(BusStopComponent, { read: ElementRef })
   private busStopElements!: QueryList<ElementRef>;
 
-  private map?: Map;
+  private map!: Map;
   private zoom: number = ZOOM_LEVELS.NO_LOCATION;
 
   showStops: boolean = true;
@@ -59,21 +60,21 @@ export class StopMapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   handlePositionFound(position: GeolocationPosition): void {
-    this.map?.setCenter( [ position.coords.longitude, position.coords.latitude ] );
+    this.map.setCenter( [ position.coords.longitude, position.coords.latitude ] );
     if (position.coords.accuracy < 400) {
-      this.map?.setZoom(ZOOM_LEVELS.ACCURATE);
+      this.zoom = ZOOM_LEVELS.ACCURATE;
     } else {
-      this.map?.setZoom(ZOOM_LEVELS.INACCURATE);
+      this.zoom = ZOOM_LEVELS.INACCURATE;
     }
+    this.map.setZoom(this.zoom);
   }
 
   loadBusStops(): void {
-    if (!this.map) return;
-
     for(let i = 0; i < this.busStopElements.length; i++) {
       if (!this.busStopMarkers || !this.busStopMarkers[i]) continue;
 
       const busStop = this.busStopMarkers[i];
+
       if (busStop.location && busStop.location.coordinates) {
         new Marker( { element: this.busStopElements.get(i)?.nativeElement } )
         .setLngLat( busStop.location.coordinates )
@@ -83,10 +84,20 @@ export class StopMapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   handleZoomChange() {
-    this.showStops = this.map ? this.map?.getZoom() >= 12 : false;
+    this.showStops = this.map.getZoom() >= 12;
   }
 
-  emitSelectedStop(busStop: BusStop) {
+  handleSelectedStop(busStop: BusStop) {
+    if (busStop.location && busStop.location.coordinates) {
+      this.map.easeTo({
+        center: [
+            busStop.location.coordinates[0],
+            busStop.location.coordinates[1] - 0.001
+        ],
+        zoom: ZOOM_LEVELS.ZOOM_IN
+      });
+    }
+
     this.stopSelect.emit(busStop);
   }
 

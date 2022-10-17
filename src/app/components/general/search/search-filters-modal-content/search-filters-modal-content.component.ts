@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { SearchService } from './../../../../services/search.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 import { TripFiltersFormComponent } from '../../trip-filters-form/trip-filters-form.component';
 import { TripFilters } from 'src/app/interfaces/Trip';
@@ -15,7 +15,7 @@ export class SearchFiltersModalContentComponent implements OnInit {
   @ViewChild('filtersForm') filtersForm?: TripFiltersFormComponent;
 
   constructor(private dialogRef: MatDialogRef<SearchFiltersModalContentComponent>,
-              @Inject(MAT_DIALOG_DATA) private data: { filterControl: FormControl<TripFilters> }) { }
+              private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
@@ -26,7 +26,7 @@ export class SearchFiltersModalContentComponent implements OnInit {
   }
 
   handleSearchFiltersSubmit($event: TripFilters) {
-    this.data.filterControl.setValue($event);
+    this.searchService.searchForm.controls.filters.setValue($event);
     this.dialogRef.close();
   }
 }

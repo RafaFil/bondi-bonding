@@ -3,6 +3,6 @@
       *ngFor="let busStopMarker of busStopMarkers"
       [busStop]="busStopMarker"
       [showIcon]="showStops"
-      (stopClick)="emitSelectedStop($event)">
+      (stopClick)="handleSelectedStop($event)">
   </app-bus-stop>
 </div>
