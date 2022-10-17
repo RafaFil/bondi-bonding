@@ -20,9 +20,14 @@ export class SlidingSheetComponent implements OnInit {
   ngOnInit(): void { }
 
   @HostListener('document:click', ['$event'])
-  handleClickOut($event: Event) {
+  handleClickOut($event: MouseEvent) {
     if (!this.isShowing) return;
+
     if (this.slidingSection?.nativeElement.contains($event.target)) return;
+
+    const targets = $event.composedPath() as HTMLElement[];
+    if (targets.find(elem => elem.className === 'cdk-overlay-container')) return;
+
 
     this.hide();
   }
