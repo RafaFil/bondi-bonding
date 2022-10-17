@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatGridListModule } from '@angular/material/grid-list';
 
 const MaterialComponents = [
@@ -22,7 +21,6 @@ const MaterialComponents = [
     MatSelectModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatBottomSheetModule,
     MatGridListModule
 ];
 

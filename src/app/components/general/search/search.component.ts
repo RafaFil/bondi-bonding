@@ -1,9 +1,8 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
-import { SearchFormComponent } from './search-form/search-form.component';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 
 import { SearchResult } from './../../../interfaces/SearchResult';
 import { SearchService } from './../../../services/search.service';
+import { SlidingSheetComponent } from '../sliding-sheet/sliding-sheet.component';
 
 @Component({
   selector: 'app-search',
@@ -13,19 +12,20 @@ import { SearchService } from './../../../services/search.service';
 export class SearchComponent implements OnInit {
   @Output() search = new EventEmitter<SearchResult>();
 
-  constructor(private bottomSheet: MatBottomSheet,
-              private searchService: SearchService) { }
+  @ViewChild(SlidingSheetComponent)
+  slidingSheet?: SlidingSheetComponent;
+
+  constructor(private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
 
-  displaySearchForm(): void {
-    const bottomSheetRef = this.bottomSheet.open(SearchFormComponent);
-
-    bottomSheetRef.afterDismissed().subscribe(() => this.handleFormSubmit());
+  displaySearchForm($event: Event): void {
+    this.slidingSheet?.show($event);
   }
 
   handleFormSubmit(): void {
+    this.slidingSheet?.hide();
     const searchResult = this.searchService.search();
     if (!searchResult)  return;
 

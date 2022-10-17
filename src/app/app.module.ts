@@ -29,6 +29,7 @@ import { SearchFiltersModalContentComponent } from './components/general/search/
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
 import { UserIconComponent } from './components/general/user/user-icon/user-icon.component';
+import { SlidingSheetComponent } from './components/general/sliding-sheet/sliding-sheet.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { UserIconComponent } from './components/general/user/user-icon/user-icon
     HomePageComponent,
     StopMapComponent,
     HomeStopMapComponent,
-    UserIconComponent
+    UserIconComponent,
+    SlidingSheetComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { SlidingSheetComponent } from '../../general/sliding-sheet/sliding-sheet.component';
 
 @Component({
   selector: 'app-init-home',
