@@ -17,7 +17,7 @@ export class LocationService {
   constructor() {  }
 
   getStyleUrl(): string {
-    return `https://api.maptiler.com/maps/streets/style.json?key=${API_KEY}`;
+    return `https://api.maptiler.com/maps/outdoor/style.json?key=${API_KEY}`;
   }
 
   getCurrentPosition(
