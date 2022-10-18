@@ -1,8 +1,7 @@
-import { SearchResult } from './../interfaces/SearchResult';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
-import { Trip, TripFilters } from './../interfaces/Trip';
+import { SearchResult, TripFilters } from 'src/app/interfaces';
 
 @Injectable({
   providedIn: 'root'

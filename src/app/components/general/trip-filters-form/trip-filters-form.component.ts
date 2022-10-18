@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
-import { TripFilters, GENDER_OPTIONS } from '../../../interfaces/Trip';
+import { TripFilters, GENDER_OPTIONS } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-trip-filters-form',

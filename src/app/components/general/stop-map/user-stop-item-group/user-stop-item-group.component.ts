@@ -1,5 +1,6 @@
-import { Trip } from './../../../../interfaces/Trip';
 import { Component, OnInit, Input } from '@angular/core';
+
+import { Trip } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-user-stop-item-group',

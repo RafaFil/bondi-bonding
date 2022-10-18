@@ -1,10 +1,10 @@
-import { SearchService } from './../../../../services/search.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { MatDialogRef } from '@angular/material/dialog';
 
+import { TripFilters } from 'src/app/interfaces';
 import { TripFiltersFormComponent } from '../../trip-filters-form/trip-filters-form.component';
-import { TripFilters } from 'src/app/interfaces/Trip';
+import { SearchService } from './../../../../services/search.service';
 
 @Component({
   selector: 'app-search-filters-modal-content',

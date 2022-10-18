@@ -1,8 +1,9 @@
-import { BusStop } from './../interfaces/BusStop';
 import { Injectable } from '@angular/core';
 
-import { MOCKED_STOPS } from './../mocks/stops.mock';
 import { Observable, of } from 'rxjs';
+
+import { MOCKED_STOPS } from './../mocks/stops.mock';
+import { BusStop } from 'src/app/interfaces';
 
 @Injectable({
   providedIn: 'root'

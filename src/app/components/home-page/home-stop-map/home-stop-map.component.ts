@@ -1,9 +1,8 @@
-import { Trip } from './../../../interfaces/Trip';
-import { SlidingSheetComponent } from './../../general/sliding-sheet/sliding-sheet.component';
-import { StopsService } from './../../../services/stops.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { BusStop } from 'src/app/interfaces/BusStop';
+import { BusStop, Trip } from 'src/app/interfaces';
+import { SlidingSheetComponent } from './../../general/sliding-sheet/sliding-sheet.component';
+import { StopsService } from './../../../services/stops.service';
 
 @Component({
   selector: 'app-home-stop-map',

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
-import { Trip } from './../../../../interfaces/Trip';
+import { Trip } from 'src/app/interfaces';
 
 @Component({
   selector: 'app-user-stop-item',

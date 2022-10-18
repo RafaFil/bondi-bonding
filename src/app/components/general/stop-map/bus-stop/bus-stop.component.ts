@@ -1,6 +1,7 @@
-import { StopsService } from '../../../../services/stops.service';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { BusStop } from 'src/app/interfaces/BusStop';
+
+import { BusStop } from 'src/app/interfaces';
+import { StopsService } from '../../../../services/stops.service';
 
 @Component({
   selector: 'app-bus-stop',

@@ -1,8 +1,8 @@
 import { LocationService } from '../../../services/location.service';
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Output, QueryList, ViewChild, ViewChildren, EventEmitter } from '@angular/core';
 
-import { Map, MapLibreEvent, Marker } from 'maplibre-gl';
-import { BusStop } from '../../../interfaces/BusStop';
+import { Map, Marker } from 'maplibre-gl';
+import { BusStop } from 'src/app/interfaces';
 import { BusStopComponent } from './bus-stop/bus-stop.component';
 
 const ZOOM_LEVELS = {

@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { ViewEncapsulation } from '@angular/core';
-import { AuthRequest } from 'src/app/interfaces/AuthRequest';
-import { AuthService } from 'src/app/services/auth.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+
+import { AuthRequest } from 'src/app/interfaces';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login-form',

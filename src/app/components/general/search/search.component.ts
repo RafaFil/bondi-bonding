@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 
-import { SearchResult } from './../../../interfaces/SearchResult';
+import { SearchResult } from 'src/app/interfaces';
 import { SearchService } from './../../../services/search.service';
 import { SlidingSheetComponent } from '../sliding-sheet/sliding-sheet.component';
 

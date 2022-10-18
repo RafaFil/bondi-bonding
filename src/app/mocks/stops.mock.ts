@@ -1,4 +1,4 @@
-import { BusStop } from './../interfaces/BusStop';
+import { BusStop } from 'src/app/interfaces';
 
 export const MOCKED_STOPS: BusStop[] = [
   {
