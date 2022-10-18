@@ -28,8 +28,11 @@ import { SearchFiltersModalComponent } from './components/general/search/search-
 import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
-import { UserIconComponent } from './components/general/user/user-icon/user-icon.component';
 import { SlidingSheetComponent } from './components/general/sliding-sheet/sliding-sheet.component';
+import { UserIconComponent } from './components/general/user/user-icon/user-icon.component';
+import { UserInfoComponent } from './components/general/user/user-info/user-info.component';
+import { UserStopItemComponent } from './components/general/stop-map/user-stop-item/user-stop-item.component';
+import { UserStopItemGroupComponent } from './components/general/stop-map/user-stop-item-group/user-stop-item-group.component';
 
 @NgModule({
   declarations: [
@@ -55,8 +58,11 @@ import { SlidingSheetComponent } from './components/general/sliding-sheet/slidin
     HomePageComponent,
     StopMapComponent,
     HomeStopMapComponent,
+    SlidingSheetComponent,
     UserIconComponent,
-    SlidingSheetComponent
+    UserInfoComponent,
+    UserStopItemComponent,
+    UserStopItemGroupComponent
   ],
   imports: [
     BrowserModule,
