@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Chat } from 'src/app/interfaces/Chat';
+import { ChatMessage } from 'src/app/interfaces/ChatMessage';
 
 @Component({
   selector: 'app-chat-preview',
@@ -10,12 +11,15 @@ export class ChatPreviewComponent implements OnInit {
 
   @Input() chat !: Chat;
 
+  userName : string = "";
+  lastMessage !: ChatMessage
+
   getUserName(){
-    const username = ""; //get the username
-    return username;
+    
   }
+
   getlastChat () {
-    return this.chat.chatMessages[this.chat.chatMessages.length-1]
+  
   };
 
   constructor() { }

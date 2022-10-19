@@ -8,9 +8,19 @@
       <div>
         <span class="bb-title">{{title}}</span>
       </div>
-      <button mat-icon-button *ngIf="showIcons">
+      <button mat-icon-button *ngIf="showIcons"  [matMenuTriggerFor]="menu" #matMenuTriggerFor>
         <mat-icon>more_vert</mat-icon>
       </button>
+      <mat-menu #menu="matMenu" >
+        <button mat-menu-item (click)="openBlockDialog()">
+          <mat-icon>block</mat-icon>
+          <span>Block user</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteDialog()">
+          <mat-icon>delete</mat-icon>
+          <span>Delete chat</span>
+        </button>
+      </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
 

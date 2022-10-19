@@ -1,0 +1,6 @@
+<app-base-dialog [dialogTitle]="'Delete chat?'">
+    <span bb-content>Are you sure you want to delete the chat</span>
+    <button bb-actions mat-button mat-dialog-close>Close</button>
+    <button bb-actions mat-button mat-dialog-close (click)="deleteChat()">Yes</button>
+</app-base-dialog>
+

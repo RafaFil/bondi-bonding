@@ -53,6 +53,9 @@ import { ChatPreviewComponent } from './components/chats-section/chat-preview/ch
 import { ChatsListComponent } from './components/chats-section/chats-list/chats-list.component';
 import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
 import { ChatFeedInputComponent } from './components/chat-page/chat-feed-input/chat-feed-input.component';
+import { BaseDialogComponent } from './components/general/base-dialog/base-dialog.component';
+import { BlockDialogComponent } from './components/chat-page/block-dialog/block-dialog.component';
+import { DeleteDialogComponent } from './components/chat-page/delete-dialog/delete-dialog.component';
 
 
 @NgModule({
@@ -102,7 +105,10 @@ import { ChatFeedInputComponent } from './components/chat-page/chat-feed-input/c
     ChatPreviewComponent,
     ChatsListComponent,
     ChatsViewComponent,
-    ChatFeedInputComponent
+    ChatFeedInputComponent,
+    BaseDialogComponent,
+    BlockDialogComponent,
+    DeleteDialogComponent
   ],
   imports: [
     BrowserModule,

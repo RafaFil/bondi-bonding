@@ -19,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -39,7 +40,8 @@ const MaterialComponents = [
     MatToolbarModule,
     MatDividerModule,
     MatBadgeModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule
 ];
 
 @NgModule({

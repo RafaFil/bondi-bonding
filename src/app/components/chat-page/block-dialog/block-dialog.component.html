@@ -1,0 +1,5 @@
+<app-base-dialog [dialogTitle]="'Block user?'">
+    <span bb-content>Are you sure you want to block --user--</span>
+    <button bb-actions mat-button mat-dialog-close>Close</button>
+    <button bb-actions mat-button mat-dialog-close (click)="blockUser()">Yes</button>
+</app-base-dialog>

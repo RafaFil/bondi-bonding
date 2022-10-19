@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ChatMessage} from '../../../interfaces/ChatMessage'
 
 @Component({
   selector: 'app-chat-feed-input',
@@ -10,6 +11,12 @@ export class ChatFeedInputComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submitChat(msgTxt : string){
+    const msg : ChatMessage = {
+      msg_text : msgTxt, fromYou: true, msg_date: new Date()};
+      // do the submit
   }
 
 }
