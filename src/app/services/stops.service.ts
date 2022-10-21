@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { MOCKED_STOPS } from './../mocks/stops.mock';
+import { MOCKED_STOPS } from 'src/app/mocks';
 import { BusStop } from 'src/app/interfaces';
 
 @Injectable({

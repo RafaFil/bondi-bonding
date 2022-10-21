@@ -20,4 +20,8 @@ export class UserStopItemGroupComponent implements OnInit {
     this.selectedTrip = trip;
   }
 
+  clearSelectedUser() {
+    this.selectedTrip = undefined;
+  }
+
 }

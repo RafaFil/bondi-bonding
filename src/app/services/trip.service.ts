@@ -1,7 +1,10 @@
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
-import { TripFilters, Trip } from 'src/app/interfaces';
+import { Observable, of } from 'rxjs';
+
+import { TripFilters, Trip, BusStop } from 'src/app/interfaces';
+import { MOCKED_TRIPS } from 'src/app/mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -18,9 +21,11 @@ export class TripService {
   constructor(private fb: FormBuilder) { }
 
   createTrip(): Trip | undefined {
-
-
     this.createTripForm.reset();
     return;
+  }
+
+  getTripsByStop(stop: BusStop): Observable<Trip[]> {
+    return of(MOCKED_TRIPS);
   }
 }

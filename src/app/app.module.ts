@@ -33,6 +33,8 @@ import { UserIconComponent } from './components/general/user/user-icon/user-icon
 import { UserInfoComponent } from './components/general/user/user-info/user-info.component';
 import { UserStopItemComponent } from './components/general/stop-map/user-stop-item/user-stop-item.component';
 import { UserStopItemGroupComponent } from './components/general/stop-map/user-stop-item-group/user-stop-item-group.component';
+import { StopContentComponent } from './components/home-page/stop-content/stop-content.component';
+import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { UserStopItemGroupComponent } from './components/general/stop-map/user-s
     UserIconComponent,
     UserInfoComponent,
     UserStopItemComponent,
-    UserStopItemGroupComponent
+    UserStopItemGroupComponent,
+    StopContentComponent,
+    StopContentHeaderComponent
   ],
   imports: [
     BrowserModule,

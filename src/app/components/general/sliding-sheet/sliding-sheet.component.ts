@@ -28,7 +28,6 @@ export class SlidingSheetComponent implements OnInit {
     const targets = $event.composedPath() as HTMLElement[];
     if (targets.find(elem => elem.className === 'cdk-overlay-container')) return;
 
-
     this.hide();
   }
 

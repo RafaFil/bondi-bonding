@@ -5,5 +5,5 @@
 >
 </app-stop-map>
 <app-sliding-sheet #slidingSheet>
-  <app-user-stop-item-group [trips]="trips"></app-user-stop-item-group>
+  <app-stop-content [stop]="stopsService.getSelectedStop()"></app-stop-content>
 </app-sliding-sheet>

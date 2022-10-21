@@ -1,0 +1,18 @@
+<header class="container my-3 px-3 w-100 bb-stop-header">
+  <div class="row">
+    <div class="col">
+      <span *ngIf="selectedLine">{{selectedLine.line}}: {{selectedLine.destination}}</span>
+      <div *ngIf="!selectedLine">
+        <!--  <mat-form-field>
+          COMBOBOX QUE PERMITE ELEGIR LINEA DE LAS QUE HAY ACÁ
+        </mat-form-field> -->
+      </div>
+    </div>
+    <div class="col d-flex justify-content-end bb-stop-header-time">
+      <span>{{clickedTime}}</span>
+      <mat-icon class="ms-2" color="primary">schedule</mat-icon>
+    </div>
+  </div>
+</header>
+
+

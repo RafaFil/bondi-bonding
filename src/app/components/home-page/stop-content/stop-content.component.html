@@ -1,0 +1,13 @@
+<div class="bb-stop-content">
+  <app-stop-content-header [stop]="stop"></app-stop-content-header>
+  <div class="bb-stop-users">
+    <app-user-stop-item-group #userItemGroup [trips]="trips"></app-user-stop-item-group>
+  </div>
+  <button
+    class="bb-start-chat-btn"
+    [disabled]="!userItemGroup.selectedTrip"
+    mat-raised-button color="primary"
+    (click)="handleStartChat(userItemGroup.selectedTrip!)">
+    START CHAT
+  </button>
+</div>

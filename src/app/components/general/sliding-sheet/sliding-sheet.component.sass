@@ -3,20 +3,21 @@
 
   position: fixed
 
-  z-index: 99999
+  z-index: 2
 
+  animation-timing-function: ease
+  animation-fill-mode: forwards
 
 // MOBILE
 @media ( max-width: 700px )
   .bb-sliding-section
     left: 0
-    top: 200%
+    top: 100%
 
     width: 100%
-    height: 50%
 
-    animation-timing-function: ease
-    animation-fill-mode: forwards
+    border-radius: 16px 16px 0px 0px
+
 
   .bb-show
     animation-name: slide-up
@@ -26,34 +27,15 @@
     animation-name: slide-down
     animation-duration: 1s
 
-@keyframes slide-up
-  0%
-    top: 200%
-
-  100%
-    transform: translateY(-300%)
-
-// Same as slide-up but played in reverse
-@keyframes slide-down
-  0%
-    top: auto
-    bottom: 0
-
-  100%
-    transform: translateY(300%)
-
-
 // DESKTOP
 @media ( min-width: 700px )
   .bb-sliding-section
-    left: 200%
+    left: 100%
     top: 0
 
     height: 100%
     width: 30%
 
-    animation-timing-function: ease
-    animation-fill-mode: forwards
     animation-duration: 0.4s
 
   .bb-show
@@ -61,22 +43,29 @@
 
   .bb-hide
     animation-name: slide-right
-    animation-direction: reverse
 
 
-@keyframes slide-left
+// MOBILE ANIMATIONS
+@keyframes slide-up
+  100%
+    transform: translateY(-100%)
+
+@keyframes slide-down
   0%
-    left: 200%
-    top: 0
+    transform: translateY(-100%)
 
   100%
-    transform: translateX(-433%)
+    transform: translateY(100%)
 
-// Same as slide-left but played in reverse
+
+// DESKTOP ANIMATIONS
+@keyframes slide-left
+  100%
+    transform: translateX(-100%)
+
 @keyframes slide-right
   0%
-    left: 200%
-    top: 0
+    transform: translateX(-100%)
 
   100%
-    transform: translateX(-433%)
+    transform: translateX(0%)

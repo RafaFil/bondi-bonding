@@ -1,4 +1,6 @@
 export interface BusLine {
   line?: string,
-  lineId?: string
+  lineId?: string,
+  destination?: string,
+  origin?: string
 }
