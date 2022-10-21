@@ -1,7 +1,9 @@
 import {ChatMessage} from 'src/app/interfaces/ChatMessage';
 
 export interface Chat{
-    id : number;
+    id: number;
 
-    chatMessages : ChatMessage[];
+    chatMessages?: ChatMessage[];
+
+    permanent?: boolean;
 }

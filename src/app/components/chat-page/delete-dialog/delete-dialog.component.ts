@@ -14,7 +14,7 @@ export class DeleteDialogComponent implements OnInit {
   }
 
   deleteChat(){
-
+    
   }
 
 }

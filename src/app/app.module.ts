@@ -108,7 +108,7 @@ import { DeleteDialogComponent } from './components/chat-page/delete-dialog/dele
     ChatFeedInputComponent,
     BaseDialogComponent,
     BlockDialogComponent,
-    DeleteDialogComponent
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

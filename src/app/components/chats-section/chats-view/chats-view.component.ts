@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Chat } from 'src/app/interfaces/Chat';
+import { ChatsInfo } from 'src/app/interfaces/ChatsInfo';
 
 @Component({
   selector: 'app-chats-view',
@@ -8,16 +9,24 @@ import { Chat } from 'src/app/interfaces/Chat';
 })
 export class ChatsViewComponent implements OnInit {
 
-  temporalChats : Chat[] = [];
+  chatUserInfo: ChatsInfo = {temporalChats : [], permanentChats: []}
 
-  friendsChats : Chat[] = [];
+  get temporalChats() : Chat[] {
+    return this.chatUserInfo.temporalChats;
+  }
 
-  unrededTemporalChats !: string;
-  unrededFriendasChats !: string;
+  get permanentChats() : Chat[] {
+    return this.chatUserInfo.permanentChats;
+  }
+
+  /*unrededTemporalChats !: string;
+  unrededFriendasChats !: string;*/
 
   constructor() { }
 
   ngOnInit(): void {
   }
+
+
 
 }
