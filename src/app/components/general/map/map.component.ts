@@ -81,6 +81,5 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       .setLngLat( marker.coordinates )
       .addTo(this.map);
     }
-    console.log(this.markers);
   }
 }

@@ -11,7 +11,7 @@ export class UserStopItemComponent implements OnInit {
   @Input() trip!: Trip;
   @Input() selectedTripId?: string;
 
-  @Output() selectedUser = new EventEmitter<Trip>();
+  @Output() selectedTrip = new EventEmitter<Trip>();
 
   get selectedItemClass(): 'bb-selected-user-item' | '' {
     return this.selectedTripId === this.trip.tripId ? 'bb-selected-user-item' : '';
@@ -27,7 +27,7 @@ export class UserStopItemComponent implements OnInit {
   }
 
   handleUserSelect() {
-    this.selectedUser.emit(this.trip);
+    this.selectedTrip.emit(this.trip);
   }
 
 }

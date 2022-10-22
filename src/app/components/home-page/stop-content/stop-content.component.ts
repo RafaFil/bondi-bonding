@@ -29,7 +29,7 @@ export class StopContentComponent implements OnInit {
   ngOnInit(): void {  }
 
   clearSelectedUser(): void {
-    this.userItemGroup?.clearSelectedUser();
+    this.userItemGroup?.clearSelectedTrip();
   }
 
   clear(): void {

@@ -10,6 +10,7 @@ import { SlidingSheetComponent } from '../sliding-sheet/sliding-sheet.component'
   styleUrls: ['./search.component.sass']
 })
 export class SearchComponent implements OnInit {
+
   @Output() search = new EventEmitter<SearchResult>();
 
   @ViewChild(SlidingSheetComponent)
@@ -25,10 +26,14 @@ export class SearchComponent implements OnInit {
   }
 
   handleFormSubmit(): void {
-    this.slidingSheet?.hide();
-    const searchResult = this.searchService.search();
-    if (!searchResult)  return;
+    this.searchService.search()
+    .subscribe(searchResult => this.handleSearchResult(searchResult));
+  }
 
+  handleSearchResult(searchResult: SearchResult) {
+    if (!searchResult.foundTrips)  return;
+
+    this.slidingSheet?.hide();
     this.search.emit(searchResult);
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { BusStop } from 'src/app/interfaces';
+import { BusStop, SearchResult } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { BusService } from 'src/app/services/bus.service';
 })
 export class HomePageComponent implements OnInit {
   busStops: BusStop[] = [];
+  searchResult?: SearchResult;
 
   constructor(private busService: BusService) { }
 
@@ -19,5 +20,4 @@ export class HomePageComponent implements OnInit {
       this.busStops = busStops;
     });
   }
-
 }

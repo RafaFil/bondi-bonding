@@ -33,7 +33,20 @@ export class StopMapComponent implements OnInit, AfterViewInit {
     this.setMapMarkers();
   }
 
-  handleSelectedStop(busStop: BusStop): void {
+  setMapMarkers(): void {
+    this.busStopMarkers.length = 0;
+
+    for (const busStopElement of this.busStopElements) {
+      this.busStopMarkers.push({
+        coordinates: busStopElement.busStop?.location?.coordinates!,
+        elementRef: busStopElement.elementRef
+      });
+    }
+
+    this.map?.loadMarkers();
+  }
+
+  setSelectedStop(busStop: BusStop, emitStopSelect: boolean = true): void {
     if (busStop.location && busStop.location.coordinates) {
       this.map?.easeTo({
         center: [
@@ -44,22 +57,9 @@ export class StopMapComponent implements OnInit, AfterViewInit {
       });
     }
 
-    this.stopSelect.emit(busStop);
-  }
-
-  setMapMarkers(): void {
-    this.busStopMarkers.length = 0;
-
-    this.busStopElements.forEach(
-      busStopElement => {
-        this.busStopMarkers.push({
-          coordinates: busStopElement.busStop?.location?.coordinates!,
-          elementRef: busStopElement.elementRef
-        }) ;
-      }
-    );
-
-    this.map?.loadMarkers();
+    if (emitStopSelect) {
+      this.stopSelect.emit(busStop);
+    }
   }
 
   handleZoomChange(zoomValue: number) {

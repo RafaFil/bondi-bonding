@@ -15,10 +15,10 @@ export const MOCKED_STOPS: BusStop[] = [
   },
   {
     busstopId: 4, street1: 'f', street2: 'g',
-    location: { coordinates: [ -60.1787819, -34.882528 ] }
+    location: { coordinates: [ -56.1663526, -34.893825 ] }
   },
   {
     busstopId: 5, street1: 'd', street2: 'a',
-    location: { coordinates: [ -56.1787819, -34.882528 ] }
+    location: { coordinates: [ -56.181328, -34.882925 ] }
   }
 ];

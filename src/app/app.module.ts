@@ -36,6 +36,7 @@ import { UserStopItemGroupComponent } from './components/general/stop-map/user-s
 import { StopContentComponent } from './components/home-page/stop-content/stop-content.component';
 import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
 import { StopMapComponent } from './components/general/stop-map/stop-map/stop-map.component';
+import { SearchResultContentComponent } from './components/general/search/search-result-content/search-result-content.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { StopMapComponent } from './components/general/stop-map/stop-map/stop-ma
     UserStopItemComponent,
     UserStopItemGroupComponent,
     StopContentComponent,
-    StopContentHeaderComponent
+    StopContentHeaderComponent,
+    SearchResultContentComponent
   ],
   imports: [
     BrowserModule,

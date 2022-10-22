@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Trip } from 'src/app/interfaces';
 
@@ -8,19 +8,24 @@ import { Trip } from 'src/app/interfaces';
   styleUrls: ['./user-stop-item-group.component.sass']
 })
 export class UserStopItemGroupComponent implements OnInit {
-  @Input() trips!: Trip[];
+
   selectedTrip?: Trip;
+
+  @Input() trips!: Trip[];
+
+  @Output() tripChange = new EventEmitter<Trip>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  handleSelectedUser(trip: Trip) {
+  handleSelectedTrip(trip: Trip) {
     this.selectedTrip = trip;
+    this.tripChange.emit(trip);
   }
 
-  clearSelectedUser() {
+  clearSelectedTrip() {
     this.selectedTrip = undefined;
   }
 

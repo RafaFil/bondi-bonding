@@ -7,13 +7,14 @@ import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@
 })
 export class SlidingSheetComponent implements OnInit {
   slideClass: 'bb-show' | 'bb-hide' | '' = '';
+  enableClickOut: boolean = false;
+
+  @ViewChild('slidingSection')
+  slidingSection?: ElementRef;
 
   get isShowing(): boolean {
     return this.slideClass === 'bb-show';
   }
-
-  @ViewChild('slidingSection')
-  slidingSection?: ElementRef;
 
   constructor() { }
 
@@ -21,7 +22,7 @@ export class SlidingSheetComponent implements OnInit {
 
   @HostListener('document:click', ['$event'])
   handleClickOut($event: MouseEvent) {
-    if (!this.isShowing) return;
+    if (!this.isShowing || !this.enableClickOut) return;
 
     if (this.slidingSection?.nativeElement.contains($event.target)) return;
 
@@ -34,12 +35,15 @@ export class SlidingSheetComponent implements OnInit {
   public show($event?: Event) {
     $event?.stopPropagation();
     this.slideClass = 'bb-show';
+
+    setTimeout(() => this.enableClickOut = true, 500);
   }
 
   public hide() {
     if (!this.isShowing) return;
 
     this.slideClass = 'bb-hide';
+    this.enableClickOut = false;
 
     // resets css class after animation has ended
     setTimeout(() => this.slideClass = '', 400);

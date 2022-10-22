@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
 
-import { BusLine, BusStop } from 'src/app/interfaces';
+import { BusLine, BusStop, Trip } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
@@ -14,12 +14,21 @@ export class StopContentHeaderComponent implements OnInit {
 
   clickedTime: string = '';
 
+  @Input() readOnlyLine?: BusLine;
+  @Input() selectedTrip?: Trip;
   @Input() stop: BusStop = {};
 
   @Output() lineSelect = new EventEmitter<BusLine>();
 
   @ViewChild('lineSelect')
   lineSelectElement?: MatSelect;
+
+  get tripTime(): string {
+    if (this.readOnlyLine && this.selectedTrip) {
+      return this.selectedTrip.schedule;
+    }
+    return this.clickedTime;
+  }
 
   constructor(private busService: BusService) {}
 
@@ -41,6 +50,8 @@ export class StopContentHeaderComponent implements OnInit {
   }
 
   setBusLines() {
+    if (this.readOnlyLine) return;
+
     this.busService.getLinesByStop(this.stop)
     .subscribe(lineArr => this.busLines = lineArr);
   }
