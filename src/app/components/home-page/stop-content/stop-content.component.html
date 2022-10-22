@@ -1,5 +1,5 @@
 <div class="bb-stop-content">
-  <app-stop-content-header [stop]="stop"></app-stop-content-header>
+  <app-stop-content-header #stopContentHeader [stop]="stop" (lineSelect)="handleLineChange($event)"></app-stop-content-header>
   <div class="bb-stop-users">
     <app-user-stop-item-group #userItemGroup [trips]="trips"></app-user-stop-item-group>
   </div>

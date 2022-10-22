@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ElementRef } from '@angular/core';
 
 import { BusStop } from 'src/app/interfaces';
-import { StopsService } from '../../../../services/stops.service';
+import { BusService } from '../../../../services/bus.service';
 
 @Component({
   selector: 'app-bus-stop',
@@ -22,7 +22,8 @@ export class BusStopComponent implements OnInit {
     return '';
   }
 
-  constructor(private stopsService: StopsService) {  }
+  constructor(private stopsService: BusService,
+              public elementRef: ElementRef) {  }
 
   ngOnInit(): void {
   }

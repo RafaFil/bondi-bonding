@@ -1,9 +1,9 @@
 <app-stop-map
     (stopSelect)="handleStopSelect($event)"
     (mapClick)="handleStopDeselect()"
-    [busStopMarkers]="busStops"
+    [busStops]="busStops"
 >
 </app-stop-map>
 <app-sliding-sheet #slidingSheet>
-  <app-stop-content [stop]="stopsService.getSelectedStop()"></app-stop-content>
+  <app-stop-content #stopContent [stop]="selectedStop"></app-stop-content>
 </app-sliding-sheet>

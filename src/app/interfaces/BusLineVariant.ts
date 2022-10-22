@@ -1,5 +1,3 @@
-
-
 export interface BusLineVariant {
   lineVariantId?: number,
   line?: string,

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { TripFilters, Trip, BusStop } from 'src/app/interfaces';
+import { TripFilters, Trip, BusStop, BusLine } from 'src/app/interfaces';
 import { MOCKED_TRIPS } from 'src/app/mocks';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class TripService {
     return;
   }
 
-  getTripsByStop(stop: BusStop): Observable<Trip[]> {
+  getTripsByStopAndLine(stop: BusStop, line: BusLine): Observable<Trip[]> {
     return of(MOCKED_TRIPS);
   }
 }

@@ -19,7 +19,7 @@ import { SignupPageComponent } from './components/signup-frame/signup-page/signu
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
 import { BusStopComponent } from './components/general/stop-map/bus-stop/bus-stop.component';
-import { StopMapComponent } from './components/general/stop-map/stop-map.component';
+import { MapComponent } from './components/general/map/map.component';
 import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
 import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
@@ -35,6 +35,7 @@ import { UserStopItemComponent } from './components/general/stop-map/user-stop-i
 import { UserStopItemGroupComponent } from './components/general/stop-map/user-stop-item-group/user-stop-item-group.component';
 import { StopContentComponent } from './components/home-page/stop-content/stop-content.component';
 import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
+import { StopMapComponent } from './components/general/stop-map/stop-map/stop-map.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { StopContentHeaderComponent } from './components/home-page/stop-content-
     TripFiltersFormComponent,
     SearchFiltersModalContentComponent,
     HomePageComponent,
+    MapComponent,
     StopMapComponent,
     HomeStopMapComponent,
     SlidingSheetComponent,

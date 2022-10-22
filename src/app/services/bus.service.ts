@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { MOCKED_STOPS } from 'src/app/mocks';
-import { BusStop } from 'src/app/interfaces';
+import { BusLine, BusStop } from 'src/app/interfaces';
+import { MOCKED_LINES } from '../mocks/lines.mock';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StopsService {
+export class BusService {
   private selectedStop?: BusStop;
 
   constructor() { }
@@ -23,5 +24,9 @@ export class StopsService {
 
   getSelectedStop(): BusStop | undefined {
     return this.selectedStop;
+  }
+
+  getLinesByStop(busStop: BusStop): Observable<BusLine[]> {
+    return of(MOCKED_LINES);
   }
 }
