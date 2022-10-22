@@ -1,0 +1,19 @@
+<header class="mt-3 px-4 w-100 bb-stop-header">
+  <div class="row" style="align-items: center;">
+    <div class="col-7">
+      <mat-form-field *ngIf="!readOnlyLine" class="bb-line-select-field w-100" appearance="fill" color="primary">
+        <mat-label>Line</mat-label>
+        <mat-select #lineSelect (selectionChange)="handleLineSelect($event)">
+          <mat-option *ngFor="let line of busLines" [value]="line">{{line.line}}: {{line.destination}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span *ngIf="readOnlyLine">{{readOnlyLine.line}}: {{readOnlyLine.destination}}</span>
+    </div>
+    <div class="col-5 d-flex justify-content-end bb-stop-header-time">
+      <span>{{tripTime}}</span>
+      <mat-icon class="ms-2 bb-stop-header-time" color="primary">schedule</mat-icon>
+    </div>
+  </div>
+</header>
+
+

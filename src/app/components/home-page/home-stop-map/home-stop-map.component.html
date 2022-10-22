@@ -1,0 +1,16 @@
+<app-stop-map
+    #stopMap
+    (stopSelect)="handleStopSelect($event)"
+    (mapClick)="handleStopDeselect()"
+    [busStops]="busStops"
+>
+</app-stop-map>
+<app-sliding-sheet #slidingSheet>
+  <app-stop-content *ngIf="!searchResult" #stopContent [stop]="selectedStop"></app-stop-content>
+  <app-search-result-content
+      *ngIf="searchResult"
+      [searchResult]="searchResult"
+      (stopChange)="handleSearchStopChange($event)">
+  </app-search-result-content>
+</app-sliding-sheet>
+<app-search (search)="handleSearch($event)"></app-search>

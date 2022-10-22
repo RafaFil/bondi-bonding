@@ -1,0 +1,72 @@
+.bb-sliding-section
+  background-color: white
+
+  position: fixed
+
+  z-index: 2
+
+  animation-timing-function: ease
+  animation-fill-mode: forwards
+
+// MOBILE
+@media ( max-width: 700px )
+  .bb-sliding-section
+    left: 0
+    top: 100%
+
+    width: 100%
+
+    border-radius: 16px 16px 0px 0px
+
+
+  .bb-show
+    animation-name: slide-up
+    animation-duration: 0.5s
+
+  .bb-hide
+    animation-name: slide-down
+    animation-duration: 1s
+
+// DESKTOP
+@media ( min-width: 700px )
+  .bb-sliding-section
+    left: 100%
+    top: 0
+
+    height: 100%
+    min-width: 30%
+    max-width: 40%
+
+    animation-duration: 0.4s
+
+  .bb-show
+    animation-name: slide-left
+
+  .bb-hide
+    animation-name: slide-right
+
+
+// MOBILE ANIMATIONS
+@keyframes slide-up
+  100%
+    transform: translateY(-100%)
+
+@keyframes slide-down
+  0%
+    transform: translateY(-100%)
+
+  100%
+    transform: translateY(100%)
+
+
+// DESKTOP ANIMATIONS
+@keyframes slide-left
+  100%
+    transform: translateX(-100%)
+
+@keyframes slide-right
+  0%
+    transform: translateX(-100%)
+
+  100%
+    transform: translateX(0%)

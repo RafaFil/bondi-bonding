@@ -1,0 +1,26 @@
+<form class="bb-search-form" [formGroup]="searchService.searchForm">
+  <p class="bb-text-green bb-search-label">Search</p>
+  <mat-form-field class="bb-search-form-field"
+    appearance="outline"
+    color="primary">
+    <mat-label>FROM</mat-label>
+    <input matInput [formControl]="fromControl">
+  </mat-form-field>
+
+  <mat-form-field class="bb-search-form-field"
+    appearance="outline"
+    color="primary">
+    <mat-label>TO</mat-label>
+    <input matInput [formControl]="toControl">
+  </mat-form-field>
+
+  <app-search-filters-modal></app-search-filters-modal>
+
+  <button
+    mat-raised-button
+    class="bb-search-form-btn bb-bond-btn"
+    color="primary"
+    (click)="handleBondClick($event)">
+    BOND
+  </button>
+</form>

@@ -20,7 +20,11 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "@types/geojson": "^7946.0.10",
+    "@types/maplibre-gl": "^1.14.0",
+    "maplibre-gl": "^2.4.0",
     "material-components-web": "^14.0.0",
+    "mdb-angular-ui-kit": "^3.0.0",
     "rxjs": "~7.5.0",
     "zone.js": "~0.11.4"
   },

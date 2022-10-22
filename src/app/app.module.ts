@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
 import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
@@ -14,10 +16,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupFormsComponent } from './components/signup-frame/signup-forms/signup-forms.component';
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { TosComponent } from './components/signup-frame/tos/tos.component';
 import { ValidationFromComponent } from './components/signup-frame/validation-from/validation-from.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { BusStopComponent } from './components/general/stop-map/bus-stop/bus-stop.component';
+import { MapComponent } from './components/general/map/map.component';
+import { SearchButtonComponent } from './components/general/search/search-button/search-button.component';
+import { SearchComponent } from './components/general/search/search.component';
+import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
+import { TripFiltersFormComponent } from './components/general/trip-filters-form/trip-filters-form.component';
+import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
+import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
+import { HomePageComponent } from './components/home-page/home-page/home-page.component';
+import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
+import { SlidingSheetComponent } from './components/general/sliding-sheet/sliding-sheet.component';
+import { UserIconComponent } from './components/general/user/user-icon/user-icon.component';
+import { UserInfoComponent } from './components/general/user/user-info/user-info.component';
+import { UserStopItemComponent } from './components/general/stop-map/user-stop-item/user-stop-item.component';
+import { UserStopItemGroupComponent } from './components/general/stop-map/user-stop-item-group/user-stop-item-group.component';
+import { StopContentComponent } from './components/home-page/stop-content/stop-content.component';
+import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
+import { StopMapComponent } from './components/general/stop-map/stop-map/stop-map.component';
+import { SearchResultContentComponent } from './components/general/search/search-result-content/search-result-content.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +51,26 @@ import { MatNativeDateModule } from '@angular/material/core';
     PasswordUpdatedDialogComponent,
     LogoImageComponent,
     InitPageComponent,
-    InitHomeComponent
+    InitHomeComponent,
+    BusStopComponent,
+    SearchButtonComponent,
+    SearchFormComponent,
+    SearchComponent,
+    SearchFiltersModalComponent,
+    TripFiltersFormComponent,
+    SearchFiltersModalContentComponent,
+    HomePageComponent,
+    MapComponent,
+    StopMapComponent,
+    HomeStopMapComponent,
+    SlidingSheetComponent,
+    UserIconComponent,
+    UserInfoComponent,
+    UserStopItemComponent,
+    UserStopItemGroupComponent,
+    StopContentComponent,
+    StopContentHeaderComponent,
+    SearchResultContentComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +78,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    MatNativeDateModule
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

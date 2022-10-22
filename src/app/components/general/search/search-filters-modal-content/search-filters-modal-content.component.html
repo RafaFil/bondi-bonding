@@ -1,0 +1,15 @@
+<h2 mat-dialog-title>Filters</h2>
+
+<mat-dialog-content class="mat-typography">
+  <app-trip-filters-form #filtersForm
+    (tripFiltersSubmit)="handleSearchFiltersSubmit($event)"></app-trip-filters-form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button class="bb-btn"
+          mat-raised-button
+          color="primary"
+          (click)="handleApplyFiltersClick()">
+          APPLY FILTERS
+  </button>
+</mat-dialog-actions>

@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core'
+import { NgModule } from '@angular/core'
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -19,7 +20,8 @@ const MaterialComponents = [
     MatStepperModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatGridListModule
 ];
 
 @NgModule({

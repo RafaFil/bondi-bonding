@@ -73,7 +73,11 @@
               "browserTarget": "bondi-bonding:build:production"
             },
             "development": {
-              "browserTarget": "bondi-bonding:build:development"
+              "browserTarget": "bondi-bonding:build:development",
+              "sslKey": "./ssl/localhost.key",
+              "sslCert": "./ssl/localhost.crt",
+              "ssl": true,
+              "host": "0.0.0.0"
             }
           },
           "defaultConfiguration": "development"

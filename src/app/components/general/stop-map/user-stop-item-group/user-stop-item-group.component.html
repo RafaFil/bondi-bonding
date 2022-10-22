@@ -1,0 +1,9 @@
+<ul class="list-group">
+  <li *ngFor="let trip of trips" class="my-2">
+    <app-user-stop-item
+      [trip]="trip"
+      [selectedTripId]="selectedTrip?.tripId"
+      (selectedTrip)="handleSelectedTrip($event)"
+    ></app-user-stop-item>
+  </li>
+</ul>

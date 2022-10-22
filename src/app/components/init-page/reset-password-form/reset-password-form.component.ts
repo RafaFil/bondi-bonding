@@ -28,6 +28,10 @@ export class ResetPasswordFormComponent implements OnInit {
     return this.passwordRecoveryForm.controls.recoveryCode;
   }
 
+  get disabledIconClass(): string {
+    return this.recoveryCodeControl.disabled ? 'bb-disabled' : '';
+  }
+
   constructor(private passwordResetService: PasswordResetService,
               private formBuilder: FormBuilder,
               private router: Router) { }
