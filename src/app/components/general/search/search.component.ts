@@ -13,7 +13,7 @@ export class SearchComponent implements OnInit {
 
   @Output() search = new EventEmitter<SearchResult>();
 
-  @ViewChild(SlidingSheetComponent)
+  @ViewChild('searchSheet')
   slidingSheet?: SlidingSheetComponent;
 
   constructor(private searchService: SearchService) { }

@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
 @Component({
   selector: 'app-sliding-sheet',
@@ -16,7 +17,7 @@ export class SlidingSheetComponent implements OnInit {
     return this.slideClass === 'bb-show';
   }
 
-  constructor() { }
+  constructor(private homeButtonsService: HomeButtonsService) { }
 
   ngOnInit(): void { }
 
@@ -35,7 +36,9 @@ export class SlidingSheetComponent implements OnInit {
   public show($event?: Event) {
     $event?.stopPropagation();
     this.slideClass = 'bb-show';
+    this.homeButtonsService.showButtons = false;
 
+    // Don't enable click out until animation is over
     setTimeout(() => this.enableClickOut = true, 500);
   }
 
@@ -44,6 +47,7 @@ export class SlidingSheetComponent implements OnInit {
 
     this.slideClass = 'bb-hide';
     this.enableClickOut = false;
+    this.homeButtonsService.showButtons = true;
 
     // resets css class after animation has ended
     setTimeout(() => this.slideClass = '', 400);

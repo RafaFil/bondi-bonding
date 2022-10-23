@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
 @Component({
-  selector: 'app-search-button',
-  templateUrl: './search-button.component.html',
-  styleUrls: ['./search-button.component.sass']
+  selector: 'app-create-trip-button',
+  templateUrl: './create-trip-button.component.html',
+  styleUrls: ['./create-trip-button.component.sass']
 })
-export class SearchButtonComponent implements OnInit {
+export class CreateTripButtonComponent implements OnInit {
 
   get hideAnimationSelector(): '' | 'bb-hide-home-btn' {
     return this.homeButtonsService.showButtons ? '' : 'bb-hide-home-btn';

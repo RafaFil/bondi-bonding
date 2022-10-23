@@ -1,0 +1,26 @@
+<form class="bb-create-trip-form" [formGroup]="tripService.createTripForm">
+  <p class="bb-text-green bb-create-trip-label">Create</p>
+  <mat-form-field class="bb-create-trip-form-field"
+    appearance="outline"
+    color="primary">
+    <mat-label>FROM</mat-label>
+    <input matInput [formControl]="fromControl">
+  </mat-form-field>
+
+  <mat-form-field class="bb-create-trip-form-field"
+    appearance="outline"
+    color="primary">
+    <mat-label>TO</mat-label>
+    <input matInput [formControl]="toControl">
+  </mat-form-field>
+
+  <app-create-trip-filters-modal></app-create-trip-filters-modal>
+
+  <button
+    mat-raised-button
+    class="bb-create-trip-form-btn bb-create-btn"
+    color="primary"
+    (click)="handleTripCreate()">
+    CREATE
+  </button>
+</form>

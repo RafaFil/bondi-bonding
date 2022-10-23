@@ -37,6 +37,10 @@ import { StopContentComponent } from './components/home-page/stop-content/stop-c
 import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
 import { StopMapComponent } from './components/general/stop-map/stop-map/stop-map.component';
 import { SearchResultContentComponent } from './components/general/search/search-result-content/search-result-content.component';
+import { CreateTripButtonComponent } from './components/general/create-trip/create-trip-button/create-trip-button.component';
+import { CreateTripComponent } from './components/general/create-trip/create-trip.component';
+import { CreateTripFiltersModalComponent } from './components/general/create-trip/create-trip-filters-modal/create-trip-filters-modal.component';
+import { CreateTripFormComponent } from './components/general/create-trip/create-trip-form/create-trip-form.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +74,11 @@ import { SearchResultContentComponent } from './components/general/search/search
     UserStopItemGroupComponent,
     StopContentComponent,
     StopContentHeaderComponent,
-    SearchResultContentComponent
+    SearchResultContentComponent,
+    CreateTripButtonComponent,
+    CreateTripComponent,
+    CreateTripFiltersModalComponent,
+    CreateTripFormComponent
   ],
   imports: [
     BrowserModule,

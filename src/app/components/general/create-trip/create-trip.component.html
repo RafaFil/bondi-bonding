@@ -1,0 +1,4 @@
+<app-create-trip-button (click)="displayCreateTripForm($event)"></app-create-trip-button>
+<app-sliding-sheet #createTripSheet>
+  <app-create-trip-form (tripCreate)="handleTripCreate($event)"></app-create-trip-form>
+</app-sliding-sheet>

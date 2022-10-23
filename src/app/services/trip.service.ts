@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 
-import { TripFilters, Trip, BusStop, BusLine } from 'src/app/interfaces';
+import { TripFilters, Trip, BusStop, BusLine, TripCreateResult } from 'src/app/interfaces';
 import { MOCKED_TRIPS } from 'src/app/mocks';
 
 @Injectable({
@@ -20,9 +20,9 @@ export class TripService {
 
   constructor(private fb: FormBuilder) { }
 
-  createTrip(): Trip | undefined {
+  createTrip(): Observable<TripCreateResult> {
     this.createTripForm.reset();
-    return;
+    return of({ success: true });
   }
 
   getTripsByStopAndLine(stop: BusStop, line: BusLine): Observable<Trip[]> {

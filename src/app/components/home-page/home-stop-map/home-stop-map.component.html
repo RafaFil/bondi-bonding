@@ -5,6 +5,7 @@
     [busStops]="busStops"
 >
 </app-stop-map>
+
 <app-sliding-sheet #slidingSheet>
   <app-stop-content *ngIf="!searchResult" #stopContent [stop]="selectedStop"></app-stop-content>
   <app-search-result-content
@@ -13,4 +14,5 @@
       (stopChange)="handleSearchStopChange($event)">
   </app-search-result-content>
 </app-sliding-sheet>
+
 <app-search (search)="handleSearch($event)"></app-search>
