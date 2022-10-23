@@ -25,7 +25,7 @@ import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
 import { TripFiltersFormComponent } from './components/general/trip-filters-form/trip-filters-form.component';
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
-import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
+import { FiltersModalContentComponent } from './components/general/filters-modal-content/filters-modal-content.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
 import { SlidingSheetComponent } from './components/general/sliding-sheet/sliding-sheet.component';
@@ -62,7 +62,7 @@ import { CreateTripFormComponent } from './components/general/create-trip/create
     SearchComponent,
     SearchFiltersModalComponent,
     TripFiltersFormComponent,
-    SearchFiltersModalContentComponent,
+    FiltersModalContentComponent,
     HomePageComponent,
     MapComponent,
     StopMapComponent,

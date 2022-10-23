@@ -2,7 +2,7 @@
 
 <mat-dialog-content class="mat-typography">
   <app-trip-filters-form #filtersForm
-    (tripFiltersSubmit)="handleSearchFiltersSubmit($event)"></app-trip-filters-form>
+    (tripFiltersSubmit)="handleFiltersSubmit($event)"></app-trip-filters-form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
@@ -10,6 +10,6 @@
           mat-raised-button
           color="primary"
           (click)="handleApplyFiltersClick()">
-          APPLY FILTERS
+          SAVE FILTERS
   </button>
 </mat-dialog-actions>

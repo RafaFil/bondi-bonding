@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
-import { SearchFiltersModalContentComponent } from './../search-filters-modal-content/search-filters-modal-content.component';
+import { TripFilters } from 'src/app/interfaces';
+import { SearchService } from './../../../../services/search.service';
+import { FiltersModalContentComponent } from '../../filters-modal-content/filters-modal-content.component';
 
 @Component({
   selector: 'app-search-filters-modal',
@@ -10,12 +12,21 @@ import { SearchFiltersModalContentComponent } from './../search-filters-modal-co
 })
 export class SearchFiltersModalComponent implements OnInit {
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog,
+              private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
 
   openFiltersDialog() {
-    this.dialog.open( SearchFiltersModalContentComponent );
+    this.dialog.open (
+      FiltersModalContentComponent,
+      {
+        data: {
+          callbackFn: (tripFilters: TripFilters) => {
+            this.searchService.searchForm.controls.filters.setValue(tripFilters);
+          }
+        }
+      });
   }
 }

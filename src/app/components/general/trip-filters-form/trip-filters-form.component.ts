@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { TripFilters, GENDER_OPTIONS } from 'src/app/interfaces';
 
@@ -9,7 +9,6 @@ import { TripFilters, GENDER_OPTIONS } from 'src/app/interfaces';
   styleUrls: ['./trip-filters-form.component.sass']
 })
 export class TripFiltersFormComponent implements OnInit {
-  @Output() tripFiltersSubmit = new EventEmitter<TripFilters>()
 
   genderOptions = GENDER_OPTIONS;
   filterForm = this.formBuilder.group({
@@ -17,6 +16,8 @@ export class TripFiltersFormComponent implements OnInit {
     maxAge: [ '', [ Validators.pattern('^[0-9]{2,3}$') ] ],
     gender: [ undefined ]
   });
+
+  @Output() tripFiltersSubmit = new EventEmitter<TripFilters>()
 
   constructor(private formBuilder: FormBuilder) {
 
@@ -28,7 +29,8 @@ export class TripFiltersFormComponent implements OnInit {
   checkMaxAge(): void {
     const minAge = +this.filterForm.controls.minAge.value!;
     const maxAge = +this.filterForm.controls.maxAge.value!;
-    if (maxAge < minAge) {
+
+    if (maxAge && maxAge < minAge) {
       this.filterForm.controls.maxAge.setErrors({ maxAgeLessThanMin: true });
     } else {
       this.filterForm.controls.maxAge.setErrors(null);

@@ -27,7 +27,7 @@ export class SearchComponent implements OnInit {
 
   handleFormSubmit(): void {
     this.searchService.search()
-    .subscribe(searchResult => this.handleSearchResult(searchResult));
+    .subscribe((searchResult: SearchResult) => this.handleSearchResult(searchResult));
   }
 
   handleSearchResult(searchResult: SearchResult) {

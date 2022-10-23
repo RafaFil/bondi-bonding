@@ -38,8 +38,8 @@ export class SlidingSheetComponent implements OnInit {
     this.slideClass = 'bb-show';
     this.homeButtonsService.showButtons = false;
 
-    // Don't enable click out until animation is over
-    setTimeout(() => this.enableClickOut = true, 500);
+    // Enable click out after sheet has been shown
+    setTimeout(() => this.enableClickOut = true, 0);
   }
 
   public hide() {
