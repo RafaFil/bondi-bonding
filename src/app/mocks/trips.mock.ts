@@ -69,4 +69,124 @@ export const MOCKED_TRIPS: Trip[] = [
       location: { coordinates: [ -56.181328, -34.882925 ] }
     }
   },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line:
+       '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
+  {
+    tripId: '1236',
+    user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
+    from: 'Mi casa',
+    to: 'El trabajo',
+    description: 'Quiero conversar en el viaje',
+    busLine: {
+      line: '199',
+      destination: 'Punta Carretas',
+      lineId: '3',
+    },
+    schedule: '09:00',
+    stop: {
+      busstopId: 5, street1: 'd', street2: 'a',
+      location: { coordinates: [ -56.181328, -34.882925 ] }
+    }
+  },
 ];

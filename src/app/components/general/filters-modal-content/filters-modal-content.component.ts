@@ -19,7 +19,7 @@ export class FiltersModalContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleApplyFiltersClick() {
+  handleSaveFilters() {
     if (!this.filtersForm)    return;
     this.filtersForm.handleTripFiltersSubmit();
   }

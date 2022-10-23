@@ -5,11 +5,17 @@
     (tripFiltersSubmit)="handleFiltersSubmit($event)"></app-trip-filters-form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
+<mat-dialog-actions align="center">
+  <button class="bb-btn bb-text-green"
+          mat-raised-button
+          mat-dialog-close
+          >
+          CANCEL
+  </button>
   <button class="bb-btn"
           mat-raised-button
           color="primary"
-          (click)="handleApplyFiltersClick()">
+          (click)="handleSaveFilters()">
           SAVE FILTERS
   </button>
 </mat-dialog-actions>

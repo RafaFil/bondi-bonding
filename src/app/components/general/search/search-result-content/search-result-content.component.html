@@ -1,11 +1,12 @@
 <div class="bb-search-result-content">
   <div class="mb-3 mt-4">
-    <app-stop-content-header #stopContentHeader
-      *ngIf="selectedTrip"
-      [stop]="selectedTrip.stop!"
-      [readOnlyLine]="selectedTrip.busLine"
-      [selectedTrip]="selectedTrip">
-  </app-stop-content-header>
+    <app-stop-content-header
+        #stopContentHeader
+        *ngIf="selectedTrip"
+        [stop]="selectedTrip.stop!"
+        [readOnlyLine]="selectedTrip.busLine"
+        [selectedTrip]="selectedTrip">
+    </app-stop-content-header>
   </div>
 
   <div class="bb-stop-users">
@@ -17,7 +18,7 @@
   </div>
 
   <button
-    class="bb-start-chat-btn"
+    class="bb-btn bb-start-chat-btn"
     [disabled]="!userItemGroup.selectedTrip"
     mat-raised-button color="primary"
     (click)="handleStartChat(userItemGroup.selectedTrip!)">
