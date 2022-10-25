@@ -1,4 +1,5 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
 import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
 @Component({
@@ -8,49 +9,35 @@ import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 })
 export class SlidingSheetComponent implements OnInit {
   slideClass: 'bb-show' | 'bb-hide' | '' = '';
-  enableClickOut: boolean = false;
+  isShowing: boolean = false;
 
   @ViewChild('slidingSection')
   slidingSection?: ElementRef;
 
-  get isShowing(): boolean {
-    return this.slideClass === 'bb-show';
-  }
-
-  constructor(private homeButtonsService: HomeButtonsService) { }
+  constructor(private homeButtonsService: HomeButtonsService) {}
 
   ngOnInit(): void { }
-
-  @HostListener('document:click', ['$event'])
-  handleClickOut($event: MouseEvent) {
-    if (!this.isShowing || !this.enableClickOut) return;
-
-    if (this.slidingSection?.nativeElement.contains($event.target)) return;
-
-    const targets = $event.composedPath() as HTMLElement[];
-    if (targets.find(elem => elem.className === 'cdk-overlay-container')) return;
-
-    this.hide();
-  }
 
   public show($event?: Event) {
     $event?.stopPropagation();
     this.slideClass = 'bb-show';
+    this.isShowing = true;
     this.homeButtonsService.showButtons = false;
 
     // Enable click out after sheet has been shown
-    setTimeout(() => this.enableClickOut = true, 0);
   }
 
   public hide() {
     if (!this.isShowing) return;
 
     this.slideClass = 'bb-hide';
-    this.enableClickOut = false;
     this.homeButtonsService.showButtons = true;
 
     // resets css class after animation has ended
-    setTimeout(() => this.slideClass = '', 400);
+    setTimeout(() => {
+      this.slideClass = '';
+      this.isShowing = false;
+    }, 400);
   }
 
 }
