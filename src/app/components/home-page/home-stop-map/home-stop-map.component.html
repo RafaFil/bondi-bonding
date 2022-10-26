@@ -6,7 +6,7 @@
 >
 </app-stop-map>
 
-<app-sliding-sheet #slidingSheet>
+<app-sliding-sheet #slidingSheet (sheetHide)="handleSheetHide()">
   <app-stop-content *ngIf="!searchResult" #stopContent [stop]="selectedStop"></app-stop-content>
   <app-search-result-content
       *ngIf="searchResult"

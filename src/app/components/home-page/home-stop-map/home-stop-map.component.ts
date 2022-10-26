@@ -55,4 +55,8 @@ export class HomeStopMapComponent implements OnInit {
     this.searchResult = searchResult;
     this.slidingSheet?.show();
   }
+
+  handleSheetHide() {
+    this.busService.setSelectedStop(undefined);
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { TripCreateResult } from 'src/app/interfaces';
+import { BusService } from 'src/app/services/bus.service';
 import { SlidingSheetComponent } from '../sliding-sheet/sliding-sheet.component';
 
 @Component({
@@ -12,7 +13,7 @@ export class CreateTripComponent implements OnInit {
   @ViewChild('createTripSheet')
   slidingSheet?: SlidingSheetComponent;
 
-  constructor() { }
+  constructor(private busService: BusService) { }
 
   ngOnInit(): void {
   }
@@ -26,4 +27,7 @@ export class CreateTripComponent implements OnInit {
     this.slidingSheet?.hide();
   }
 
+  handleSheetHide() {
+    this.busService.setSelectedStop(undefined);
+  }
 }

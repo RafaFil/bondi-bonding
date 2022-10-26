@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 
 import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
@@ -11,6 +11,8 @@ export class SlidingSheetComponent implements OnInit {
   slideClass: 'bb-show' | 'bb-hide' | '' = '';
   isShowing: boolean = false;
 
+  @Output() sheetHide = new EventEmitter();
+
   @ViewChild('slidingSection')
   slidingSection?: ElementRef;
 
@@ -18,7 +20,7 @@ export class SlidingSheetComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public show($event?: Event) {
+  show($event?: Event) {
     $event?.stopPropagation();
     this.slideClass = 'bb-show';
     this.isShowing = true;
@@ -27,17 +29,17 @@ export class SlidingSheetComponent implements OnInit {
     // Enable click out after sheet has been shown
   }
 
-  public hide() {
+  hide() {
     if (!this.isShowing) return;
 
     this.slideClass = 'bb-hide';
     this.homeButtonsService.showButtons = true;
 
+    this.sheetHide.emit();
     // resets css class after animation has ended
     setTimeout(() => {
       this.slideClass = '';
       this.isShowing = false;
-    }, 400);
+    }, 350);
   }
-
 }
