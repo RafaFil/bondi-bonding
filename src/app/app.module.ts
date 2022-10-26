@@ -42,6 +42,8 @@ import { CreateTripButtonComponent } from './components/general/create-trip/crea
 import { CreateTripComponent } from './components/general/create-trip/create-trip.component';
 import { CreateTripFiltersModalComponent } from './components/general/create-trip/create-trip-filters-modal/create-trip-filters-modal.component';
 import { CreateTripFormComponent } from './components/general/create-trip/create-trip-form/create-trip-form.component';
+import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component'
+import { FaqAccordionComponent } from './components/faq-page/faq-accordion/faq-accordion.component'
 
 @NgModule({
   declarations: [
@@ -79,7 +81,9 @@ import { CreateTripFormComponent } from './components/general/create-trip/create
     CreateTripButtonComponent,
     CreateTripComponent,
     CreateTripFiltersModalComponent,
-    CreateTripFormComponent
+    CreateTripFormComponent,
+    FaqPageComponent,
+    FaqAccordionComponent
   ],
   imports: [
     BrowserModule,
