@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
 @Component({
   selector: 'app-search-button',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-button.component.sass']
 })
 export class SearchButtonComponent implements OnInit {
-  constructor() { }
+
+  get hideAnimationSelector(): '' | 'bb-hide-home-btn' {
+    return this.homeButtonsService.showButtons ? '' : 'bb-hide-home-btn';
+  }
+
+  constructor(public homeButtonsService: HomeButtonsService) { }
 
   ngOnInit(): void {
   }

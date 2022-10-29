@@ -3,6 +3,7 @@ import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/cor
 import { SearchResult } from 'src/app/interfaces';
 import { SearchService } from './../../../services/search.service';
 import { SlidingSheetComponent } from '../sliding-sheet/sliding-sheet.component';
+import { BusService } from 'src/app/services/bus.service';
 
 @Component({
   selector: 'app-search',
@@ -13,10 +14,11 @@ export class SearchComponent implements OnInit {
 
   @Output() search = new EventEmitter<SearchResult>();
 
-  @ViewChild(SlidingSheetComponent)
+  @ViewChild('searchSheet')
   slidingSheet?: SlidingSheetComponent;
 
-  constructor(private searchService: SearchService) { }
+  constructor(private searchService: SearchService,
+              private busService: BusService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +29,7 @@ export class SearchComponent implements OnInit {
 
   handleFormSubmit(): void {
     this.searchService.search()
-    .subscribe(searchResult => this.handleSearchResult(searchResult));
+    .subscribe((searchResult: SearchResult) => this.handleSearchResult(searchResult));
   }
 
   handleSearchResult(searchResult: SearchResult) {

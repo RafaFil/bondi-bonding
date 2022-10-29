@@ -1,3 +1,4 @@
+import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InitHomeComponent } from './components/init-page/init-home/init-home.component';
@@ -16,7 +17,10 @@ const routes: Routes = [
     { path: 'resetPassword', component: ResetPasswordFormComponent },
     { path: 'updatePassword', component: UpdatePasswordFormComponent }
   ]},
-  { path: 'home', component: HomePageComponent }
+  { path: 'home', component: HomePageComponent },
+  { path: 'signup', component: SignupPageComponent }
+
+  //signup
 ];
 
 @NgModule({

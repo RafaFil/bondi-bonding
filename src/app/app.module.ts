@@ -25,7 +25,7 @@ import { SearchComponent } from './components/general/search/search.component';
 import { SearchFormComponent } from './components/general/search/search-form/search-form.component';
 import { TripFiltersFormComponent } from './components/general/trip-filters-form/trip-filters-form.component';
 import { SearchFiltersModalComponent } from './components/general/search/search-filters-modal/search-filters-modal.component';
-import { SearchFiltersModalContentComponent } from './components/general/search/search-filters-modal-content/search-filters-modal-content.component';
+import { FiltersModalContentComponent } from './components/general/filters-modal-content/filters-modal-content.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { HomeStopMapComponent } from './components/home-page/home-stop-map/home-stop-map.component';
 import { SlidingSheetComponent } from './components/general/sliding-sheet/sliding-sheet.component';
@@ -37,6 +37,10 @@ import { StopContentComponent } from './components/home-page/stop-content/stop-c
 import { StopContentHeaderComponent } from './components/home-page/stop-content-header/stop-content-header.component';
 import { StopMapComponent } from './components/general/stop-map/stop-map/stop-map.component';
 import { SearchResultContentComponent } from './components/general/search/search-result-content/search-result-content.component';
+import { CreateTripButtonComponent } from './components/general/create-trip/create-trip-button/create-trip-button.component';
+import { CreateTripComponent } from './components/general/create-trip/create-trip.component';
+import { CreateTripFiltersModalComponent } from './components/general/create-trip/create-trip-filters-modal/create-trip-filters-modal.component';
+import { CreateTripFormComponent } from './components/general/create-trip/create-trip-form/create-trip-form.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,7 @@ import { SearchResultContentComponent } from './components/general/search/search
     SearchComponent,
     SearchFiltersModalComponent,
     TripFiltersFormComponent,
-    SearchFiltersModalContentComponent,
+    FiltersModalContentComponent,
     HomePageComponent,
     MapComponent,
     StopMapComponent,
@@ -70,7 +74,11 @@ import { SearchResultContentComponent } from './components/general/search/search
     UserStopItemGroupComponent,
     StopContentComponent,
     StopContentHeaderComponent,
-    SearchResultContentComponent
+    SearchResultContentComponent,
+    CreateTripButtonComponent,
+    CreateTripComponent,
+    CreateTripFiltersModalComponent,
+    CreateTripFormComponent
   ],
   imports: [
     BrowserModule,

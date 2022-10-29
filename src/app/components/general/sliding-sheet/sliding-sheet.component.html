@@ -1,3 +1,13 @@
-<section #slidingSection class="bb-sliding-section overflow-auto {{slideClass}}">
-  <ng-content></ng-content>
-</section>
+<ng-template cdkConnectedOverlay
+  cdkConnectedOverlayHasBackdrop
+  [cdkConnectedOverlayOrigin]="origin"
+  [cdkConnectedOverlayOpen]="isShowing"
+  (backdropClick)="hide()">
+  <section
+    #slidingSection
+    class="bb-sliding-section overflow-auto {{slideClass}}">
+    <ng-content></ng-content>
+  </section>
+</ng-template>
+
+<ng-template #origin cdkOverlayOrigin></ng-template>

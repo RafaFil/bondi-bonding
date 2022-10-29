@@ -38,9 +38,12 @@ export class LoginFormComponent implements OnInit {
       return;
     }
 
-    if (this.authService.doUserAuth(this.loginForm.getRawValue() as AuthRequest)) {
-      this.router.navigate(['/home']);
-    }
+    this.authService.doUserAuth(this.loginForm.getRawValue() as AuthRequest)
+    .subscribe(result => {
+      if (result) {
+        this.router.navigate(['/home']);
+      }
+    });
   }
 
 }

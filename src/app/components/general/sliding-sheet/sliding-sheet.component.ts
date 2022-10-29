@@ -1,4 +1,6 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+
+import { HomeButtonsService } from 'src/app/services/home-buttons.service';
 
 @Component({
   selector: 'app-sliding-sheet',
@@ -7,46 +9,37 @@ import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@
 })
 export class SlidingSheetComponent implements OnInit {
   slideClass: 'bb-show' | 'bb-hide' | '' = '';
-  enableClickOut: boolean = false;
+  isShowing: boolean = false;
+
+  @Output() sheetHide = new EventEmitter();
 
   @ViewChild('slidingSection')
   slidingSection?: ElementRef;
 
-  get isShowing(): boolean {
-    return this.slideClass === 'bb-show';
-  }
-
-  constructor() { }
+  constructor(private homeButtonsService: HomeButtonsService) {}
 
   ngOnInit(): void { }
 
-  @HostListener('document:click', ['$event'])
-  handleClickOut($event: MouseEvent) {
-    if (!this.isShowing || !this.enableClickOut) return;
-
-    if (this.slidingSection?.nativeElement.contains($event.target)) return;
-
-    const targets = $event.composedPath() as HTMLElement[];
-    if (targets.find(elem => elem.className === 'cdk-overlay-container')) return;
-
-    this.hide();
-  }
-
-  public show($event?: Event) {
+  show($event?: Event) {
     $event?.stopPropagation();
     this.slideClass = 'bb-show';
+    this.isShowing = true;
+    this.homeButtonsService.showButtons = false;
 
-    setTimeout(() => this.enableClickOut = true, 500);
+    // Enable click out after sheet has been shown
   }
 
-  public hide() {
+  hide() {
     if (!this.isShowing) return;
 
     this.slideClass = 'bb-hide';
-    this.enableClickOut = false;
+    this.homeButtonsService.showButtons = true;
 
+    this.sheetHide.emit();
     // resets css class after animation has ended
-    setTimeout(() => this.slideClass = '', 400);
+    setTimeout(() => {
+      this.slideClass = '';
+      this.isShowing = false;
+    }, 350);
   }
-
 }

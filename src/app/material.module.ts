@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -21,7 +22,8 @@ const MaterialComponents = [
     MatSelectModule,
     MatDatepickerModule,
     MatDialogModule,
-    MatGridListModule
+    MatGridListModule,
+    OverlayModule
 ];
 
 @NgModule({

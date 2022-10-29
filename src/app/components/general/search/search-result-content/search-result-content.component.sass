@@ -1,3 +1,4 @@
+// MOBILE
 @media ( max-width: 700px )
   .bb-search-result-content
     max-height: 60vh
@@ -5,13 +6,16 @@
 
   .bb-stop-users
     max-height: 35vh
-    overflow: scroll
+
+// DESKTOP
+@media ( min-width: 700px )
+  .bb-stop-users
+    max-height: calc(100vh - 10rem)
 
 .bb-start-chat-btn
-  height: 4rem
+  height: 3.5rem
   width: 90%
 
-  font-family: 'Montserrat'
   font-size: 1rem
 
   display: block

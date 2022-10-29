@@ -3,6 +3,9 @@ import { Trip } from "../interfaces";
 export const MOCKED_TRIPS: Trip[] = [
   {
     tripId: '123',
+    userId: '1',
+    busLineId: '1',
+    stopId: '3',
     user: { uid: '1', username: 'thehughjack', name: 'Hugh Jackman', iconUrl: 'https://pbs.twimg.com/profile_images/1302962150302982146/NTb6iGpC_400x400.jpg' },
     from: 'Aguada',
     to: 'Portones Shopping',
@@ -14,12 +17,15 @@ export const MOCKED_TRIPS: Trip[] = [
     },
     schedule: '15:30',
     stop: {
-      busstopId: 3, street1: 'd', street2: 'e',
+      busstopId: '3', street1: 'd', street2: 'e',
       location: { coordinates: [ -56.3787819, -34.282528 ] }
     }
   },
   {
     tripId: '1234',
+    userId: '1',
+    busLineId: '2',
+    stopId: '1',
     user: { uid: '1', username: 'robdown', name: 'Robert Downey Jr.', iconUrl: 'https://i.pinimg.com/736x/3f/bb/b0/3fbbb01666d7c285bb6a2db85b8d6967.jpg' },
     from: 'La Comercial',
     to: 'Punta Carretas Shoppiong',
@@ -31,12 +37,15 @@ export const MOCKED_TRIPS: Trip[] = [
     },
     schedule: '17:30',
     stop: {
-      busstopId: 1, street1: 'a', street2: 'b',
+      busstopId: '1', street1: 'a', street2: 'b',
       location: { coordinates: [ -57.1787819, -33.882528 ] }
     }
   },
   {
     tripId: '1235',
+    userId: '1',
+    busLineId: '2',
+    stopId: '4',
     user: { uid: '1', username: 'therealjenan', name: 'Jennifer Aniston', iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/JenniferAnistonHWoFFeb2012.jpg/640px-JenniferAnistonHWoFFeb2012.jpg' },
     from: 'Tres Cruces',
     to: 'Intendencia de Montevideo',
@@ -48,12 +57,15 @@ export const MOCKED_TRIPS: Trip[] = [
     },
     schedule: '11:00',
     stop: {
-      busstopId: 4, street1: 'f', street2: 'g',
+      busstopId: '4', street1: 'f', street2: 'g',
       location: { coordinates: [ -56.1663526, -34.893825 ] }
     }
   },
   {
     tripId: '1236',
+    userId: '1',
+    busLineId: '3',
+    stopId: '5',
     user: { uid: '1', username: 'camwil', name: 'Cameron Williamson', iconUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80' },
     from: 'Mi casa',
     to: 'El trabajo',
@@ -65,7 +77,7 @@ export const MOCKED_TRIPS: Trip[] = [
     },
     schedule: '09:00',
     stop: {
-      busstopId: 5, street1: 'd', street2: 'a',
+      busstopId: '5', street1: 'd', street2: 'a',
       location: { coordinates: [ -56.181328, -34.882925 ] }
     }
   },

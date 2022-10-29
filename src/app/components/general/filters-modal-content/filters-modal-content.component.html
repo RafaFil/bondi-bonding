@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Filters</h2>
+
+<mat-dialog-content class="mat-typography">
+  <app-trip-filters-form #filtersForm
+    (tripFiltersSubmit)="handleFiltersSubmit($event)"></app-trip-filters-form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button class="bb-btn bb-text-green"
+          mat-raised-button
+          mat-dialog-close
+          >
+          CANCEL
+  </button>
+  <button class="bb-btn"
+          mat-raised-button
+          color="primary"
+          (click)="handleSaveFilters()">
+          SAVE
+  </button>
+</mat-dialog-actions>
