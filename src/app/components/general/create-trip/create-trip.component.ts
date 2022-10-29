@@ -23,7 +23,6 @@ export class CreateTripComponent implements OnInit {
   }
 
   handleTripCreate(tripCreateResult: TripCreateResult) {
-    console.log(tripCreateResult);
     this.slidingSheet?.hide();
   }
 

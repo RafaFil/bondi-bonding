@@ -2,7 +2,7 @@ import { BusLine } from "./BusLine";
 import { GeoPoint } from "./GeoPoint";
 
 export interface BusStop {
-  busstopId?: number,
+  busstopId?: string,
   street1?: string,
   street2?: string,
   location?: GeoPoint

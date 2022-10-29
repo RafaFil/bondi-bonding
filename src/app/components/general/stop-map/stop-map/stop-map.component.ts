@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 import { BusStop, MapMarker } from 'src/app/interfaces';
-import { MapComponent, ZOOM_LEVELS } from '../../map/map.component';
+import { MapService } from 'src/app/services/map.service';
+import { MapComponent } from '../../map/map.component';
 import { BusStopComponent } from '../bus-stop/bus-stop.component';
 
 @Component({
@@ -24,7 +25,7 @@ export class StopMapComponent implements OnInit, AfterViewInit {
   @ViewChild('map')
   map?: MapComponent;
 
-  constructor() { }
+  constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
   }
@@ -48,13 +49,7 @@ export class StopMapComponent implements OnInit, AfterViewInit {
 
   setSelectedStop(busStop: BusStop, emitStopSelect: boolean = true): void {
     if (busStop.location && busStop.location.coordinates) {
-      this.map?.easeTo({
-        center: [
-            busStop.location.coordinates[0],
-            busStop.location.coordinates[1] - 0.0015
-        ],
-        zoom: ZOOM_LEVELS.ZOOM_IN
-      });
+      this.mapService.setFocusTo(busStop);
     }
 
     if (emitStopSelect) {
@@ -63,7 +58,7 @@ export class StopMapComponent implements OnInit, AfterViewInit {
   }
 
   handleZoomChange(zoomValue: number) {
-    this.showStops = zoomValue >= 12;
+    this.showStops = zoomValue >= this.mapService.zoomLevels.NO_LOCATION;
   }
 
   handleMapClick($event: MouseEvent) {

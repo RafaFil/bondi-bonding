@@ -20,7 +20,7 @@ export class SearchResultContentComponent implements OnInit {
   }
 
   handleStartChat(trip: Trip): void {
-    this.router.navigate([`/chat/${trip.user.uid}`]);
+    this.router.navigate([`/chat/${trip.userId}`]);
   }
 
   handleTripChange(newTrip: Trip) {

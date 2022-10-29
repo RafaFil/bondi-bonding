@@ -19,7 +19,6 @@ export class CreateTripFiltersModalComponent implements OnInit {
   }
 
   openFiltersDialog() {
-    console.log(this.tripService.createTripForm.controls.filters.getRawValue());
     this.dialog.open( FiltersModalContentComponent,
        {
         data: {

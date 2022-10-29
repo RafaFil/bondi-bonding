@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Map } from 'maplibre-gl';
 
 const API_KEY = 'DQvXkvmrVoZGslcrdv5i'; // MOVE TO BACKEND OR ENVIRONMENTS
 
@@ -7,6 +8,7 @@ const API_KEY = 'DQvXkvmrVoZGslcrdv5i'; // MOVE TO BACKEND OR ENVIRONMENTS
 })
 export class LocationService {
   disableGeolocation: boolean = false;
+  map?: Map;
 
   get hasGeolocation(): boolean {
     if (this.disableGeolocation) return false;

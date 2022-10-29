@@ -1,10 +1,22 @@
 @use '../../../../../styles'
 @use '../create-trip.component'
 
+
+@media ( max-width: 700px )
+  .bb-scrollable-segment
+    max-height: 35vh
+
+@media ( min-width: 700px )
+  .bb-scrollable-segment
+    max-height: calc(100vh - 14rem)
+
 .bb-create-trip-form
   width: 100%
   height: 100%
+  max-height: 60vh
+
   text-align: center
+
   padding-top: 1rem
   padding-bottom: 1rem
 

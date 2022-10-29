@@ -1,24 +1,66 @@
 <form class="bb-create-trip-form" [formGroup]="tripService.createTripForm">
   <p class="bb-text-green bb-create-trip-label">Create</p>
-  <mat-form-field class="bb-create-trip-form-field"
-    appearance="outline"
-    color="primary">
-    <mat-label>FROM</mat-label>
-    <input matInput [formControl]="fromControl">
-  </mat-form-field>
+  <div class="overflow-auto bb-scrollable-segment">
+    <mat-form-field class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>FROM</mat-label>
+      <input matInput [formControl]="formControls.from">
+    </mat-form-field>
 
-  <mat-form-field class="bb-create-trip-form-field"
-    appearance="outline"
-    color="primary">
-    <mat-label>TO</mat-label>
-    <input matInput [formControl]="toControl">
-  </mat-form-field>
+    <mat-form-field class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>TO</mat-label>
+      <input matInput [formControl]="formControls.to">
+    </mat-form-field>
 
-  <app-create-trip-filters-modal></app-create-trip-filters-modal>
+    <mat-form-field class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>BUS STOP</mat-label>
+      <mat-select (selectionChange)="handleBusStopSelect($event)" [formControl]="formControls.stop">
+        <mat-option *ngFor="let stop of stops" [value]="stop">{{stop.street1}}, {{stop.street2}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="lines.length > 0"
+      class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>BUS LINE</mat-label>
+      <mat-select [formControl]="formControls.busLine">
+        <mat-option *ngFor="let line of lines" [value]="line">{{line.line}}: {{line.destination}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field
+      class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>SCHEDULE</mat-label>
+      <input matInput type="time" [formControl]="formControls.schedule">
+    </mat-form-field>
+
+    <mat-form-field class="bb-create-trip-form-field"
+      appearance="outline"
+      color="primary">
+      <mat-label>DESCRIPTION</mat-label>
+      <textarea #description matInput
+        [formControl]="formControls.description"
+        maxlength="100"
+        rows="2"></textarea>
+      <mat-hint align="end">{{description.value?.length || 0}}/100</mat-hint>
+    </mat-form-field>
+
+    <div class="mt-2">
+      <app-create-trip-filters-modal></app-create-trip-filters-modal>
+    </div>
+  </div>
 
   <button
     mat-raised-button
-    class="bb-btn bb-create-trip-form-btn bb-create-btn"
+    class="bb-btn bb-create-trip-form-btn bb-create-btn mt-4"
     color="primary"
     (click)="handleTripCreate()">
     CREATE
