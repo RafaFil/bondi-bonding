@@ -1,6 +1,7 @@
 import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component';
 import { InitHomeComponent } from './components/init-page/init-home/init-home.component';
 import { InitPageComponent } from './components/init-page/init-page/init-page.component';
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
@@ -18,9 +19,8 @@ const routes: Routes = [
     { path: 'updatePassword', component: UpdatePasswordFormComponent }
   ]},
   { path: 'home', component: HomePageComponent },
-  { path: 'signup', component: SignupPageComponent }
-
-  //signup
+  { path: 'signup', component: SignupPageComponent },
+  { path: 'faq' , component : FaqPageComponent}
 ];
 
 @NgModule({
