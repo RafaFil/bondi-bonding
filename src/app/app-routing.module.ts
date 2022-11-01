@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'home', component: InitHomeComponent },
     { path: 'login', component: LoginFormComponent },
     { path: 'resetPassword', component: ResetPasswordFormComponent },
-    { path: 'updatePassword', component: UpdatePasswordFormComponent }
+    { path: 'updatePassword', component: UpdatePasswordFormComponent },
   ]},
   { path: 'home', component: HomePageComponent },
   { path: 'signup', component: SignupPageComponent },
