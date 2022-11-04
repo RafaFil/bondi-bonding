@@ -1,7 +1,10 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { MatChip } from '@angular/material/chips';
+import { MatDialog } from '@angular/material/dialog';
 
-import { TripFilters, GENDER_OPTIONS } from 'src/app/interfaces';
+import { TripFilters, GENDER_OPTIONS, LIKES_OPTIONS } from 'src/app/interfaces';
+
 
 @Component({
   selector: 'app-trip-filters-form',
@@ -11,15 +14,17 @@ import { TripFilters, GENDER_OPTIONS } from 'src/app/interfaces';
 export class TripFiltersFormComponent implements OnInit {
 
   genderOptions = GENDER_OPTIONS;
+  likesOptions = LIKES_OPTIONS;
   filterForm = this.formBuilder.group({
     minAge: [ '', [ Validators.pattern('^[0-9]{2,3}$'), Validators.min(18)] ],
     maxAge: [ '', [ Validators.pattern('^[0-9]{2,3}$') ] ],
-    gender: [ undefined ]
+    gender: [ undefined ],
+    likes: [undefined]
   });
 
   @Output() tripFiltersSubmit = new EventEmitter<TripFilters>()
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private dialog: MatDialog) {
 
   }
 
@@ -51,4 +56,11 @@ export class TripFiltersFormComponent implements OnInit {
 
     this.tripFiltersSubmit.emit( filters );
   }
+
+  
+  selectChip(chip: MatChip){
+    chip.toggleSelected();
+  }
+
+
 }

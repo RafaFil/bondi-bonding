@@ -56,6 +56,11 @@ import { ChatFeedInputComponent } from './components/chat-page/chat-feed-input/c
 import { BaseDialogComponent } from './components/general/base-dialog/base-dialog.component';
 import { BlockDialogComponent } from './components/chat-page/block-dialog/block-dialog.component';
 import { DeleteDialogComponent } from './components/chat-page/delete-dialog/delete-dialog.component';
+import { ProfileDescriptionComponent } from './components/profile-page/prof-description/profile-description/profile-description.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page/profile-page.component';
+import { EditionFormComponent } from './components/profile-page/prof-description/edition-form/edition-form.component';
+import { DataViewComponent } from './components/profile-page/prof-description/data-view/data-view.component';
+import { LikesFilterDialogComponent } from './components/general/likes-filter-dialog/likes-filter-dialog.component';
 
 
 @NgModule({
@@ -109,6 +114,11 @@ import { DeleteDialogComponent } from './components/chat-page/delete-dialog/dele
     BaseDialogComponent,
     BlockDialogComponent,
     DeleteDialogComponent,
+    ProfileDescriptionComponent,
+    ProfilePageComponent,
+    EditionFormComponent,
+    DataViewComponent,
+    LikesFilterDialogComponent
   ],
   imports: [
     BrowserModule,

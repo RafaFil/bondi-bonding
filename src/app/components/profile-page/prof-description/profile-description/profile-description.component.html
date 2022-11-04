@@ -1,0 +1,18 @@
+<div>
+    <div class="bb-show" *ngIf="!isEdit">
+        <app-data-view></app-data-view>
+    </div>
+    <div class="bb-edition" *ngIf="isEdit">
+        <app-edition-form [user]="user"></app-edition-form>
+    </div>
+</div>
+
+<div class="bb-edition-opt">
+    <button mat-raised-button color="primary" (click)="disableEdit()" *ngIf="isEdit" class="bb-btn-change">
+        Save Changes    
+    </button>
+    <button mat-raised-button color="warm" (click)="disableEdit()" *ngIf="isEdit" class="bb-btn-change">
+        Dismiss
+    </button>
+</div>
+

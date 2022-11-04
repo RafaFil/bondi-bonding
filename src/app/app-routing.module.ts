@@ -10,6 +10,7 @@ import { UpdatePasswordFormComponent } from './components/init-page/update-passw
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
 import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
+import { ProfilePageComponent } from './components/profile-page/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/init/home', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupPageComponent },
   { path: 'faq' , component: FaqPageComponent },
   { path: 'chat' , component: ChatsViewComponent },
-  { path: 'chat/:chatId', component: ChatViewComponent}
+  { path: 'chat/:chatId', component: ChatViewComponent},
+  { path: 'profile', component: ProfilePageComponent }
 ];
 
 @NgModule({

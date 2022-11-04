@@ -33,6 +33,19 @@
             <mat-option *ngFor="let gender of genderOptions" [value]="gender">{{gender}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+      <!--Likes field-->
+      <mat-form-field class="bb-likes-input" appearance="outline">
+        <mat-label>Tell us whaddya like</mat-label>
+        <mat-chip-list #chipList selectable multiple>
+          <mat-chip #c="matChip" *ngFor="let like of likesOptions" [value]="like" (click)="selectChip(c)">
+            {{like}}
+          </mat-chip>
+          <input matInput>
+        </mat-chip-list>
+      </mat-form-field>
+
       </div>
+      
 
 </form>

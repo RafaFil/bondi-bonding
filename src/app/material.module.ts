@@ -21,9 +21,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatChipsModule } from '@angular/material/chips';
+
 
 const MaterialComponents = [
-    MatFormFieldModule,
     MatCheckboxModule,
     MatIconModule,
     MatSliderModule,
@@ -43,7 +44,8 @@ const MaterialComponents = [
     MatBadgeModule,
     MatListModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatChipsModule
 ];
 
 @NgModule({

@@ -1,0 +1,37 @@
+<div class="bb-user-info">
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="!editionModeOn">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="enterEditionMode()">
+            <span class="bb-profile-menu-item">Edit</span>
+            <mat-icon>edit</mat-icon>
+        </button>
+    </mat-menu>
+
+    <div class="bb-user-div">
+            <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
+    </div>
+        <h1 class="bb-name">{{user.name}}</h1>
+        <h3 class="bb-username">{{user.username}}</h3>
+</div>
+
+<!--TABS-->
+<mat-tab-group mat-align-tabs="center" color="primary">
+    <mat-tab label="Profile">
+        <div class="bb-profile-tab-content">
+            <app-profile-description [isEdit]="editionModeOn"></app-profile-description>
+        </div>
+    </mat-tab>
+    <mat-tab label="Filters">
+        <div class="bb-profile-tab-content">
+            <app-trip-filters-form></app-trip-filters-form>
+            <button mat-raised-button color="primary" >Save Filters</button>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>
+
+
+<!--NavBar-->
