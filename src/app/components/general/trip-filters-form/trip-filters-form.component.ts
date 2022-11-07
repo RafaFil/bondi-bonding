@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -19,7 +19,7 @@ export class TripFiltersFormComponent implements OnInit {
     minAge: [ '', [ Validators.pattern('^[0-9]{2,3}$'), Validators.min(18)] ],
     maxAge: [ '', [ Validators.pattern('^[0-9]{2,3}$') ] ],
     gender: [ undefined ],
-    likes: [undefined]
+    likes : this.formBuilder.array<string>([])
   });
 
   @Output() tripFiltersSubmit = new EventEmitter<TripFilters>()
@@ -56,11 +56,47 @@ export class TripFiltersFormComponent implements OnInit {
 
     this.tripFiltersSubmit.emit( filters );
   }
-
   
+  chipLikesArr : MatChip[] = [];
+
   selectChip(chip: MatChip){
+    if(chip.selected){
+      chip.deselect();
+      this.removeLikeFromLike(chip);
+      return;
+    }
+
     chip.toggleSelected();
+    let popedLike = this.addLikeToLikes(chip);
+
+    if(popedLike){
+      popedLike.deselect();
+    }
+    console.log(this.filterForm.controls.likes.value)
+    console.log(this.chipLikesArr);
   }
 
+  addLikeToLikes(newLike : MatChip) {
+    const value = this.filterForm.controls.likes.value;
+    value.unshift( newLike.value )
+    this.chipLikesArr.unshift(newLike);
+    if (value.length > 3) { 
+      value.pop();
+      return this.chipLikesArr.pop()
+    }
+    return;
+  }
+
+  removeLikeFromLike(likeToRemove : MatChip){
+    const value = this.filterForm.controls.likes.value;
+    value.forEach(like => {
+      if (like === likeToRemove.value) {
+        value.splice(value.indexOf(like),1);
+      }
+    })
+    return this.chipLikesArr.splice(
+      this.chipLikesArr.indexOf(likeToRemove),1
+    )
+  }
 
 }
