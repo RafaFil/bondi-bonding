@@ -35,7 +35,7 @@ export class TripService {
       schedule: formRawValue.schedule!,
       stopId: formRawValue.stop!.busstopId!,
       to: formRawValue.to!,
-      userId: this.authService.runningUser!.uid,
+      userId: this.authService.runningUser!.uid!,
       description: formRawValue.description ? formRawValue.description : '',
       filters: formRawValue.filters!
     };

@@ -1,5 +1,5 @@
-import { Component, OnInit, Attribute} from '@angular/core';
-import { FormBuilder,FormControl,Validators,FormGroup } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-forms',
@@ -8,7 +8,7 @@ import { FormBuilder,FormControl,Validators,FormGroup } from '@angular/forms';
 })
 export class SignupFormsComponent implements OnInit {
 
-  hide = true;
+  hidePassword = true;
 
   signUpForm = this.formBuilder.group(
     {
@@ -20,27 +20,27 @@ export class SignupFormsComponent implements OnInit {
       phone : ['',[Validators.required]], // how to validate it :)
       email : ['',[Validators.required,Validators.email]],
     }
-  )
+  );
 
-  constructor( private formBuilder: FormBuilder) { }
+  get passwordIconName(): string {
+    return this.hidePassword ? 'visibility_off' : 'visibility';
+  }
+
+  get passwordIconColor(): string {
+    return this.hidePassword ? '' : 'primary';
+  }
+
+  get passwordInputType(): string {
+    return this.hidePassword ? 'password' : 'text';
+  }
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  errorMessage(){
-    if(
-      this.signUpForm.controls.name.hasError('required') || 
-      this.signUpForm.controls.username.hasError('required') ||
-      this.signUpForm.controls.birthdate.hasError('required') ||
-      this.signUpForm.controls.password.hasError('required') ||
-      this.signUpForm.controls.gender.hasError('required') ||
-      this.signUpForm.controls.phone.hasError('required') ||
-      this.signUpForm.controls.email.hasError('required')
-    ){
-      
-      return "Required field" ;
-    }
-      return "";
+  togglePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   }
-  
+
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, Validators} from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces';
 import { SignupFormsComponent } from '../signup-forms/signup-forms.component';
 
 
@@ -8,62 +10,41 @@ import { SignupFormsComponent } from '../signup-forms/signup-forms.component';
   templateUrl: './signup-page.component.html',
   styleUrls: ['./signup-page.component.sass']
 })
-export class SignupPageComponent implements OnInit {
+export class SignupPageComponent implements OnInit, AfterViewInit {
 
   @ViewChild('signUpForm') formData!: SignupFormsComponent;
 
-  accepted = false;
+  acceptedToS = false;
   everythingIsOk = false;
 
-  firstFormGroup = this.formData.signUpForm;
+  personalInformationGroup!: FormGroup;
 
-  secondFormGroup = this._formBuilder.group({
+  identityValidationGroup = this.fb.group({
     secondCtrl: '',
   });
 
-  thirdFormGroup = this._formBuilder.group({
-    secondCtrl: '',
-  });
-
-
-  constructor(private _formBuilder : FormBuilder) { }
+  constructor(private fb : FormBuilder,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
-  
-  step1validator() : boolean{
-    return this.formData.signUpForm.valid;
+
+  ngAfterViewInit(): void {
+      this.personalInformationGroup = this.formData.signUpForm;
   }
 
   pullFormData(){
-    let data = this.formData.signUpForm.controls;
-    let person = {
-      name : data.name.value,
-      username : data.birthdate.value,
-      birthdate : data.birthdate.value,
-      gender : data.gender.value,
-      phone : data.phone.value,
-      email : data.email.value,
-    }
-    let age = "";
-    if (typeof person.birthdate === "string"){
-      age = person.birthdate;
-    }
-    if (Number.parseInt(age) < 18) {
-      alert("u r a minor")
-    }
-    alert(this.formData.signUpForm.valid)
+    const user = this.formData.signUpForm.value as User;
   }
 
 
-  acceptTerms(){
-    if (this.accepted) {
-      this.accepted = false;
-    }
-    else{
-      this.accepted = true;
-    }
+  toggleAcceptToS(){
+    this.acceptedToS = !this.acceptedToS;
   }
 
+  handleSignUp() {
+    // TODO: Handle signup
+    this.router.navigate([`/home`]);
+  }
 
 }

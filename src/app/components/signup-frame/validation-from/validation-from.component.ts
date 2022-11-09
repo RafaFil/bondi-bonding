@@ -7,15 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ValidationFromComponent implements OnInit {
 
-  photoUploaded = false;
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  photoPath(path : string){
-    alert(path)
+  handlePhotoInput($event: Event) {
+    const target = $event.target as HTMLInputElement;
+    if (target.files && target.files.length > 0) {
+      const file = target.files[0];
+      // TODO: Handle file upload
+    }
   }
-
 }

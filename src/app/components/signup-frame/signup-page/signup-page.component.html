@@ -1,26 +1,41 @@
-<mat-stepper [linear]="true">
-    <mat-step label="Information" [stepControl]="firstFormGroup" > <!--[stepControl]="firstFormGroup"-->
-        <div class="forms-body-container">
-            <app-signup-forms #signUpForm ></app-signup-forms>
-        </div>
-        <div class="next-button" (click)="pullFormData()">
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Validation" [stepControl]="secondFormGroup">
-        <app-validation-from></app-validation-from>
-        <div class="next-button">
-            <button mat-button matStepperNext>Next</button>
-        </div>
-    </mat-step>
-    <mat-step label="Tos"> 
-        <app-tos #ToS_form></app-tos>
-        <input type="checkbox" (click)="acceptTerms()"><label>I agree the terms of the Bondi-Bonding service and the privacy policy as well as the possible sanctions of any misuse of the aplication</label>
-        <div class="next-button" *ngIf="accepted">
-            <button mat-button matStepperNext>SignUp</button>
-        </div>
-    </mat-step>
+<mat-stepper [linear]="false" orientation="vertical">
+  <mat-step label="Personal Information" [stepControl]="personalInformationGroup">
+      <div class="forms-body-container">
+          <app-signup-forms #signUpForm ></app-signup-forms>
+      </div>
+      <button mat-raised-button
+        matStepperNext
+        class="bb-next-button"
+        color="primary"
+        (click)="pullFormData()">NEXT
+      </button>
+  </mat-step>
+  <mat-step label="Identity Validation" [stepControl]="identityValidationGroup">
+      <app-validation-from></app-validation-from>
+      <button mat-raised-button
+        matStepperNext
+        class="bb-next-button"
+        color="primary">NEXT
+      </button>
+  </mat-step>
+  <mat-step label="Terms of Service">
+      <app-tos #ToS_form></app-tos>
 
+      <mat-checkbox
+        class="my-2"
+        [checked]="acceptedToS"
+        color="primary"
+        (change)="toggleAcceptToS()"
+      >
+        I agree to the Bondi-Bonding terms of service and privacy policy
+      </mat-checkbox>
+
+      <button *ngIf="acceptedToS" mat-raised-button
+        matStepperNext
+        class="bb-next-button"
+        color="primary"
+        (click)="handleSignUp()">SIGN UP
+      </button>
+  </mat-step>
 </mat-stepper>
-
 
