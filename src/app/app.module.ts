@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
 import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
@@ -87,6 +88,7 @@ import { CreateTripFormComponent } from './components/general/create-trip/create
     MaterialModule,
     ReactiveFormsModule,
     MatNativeDateModule,
+    LayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
