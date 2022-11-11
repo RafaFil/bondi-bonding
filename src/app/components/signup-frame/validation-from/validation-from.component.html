@@ -1,11 +1,21 @@
-<h2 class="text">We need a validation, in order to protect you we would like to ask you to upload a photo of your ID</h2>
+<h3>In order to protect you and other <b>Bondi-Bonding</b> users, we need to verify your identity.
+  Please upload a clear picture of your ID.</h3>
 
-<div class="validation-section">
-    <mat-icon>add_a_photo</mat-icon>
-    <input type="file" id="image-input" accept="image/*" class="hidden" style="display: none;" value=""/>
-    <label for="image-input" id="select-label">Upload ID</label>
-</div>
+<label class="bb-upload d-block mx-auto" for="idInput">
+  <div class="bb-validation-section">
+    <mat-icon class="bb-upload-icon">add_a_photo</mat-icon>
+  </div>
+</label>
 
-<h4 class="text">
-    For more infomration about how we will handle this, check out the ToS - privacy section
-</h4>
+<input
+  id="idInput"
+  type="file"
+  accept="image/*"
+  class="d-none"
+  capture="environment"
+  (input)="handlePhotoInput($event)"
+/>
+
+<p class="mt-3">
+    For more information about our privacy policy, please review <a routerLink="/faq">our FAQ section</a>.
+</p>

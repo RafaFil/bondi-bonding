@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
@@ -14,6 +15,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 
 const MaterialComponents = [
     MatFormFieldModule,
+    MatCheckboxModule,
     MatIconModule,
     MatSliderModule,
     MatButtonModule,

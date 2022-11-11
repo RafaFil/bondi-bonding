@@ -1,5 +1,9 @@
 @use '@angular/material' as mat;
 
+.mat-checkbox-layout {
+  white-space: initial !important ;
+}
+
 @include mat.core();
 
 $bb-primary-palette: (

@@ -1,6 +1,10 @@
 export interface User {
-  uid: string;
-  name: string;
-  username: string;
-  iconUrl: string;
+  uid?: string;
+  name?: string;
+  username?: string;
+  birthdate?: string;
+  gender?: string;
+  phone?: string;
+  email?: string;
+  iconUrl?: string;
 }
