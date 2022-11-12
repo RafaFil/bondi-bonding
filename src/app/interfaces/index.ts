@@ -9,3 +9,4 @@ export * from './Trip';
 export * from './User';
 export * from './TripFilters';
 export * from './TripCreateResult';
+export * from './Faq';
