@@ -10,8 +10,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -25,7 +27,9 @@ const MaterialComponents = [
     MatDatepickerModule,
     MatDialogModule,
     MatGridListModule,
-    OverlayModule
+    OverlayModule,
+    MatExpansionModule,
+    MatNativeDateModule
 ];
 
 @NgModule({
