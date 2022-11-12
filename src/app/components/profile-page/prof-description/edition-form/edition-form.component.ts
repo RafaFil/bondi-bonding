@@ -9,17 +9,7 @@ import { User } from 'src/app/interfaces';
 })
 export class EditionFormComponent implements OnInit {
 
-  @Input() user: User ={
-    uid: "1",
-    name: "Joan",
-    username: "Lidemberg",
-    iconUrl: "anUrl",
-  
-    description: "A very sociable guy who enjoy anime and otaku stuff",
-    birthdate: "10/10/00",
-    gender:"cat",
-    phone:"1122",
-  };
+  @Input() user!: User;
   hide = true;
   repeatPassword = false;
 

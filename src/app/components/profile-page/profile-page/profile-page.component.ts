@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { User } from 'src/app/interfaces/User';
+import { UserService } from 'src/app/services/user.service';
+import { TripFiltersFormComponent } from '../../general/trip-filters-form/trip-filters-form.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -8,29 +10,30 @@ import { User } from 'src/app/interfaces/User';
 })
 export class ProfilePageComponent implements OnInit {
 
+  @ViewChild("#UserFilters") filtersForm !: TripFiltersFormComponent;
+  
+
   editionModeOn = false;
 
-  user: User ={
-    uid: "1",
-    name: "John Titor",
-    username: "@JoyBoy64",
-    iconUrl: "https://pbs.twimg.com/profile_images/1302962150302982146/NTb6iGpC_400x400.jpg",
-  
-    description: "A very sociable guy who enjoy anime and otaku stuff like anime, manga, jpop, and japan, i love japan",
-    birthdate: "10/10/00",
-    gender:"cat",
-    phone:"1122",
-    email: "myemail@email.com"
-  };
+  user! : User;
 
-  constructor() { }
+  constructor(private userService : UserService) { }
 
   ngOnInit(): void {
+    this.getUser("a","a");
   }
 
   enterEditionMode(){
     this.editionModeOn = true;
-    alert("aaaaaa")
+  }
+
+  getUser(username:string,auth:string) {
+    this.user = this.userService.getUser("username","auth");
+  }
+
+  saveFilters(){
+    const filters = this.filtersForm.filterForm.controls;
+    this.userService.updateUserFilters(); //Parameter
   }
 
 }

@@ -10,44 +10,22 @@
     <mat-form-field appearance="outline">
         <mat-icon matPrefix color="primary">person</mat-icon>
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" [formControl]="editForm.controls.username" value="a">
+        <input matInput placeholder="Username" [formControl]="editForm.controls.username" value="{{user.username}}">
         <mat-error *ngIf="editForm.controls.username.invalid">Username must be between 3 and 10 characters</mat-error>
     </mat-form-field>
-
-    <!--Password-->
-    <mat-form-field appearance="outline">
-        <mat-icon matPrefix color="primary">lock</mat-icon>
-        <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="editForm.controls.password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="editForm.controls.password.invalid">Invalid password</mat-error>
-    </mat-form-field>
-
-    <!--Password Agian
-    <mat-form-field appearance="outline" *ngIF="repeatPassword">
-        <mat-icon matPrefix>lock</mat-icon>
-        <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="editForm.controls.password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="editForm.controls.password.invalid">Invalid password</mat-error>
-    </mat-form-field>-->
 
     <!--Age and gender not editable-->
     <div class="two-col">
         <div class="left">
             <mat-form-field appearance="outline">
                 <mat-label>Birthdate</mat-label>
-                <input matInput value="nacimiento" disabled>
+                <input matInput value="{{user.birthdate}}" disabled>
             </mat-form-field>
         </div>
         <div class="right">
         <mat-form-field appearance="outline">
             <mat-label>Gender</mat-label>
-            <input matInput placeholder="Name" disabled value="genero">
+            <input matInput placeholder="Name" disabled value="{{user.gender}}">
         </mat-form-field>
         </div>
     </div>
@@ -55,7 +33,7 @@
     <!--Phone-->
     <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input tpye="tel" matInput placeholder="Phone" [formControl]="editForm.controls.phone" value="0000999"> 
+        <input tpye="tel" matInput placeholder="Phone" [formControl]="editForm.controls.phone" value="{{user.phone}}"> 
         <mat-icon matPrefix color="primary">phone</mat-icon>
         <mat-error *ngIf="editForm.controls.phone.invalid">Invalid phone</mat-error>
     </mat-form-field>
@@ -71,11 +49,12 @@
     <!--Description-->
     <mat-form-field apperance="outline">
         <mat-label>Description</mat-label>
-        <textarea #message matInput maxlength="256" [formControl]="editForm.controls.email"></textarea>
+        <textarea #message matInput maxlength="256" [formControl]="editForm.controls.email" value="{{user.description}}"></textarea>
         <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
     </mat-form-field>
 
     <!--ProfilePic-->
+    
 
 </form>

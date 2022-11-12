@@ -1,6 +1,6 @@
 <div>
     <div class="bb-show" *ngIf="!isEdit">
-        <app-data-view></app-data-view>
+        <app-data-view [user]="user"></app-data-view>
     </div>
     <div class="bb-edition" *ngIf="isEdit">
         <app-edition-form [user]="user"></app-edition-form>

@@ -4,7 +4,7 @@
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="enterEditionMode()">
+        <button mat-menu-item (click)="enterEditionMode()" class="bb-btn-menu-opt">
             <span class="bb-profile-menu-item">Edit</span>
             <mat-icon>edit</mat-icon>
         </button>
@@ -18,20 +18,22 @@
 </div>
 
 <!--TABS-->
-<mat-tab-group mat-align-tabs="center" color="primary">
-    <mat-tab label="Profile">
-        <div class="bb-profile-tab-content">
-            <app-profile-description [isEdit]="editionModeOn"></app-profile-description>
-        </div>
-    </mat-tab>
-    <mat-tab label="Filters">
-        <div class="bb-profile-tab-content">
-            <app-trip-filters-form></app-trip-filters-form>
-            <button mat-raised-button color="primary" >Save Filters</button>
-        </div>
-    </mat-tab>
+<div class="bb-tabs">
+    <mat-tab-group mat-align-tabs="center" color="primary">
+        <mat-tab label="Profile">
+            <div class="bb-profile-tab-content">
+                <app-profile-description [isEdit]="editionModeOn" [user]="user"></app-profile-description>
+            </div>
+        </mat-tab>
+        <mat-tab label="Filters">
+            <div class="bb-profile-tab-content">
+                <app-trip-filters-form #UserFilters></app-trip-filters-form>
+                <button mat-raised-button color="primary">Save Filters</button>
+            </div>
+        </mat-tab>
 
-</mat-tab-group>
+    </mat-tab-group>
+</div>
 
 
 <!--NavBar-->

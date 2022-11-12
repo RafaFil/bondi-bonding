@@ -8,18 +8,7 @@ import { User } from 'src/app/interfaces/User';
 })
 export class DataViewComponent implements OnInit {
 
-  @Input() user: User ={
-    uid: "1",
-    name: "Joan Lidemberg",
-    username: "@AaaAA",
-    iconUrl: "anUrl",
-  
-    description: "A very sociable guy who enjoy anime and otaku stuff like anime, manga, jpop, and japan, i love japan",
-    birthdate: "10/10/00",
-    gender:"cat",
-    phone:"1122",
-    email: "myemail@email.com"
-  };
+  @Input() user!: User;
 
   constructor() { }
 

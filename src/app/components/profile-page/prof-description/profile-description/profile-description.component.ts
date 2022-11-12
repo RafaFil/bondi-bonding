@@ -19,11 +19,6 @@ export class ProfileDescriptionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  enableEdit() { 
-    console.log(this.isEdit)
-    this.isEdit = true 
-  }
-
   disableEdit() { 
     console.log(this.isEdit)
     this.isEdit = false 
