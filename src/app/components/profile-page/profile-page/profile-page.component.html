@@ -22,7 +22,7 @@
     <mat-tab-group mat-align-tabs="center" color="primary">
         <mat-tab label="Profile">
             <div class="bb-profile-tab-content">
-                <app-profile-description [isEdit]="editionModeOn" [user]="user"></app-profile-description>
+                <app-profile-description [isEdit]="editionModeOn" [user]="user" (closeEditMode)="onChange($event)"></app-profile-description>
             </div>
         </mat-tab>
         <mat-tab label="Filters">

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces';
 
@@ -10,18 +10,17 @@ import { User } from 'src/app/interfaces';
 export class ProfileDescriptionComponent implements OnInit {
 
   @Input() user!: User;
-  @Input() isEdit : boolean = false;
+  @Input() isEdit : boolean = true;
 
-
+  @Output() closeEditMode = new EventEmitter<{ edit: boolean }>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  disableEdit() { 
-    console.log(this.isEdit)
-    this.isEdit = false 
+  onChanges() { 
+    this.closeEditMode.emit({edit : false});
   }
 
 }

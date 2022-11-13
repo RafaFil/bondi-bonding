@@ -8,10 +8,10 @@
 </div>
 
 <div class="bb-edition-opt">
-    <button mat-raised-button color="primary" (click)="disableEdit()" *ngIf="isEdit" class="bb-btn-change">
-        Save Changes    
+    <button mat-raised-button color="primary" (click)="onChanges()" *ngIf="isEdit" class="bb-btn-change">
+        Save Changes
     </button>
-    <button mat-raised-button color="warm" (click)="disableEdit()" *ngIf="isEdit" class="bb-btn-change">
+    <button mat-raised-button color="warm" (click)="onChanges()" *ngIf="isEdit" class="bb-btn-change">
         Dismiss
     </button>
 </div>

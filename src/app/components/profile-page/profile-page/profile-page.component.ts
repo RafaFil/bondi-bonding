@@ -36,4 +36,7 @@ export class ProfilePageComponent implements OnInit {
     this.userService.updateUserFilters(); //Parameter
   }
 
+  onChange(eventData: { edit : boolean }){
+    this.editionModeOn = eventData.edit;
+  }
 }

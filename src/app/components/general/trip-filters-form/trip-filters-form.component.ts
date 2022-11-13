@@ -72,8 +72,6 @@ export class TripFiltersFormComponent implements OnInit {
     if(popedLike){
       popedLike.deselect();
     }
-    console.log(this.filterForm.controls.likes.value)
-    console.log(this.chipLikesArr);
   }
 
   addLikeToLikes(newLike : MatChip) {
