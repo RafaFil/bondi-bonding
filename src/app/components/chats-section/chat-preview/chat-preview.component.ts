@@ -9,18 +9,14 @@ import { ChatMessage } from 'src/app/interfaces/ChatMessage';
 })
 export class ChatPreviewComponent implements OnInit {
 
-  @Input() chat !: Chat;
+  @Input() chat!: Chat;
 
-  userName: string = "";
-  lastMessage!: ChatMessage
-
-  getUserName(){
-
+  get lastMessage(): ChatMessage | undefined {
+    if (this.chat.chatMessages && this.chat.chatMessages?.length > 0) {
+      return this.chat.chatMessages[this.chat.chatMessages.length - 1];
+    }
+    return undefined;
   }
-
-  getlastChat () {
-
-  };
 
   constructor() { }
 

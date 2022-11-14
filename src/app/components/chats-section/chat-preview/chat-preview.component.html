@@ -1,3 +1,6 @@
-<div class="bb-preview">
-    <ng-content></ng-content>
-</div>
+<button mat-button class="bb-preview">
+    <app-user-info
+      [description]="lastMessage?.content?.value"
+      [user]="chat.from!"
+    ></app-user-info>
+</button>

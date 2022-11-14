@@ -21,8 +21,8 @@ export class ChatFeedInputComponent implements OnInit {
 
   sendMessage(messageInput: HTMLInputElement){
     this.chatService.sendMessage({
-      fromId: this.chat.fromId!,
-      toId: this.chat.toId!,
+      fromId: this.chat.from?.uid!,
+      toId: this.chat.to?.uid!,
       content: {
         type: 'text',
         value: messageInput.value

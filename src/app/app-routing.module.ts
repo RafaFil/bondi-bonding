@@ -9,6 +9,7 @@ import { ResetPasswordFormComponent } from './components/init-page/reset-passwor
 import { UpdatePasswordFormComponent } from './components/init-page/update-password-form/update-password-form.component';
 import { HomePageComponent } from './components/home-page/home-page/home-page.component';
 import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
+import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/init/home', pathMatch: 'full' },
@@ -21,8 +22,9 @@ const routes: Routes = [
   ]},
   { path: 'home', component: HomePageComponent },
   { path: 'signup', component: SignupPageComponent },
-  { path: 'faq' , component : FaqPageComponent },
-  { path: 'chat' , component : ChatsViewComponent }
+  { path: 'faq' , component: FaqPageComponent },
+  { path: 'chat' , component: ChatsViewComponent },
+  { path: 'chat/:chatId', component: ChatViewComponent}
 ];
 
 @NgModule({

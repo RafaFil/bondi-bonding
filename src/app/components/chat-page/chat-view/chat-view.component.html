@@ -1,12 +1,12 @@
 <div>
     <div class="app-chat-feed-header">
-        <app-chat-feed-header [title]="'JoyBot'"></app-chat-feed-header>
+        <app-chat-feed-header *ngIf="chat" [title]="chat.to!.name!"></app-chat-feed-header>
     </div>
 
     <section>
         <app-chat-feed></app-chat-feed>
     </section>
-    
+
     <div class="app-chat-feed-input">
         <app-chat-feed-input></app-chat-feed-input>
     </div>

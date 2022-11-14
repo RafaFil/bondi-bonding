@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Chat } from 'src/app/interfaces/Chat';
 import { ChatService } from 'src/app/services/chat.service';
 
@@ -11,12 +12,12 @@ export class ChatViewComponent implements OnInit {
 
   chat?: Chat;
 
-  @Input() chatId!: string;
-
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService,
+              private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.chatService.getChatbyId(this.chatId)
+    const chatId = `${this.route.snapshot.paramMap.get('chatId')}`;
+    this.chatService.getChatbyId(chatId)
     .subscribe(chat => this.chat = chat);
   }
 

@@ -1,4 +1,4 @@
-import { Chat, ChatMessage, SendMessageResult } from "../interfaces";
+import { Chat, ChatMessage, ChatsInfo, SendMessageResult } from "../interfaces";
 
 const MOCKED_MESSAGES : ChatMessage[] = [
   {
@@ -102,7 +102,24 @@ const MOCKED_MESSAGES : ChatMessage[] = [
 export const MOCKED_CHAT: Chat = {
   id: '123',
   chatMessages: MOCKED_MESSAGES,
-  permanent: true
+  permanent: true,
+  from: {
+    name: 'Juan Carlos',
+    username: 'juancarlos',
+    iconUrl: 'https://phantom-telva.unidadeditorial.es/99da4ecff6d748daf9a16d16aa868bef/crop/0x0/2038x2880/resize/828/f/jpg/assets/multimedia/imagenes/2021/05/06/16202888369890.jpg',
+    uid: '1'
+  },
+  to: {
+    name: 'María Carmen',
+    username: 'maricar',
+    iconUrl: 'https://m.media-amazon.com/images/M/MV5BNDkyODg4ZjMtODY4MC00NWM5LTk4NjgtNDI3NDlkNWJmY2QyXkEyXkFqcGdeQXVyMDczOTA3Nw@@._V1_UY264_CR43,0,178,264_AL_.jpg',
+    uid: '2'
+  }
+}
+
+export const MOCKED_CHATS_INFO: ChatsInfo = {
+  permanentChats: [ MOCKED_CHAT ],
+  temporalChats: []
 }
 
 export const MOCKED_SEND_MESSAGE_RESULT: SendMessageResult = {
