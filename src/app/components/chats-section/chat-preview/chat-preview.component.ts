@@ -11,15 +11,15 @@ export class ChatPreviewComponent implements OnInit {
 
   @Input() chat !: Chat;
 
-  userName : string = "";
-  lastMessage !: ChatMessage
+  userName: string = "";
+  lastMessage!: ChatMessage
 
   getUserName(){
-    
+
   }
 
   getlastChat () {
-  
+
   };
 
   constructor() { }

@@ -1,7 +1,8 @@
+import { ChatMessageContent } from "./ChatMessageContent";
 
 export interface ChatMessage {
-    msg_text : string;
-    //msg_sender : string; // then change for a User type
-    msg_date ?: Date;
-    fromYou : boolean //delte after
+    content: ChatMessageContent;
+    sentDate?: Date;
+    fromId: string;
+    toId: string;
 }

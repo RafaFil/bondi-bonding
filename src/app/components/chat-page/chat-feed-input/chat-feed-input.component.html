@@ -1,6 +1,6 @@
-<form class="bb-chat-feed-footer">
-    <input type="text" class="bb-chat-text-input" placeholder=" Tpye something..." #messageInput>
-    <button mat-button color="primary" (submit)="submitChat(messageInput.value)">
+<form class="bb-chat-feed-footer" (submit)="sendMessage(messageInput)">
+    <input #messageInput type="text" class="bb-chat-text-input" placeholder="Type something..." >
+    <button mat-button color="primary" type="submit">
         <mat-icon>send</mat-icon>
     </button>
 </form>

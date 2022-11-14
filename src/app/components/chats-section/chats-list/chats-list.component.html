@@ -1,6 +1,6 @@
 <mat-nav-list>
-    <mat-list-item *ngFor="let chat of chats ; last as last">
-        <a [routerLink]="'/'+chat.id">
+    <mat-list-item *ngFor="let chat of chats; last as last">
+        <a routerLink="/chat/{{chat.id}}">
             <app-chat-preview [chat]="chat"></app-chat-preview>
         </a>
         <mat-divider *ngIf="!last"></mat-divider>

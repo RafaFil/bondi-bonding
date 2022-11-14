@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
-import {Observable} from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chat } from 'src/app/interfaces/Chat';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat-view',
@@ -10,15 +9,15 @@ import { Chat } from 'src/app/interfaces/Chat';
 })
 export class ChatViewComponent implements OnInit {
 
-  chat !: Chat;
+  chat?: Chat;
 
-  isMobile !: Observable<BreakpointState>;
+  @Input() chatId!: string;
 
-  constructor(private breakpointObserver: BreakpointObserver) { 
-}
+  constructor(private chatService: ChatService) {}
 
   ngOnInit(): void {
-    this.isMobile = this.breakpointObserver.observe(Breakpoints.Handset);
+    this.chatService.getChatbyId(this.chatId)
+    .subscribe(chat => this.chat = chat);
   }
 
 }

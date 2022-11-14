@@ -1,13 +1,5 @@
-<!--speech bubble for the user-->
-<div class="bb-user-speech">
-    <div class="speech-bubble user" *ngIf="message.fromYou">
-        {{message.msg_text}}
-    </div>
-</div>
-
-<!--speech bubble for the sender-->
-<div class="bb-sender-speech">
-    <div class="speech-bubble sender" *ngIf="!message.fromYou">
-        {{message.msg_text}}
+<div class="bb-{{speechBubbleType}}-speech">
+    <div class="speech-bubble {{speechBubbleType}}">
+        {{message.content.value}}
     </div>
 </div>

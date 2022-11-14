@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChatMessage } from 'src/app/interfaces/ChatMessage';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat-feed',
@@ -8,21 +9,7 @@ import { ChatMessage } from 'src/app/interfaces/ChatMessage';
 })
 export class ChatFeedComponent implements OnInit {
 
-  messages : ChatMessage[] = [
-    {msg_text:"When we were young the future was so brightso brightso brightso brightso brightso brightso brightso brightso brightso bright"
-    ,fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-    {msg_text:"The old neighborhood was so alive",fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-    {msg_text:"And every kid on the whole damn street",fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-    {msg_text:"When we were young the future was so bright",fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-    {msg_text:"The old neighborhood was so alive",fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-    {msg_text:"And every kid on the whole damn street",fromYou:true},
-    {msg_text:"woah-oh",fromYou:false},
-  ];
+  @Input() messages: ChatMessage[] = [];
 
   constructor() { }
 

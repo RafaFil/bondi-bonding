@@ -1,9 +1,12 @@
-import {ChatMessage} from 'src/app/interfaces/ChatMessage';
+import { ChatMessage } from 'src/app/interfaces/ChatMessage';
+import { User } from './User';
 
 export interface Chat{
-    id: number;
-
+    id: string;
+    fromId?: string;
+    toId?: string;
+    from?: User;
+    to?: User;
     chatMessages?: ChatMessage[];
-
     permanent?: boolean;
 }

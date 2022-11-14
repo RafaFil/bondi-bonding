@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {ChatMessage} from '../../../interfaces/ChatMessage'
+import { Component, Input, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { Chat } from 'src/app/interfaces';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat-feed-input',
@@ -8,15 +11,36 @@ import {ChatMessage} from '../../../interfaces/ChatMessage'
 })
 export class ChatFeedInputComponent implements OnInit {
 
-  constructor() { }
+  @Input() chat!: Chat;
+
+  constructor(private chatService: ChatService,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
   }
 
-  submitChat(msgTxt : string){
-    const msg : ChatMessage = {
-      msg_text : msgTxt, fromYou: true, msg_date: new Date()};
-      // do the submit
+  sendMessage(messageInput: HTMLInputElement){
+    this.chatService.sendMessage({
+      fromId: this.chat.fromId!,
+      toId: this.chat.toId!,
+      content: {
+        type: 'text',
+        value: messageInput.value
+      },
+      sentDate: new Date()
+    })
+    .subscribe(result => {
+      if (result.sent) {
+        messageInput.value = '';
+      } else {
+        this.snackBar.open(`An error occured while trying to send your last message, please try again.`,
+          undefined,
+          {
+            duration: 4000
+          }
+        );
+      }
+    });
   }
 
 }

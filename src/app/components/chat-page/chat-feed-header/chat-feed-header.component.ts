@@ -11,8 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class ChatFeedHeaderComponent implements OnInit {
 
-  @Input() title !: string;
-  @Input() showIcons : boolean = true;
+  @Input() title!: string;
+  @Input() showIcons: boolean = true;
 
   //@ViewChild('menuTrigger') menuTrigger !: MatMenuTrigger;
 
