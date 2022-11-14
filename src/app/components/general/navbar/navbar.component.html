@@ -1,20 +1,27 @@
 <mat-toolbar class="bb-navbar">
-  <mat-divider class="bb-divider"></mat-divider>
-  <mat-toolbar-row class="row">
-      <div class="col">
-        <a routerLink="/home">
-          <mat-icon color="primary">directions_bus</mat-icon>
+  <mat-toolbar-row class="justify-content-center w-100 p-0">
+
+    <div class="row w-100 h-100">
+
+        <a class="bb-navbar-link bb-home-link col d-flex justify-content-center {{homeActiveSelector}}"
+            routerLink="/home">
+          <mat-icon class="bb-navbar-icon" color="primary">map</mat-icon>
         </a>
-      </div>
-      <div class="col">
-        <a routerLink="/chat">
-          <mat-icon color="primary" matBadge="{{unreadedChats}}" matBadgeColor="warn" [matBadgeHidden]="isBadgeHidden">chat</mat-icon>
+
+        <a class="bb-navbar-link bb-profile-link col d-flex justify-content-center {{homeChatSelector}}"
+            routerLink="/chat">
+          <mat-icon class="bb-navbar-icon"
+            [matBadge]="unreadedChats"
+            matBadgeColor="warn"
+            [matBadgeHidden]="isBadgeHidden"
+            color="primary">chat</mat-icon>
         </a>
-      </div>
-      <div class="col">
-        <a routerLink="/profile">
-          <mat-icon color="primary">person</mat-icon>
+
+        <a class="bb-navbar-link bb-chat-link col d-flex justify-content-center {{homeProfileSelector}}"
+            routerLink="/profile">
+          <mat-icon class="bb-navbar-icon" color="primary">person</mat-icon>
         </a>
-      </div>
+
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

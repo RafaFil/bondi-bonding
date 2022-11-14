@@ -7,8 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  isBadgeHidden !: boolean;
-  unreadedChats !: number;
+  @Input() activePage: 'Home' | 'Chat' | 'Profile' = 'Home';
+
+  isBadgeHidden!: boolean;
+  unreadedChats!: number;
+
+  get homeActiveSelector(): string {
+    return this.activePage === 'Home' ? 'bb-active' : '';
+  }
+
+  get homeChatSelector(): string {
+    return this.activePage === 'Chat' ? 'bb-active' : '';
+  }
+
+  get homeProfileSelector(): string {
+    return this.activePage === 'Profile' ? 'bb-active' : '';
+  }
 
   constructor() { }
 
