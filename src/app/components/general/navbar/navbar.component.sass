@@ -1,0 +1,68 @@
+@use '../../../../styles'
+
+.bb-navbar
+  position: absolute
+  z-index: 10
+
+.bb-navbar-icon
+  font-size: 2rem
+  height: 100%
+  width: 100%
+
+@media (max-width: 700px)
+  .bb-navbar
+    background-color: white
+
+    height: 3.5rem
+
+    bottom: 0
+
+  .bb-navbar-link
+    text-align: center
+    align-self: center
+
+@media (min-width: 700px)
+  .bb-navbar
+    height: 3.5rem
+
+    top: 0
+
+    & .col
+      flex: 0 0 auto
+      align-items: center
+
+      width: 10rem
+
+      &:hover
+        background-color: styles.$bb-primary-green
+        color: white
+
+  .bb-navbar-link
+    color: styles.$bb-primary-green
+
+    &>.bb-navbar-icon
+        display: none
+        font-size: 0rem
+        width: 0%
+        height: 0%
+
+    &.bb-home-link
+      &::after
+        content: 'Home'
+
+    &.bb-profile-link
+      &::after
+        content: 'Profile'
+
+    &.bb-chat-link
+      &::after
+        content: 'Chat'
+
+    &::after
+      text-decoration: none
+      font-family: 'DM Sans'
+      font-size: 1.6rem
+
+    &.bb-active
+      background-color: styles.$bb-primary-green
+      color: white

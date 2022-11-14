@@ -14,6 +14,11 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatBadgeModule } from '@angular/material/badge';
+
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -29,7 +34,11 @@ const MaterialComponents = [
     MatGridListModule,
     OverlayModule,
     MatExpansionModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatTabsModule,
+    MatToolbarModule,
+    MatDividerModule,
+    MatBadgeModule
 ];
 
 @NgModule({
