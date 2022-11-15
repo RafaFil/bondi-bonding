@@ -1,17 +1,17 @@
-<form [formGroup]="editForm" color="primary" class="bb-edition-form">
+<form *ngIf="editForm" [formGroup]="editForm" color="primary" class="bb-edition-form">
     <!--Name not editable-->
     <mat-form-field appearance="outline">
         <mat-icon matPrefix color="primary">person</mat-icon>
         <mat-label>Name</mat-label>
-        <input matInput placeholder="{{user.name}}" disabled value="{{user.name}}" color="primary">
+        <input matInput placeholder="{{user.name}}" disabled color="primary">
     </mat-form-field>
 
     <!--Username-->
     <mat-form-field appearance="outline">
         <mat-icon matPrefix color="primary">person</mat-icon>
         <mat-label>Username</mat-label>
-        <input matInput placeholder="{{user.username}}" [formControl]="editForm.controls.username" value="{{user.username}}">
-        <mat-error *ngIf="editForm.controls.username.invalid">Username must be between 3 and 10 characters</mat-error>
+        <input matInput placeholder="{{user.username}}" formControlName="username">
+        <mat-error>Username must be between 3 and 10 characters</mat-error>
     </mat-form-field>
 
     <!--Age and gender not editable-->
@@ -19,13 +19,13 @@
         <div class="left">
             <mat-form-field appearance="outline">
                 <mat-label>Birthdate</mat-label>
-                <input matInput value="{{user.birthdate}}" placeholder="{{user.birthdate}}" disabled>
+                <input matInput  placeholder="{{user.birthdate}}" disabled>
             </mat-form-field>
         </div>
         <div class="right">
         <mat-form-field appearance="outline">
             <mat-label>Gender</mat-label>
-            <input matInput placeholder="{{user.gender}}" disabled value="{{user.gender}}">
+            <input matInput placeholder="{{user.gender}}" disabled>
         </mat-form-field>
         </div>
     </div>
@@ -33,28 +33,25 @@
     <!--Phone-->
     <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input tpye="tel" matInput placeholder="Phone" [formControl]="editForm.controls.phone" value="{{user.phone}}" placeholder="{{user.phone}}"> 
+        <input tpye="tel" matInput placeholder="Phone" formControlName="phone" placeholder="{{user.phone}}"> 
         <mat-icon matPrefix color="primary">phone</mat-icon>
-        <mat-error *ngIf="editForm.controls.phone.invalid">Invalid phone</mat-error>
+        <mat-error>Invalid phone</mat-error>
     </mat-form-field>
 
     <!--Email-->
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" [formControl]="editForm.controls.email" value="{{user.email}}" placeholder="{{user.email}}">
+        <input type="email" matInput placeholder="Email" formControlName="email" placeholder="{{user.email}}">
         <mat-icon matPrefix color="primary">mail</mat-icon>
-        <mat-error *ngIf="editForm.controls.email.invalid">Invalid email</mat-error>
+        <mat-error>Invalid email</mat-error>
     </mat-form-field>
 
     <!--Description-->
     <mat-form-field apperance="outline">
         <mat-label>Description</mat-label>
-        <textarea #message matInput maxlength="256" [formControl]="editForm.controls.email" value="{{user.description}}" placeholder="{{user.description}}"></textarea>
+        <textarea #message matInput maxlength="256" formControlName="description" placeholder="{{user.description}}"></textarea>
         <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
     </mat-form-field>
-
-    <!--ProfilePic-->
-    
 
 </form>

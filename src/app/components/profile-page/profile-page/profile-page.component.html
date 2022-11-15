@@ -10,8 +10,13 @@
         </button>
     </mat-menu>
 
-    <div class="bb-user-div">
+    <div class="bb-user-photo" *ngIf="!editionModeOn">
             <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
+    </div>
+
+    <div class="bb-user-photo" *ngIf="editionModeOn" (click)="pfpInput.click()">
+        <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
+        <mat-icon  class="bb-user-pfp-edit">add_photo_alternate</mat-icon>
     </div>
         <h1 class="bb-name">{{user.name}}</h1>
         <h3 class="bb-username">{{user.username}}</h3>
@@ -25,15 +30,17 @@
                 <app-profile-description [isEdit]="editionModeOn" [user]="user" (closeEditMode)="onChange($event)"></app-profile-description>
             </div>
         </mat-tab>
-        <mat-tab label="Filters">
+        <mat-tab label="Filters" *ngIf="!editionModeOn">
             <div class="bb-profile-tab-content">
-                <app-trip-filters-form #UserFilters></app-trip-filters-form>
+                <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
                 <button mat-raised-button color="primary">Save Filters</button>
             </div>
         </mat-tab>
 
     </mat-tab-group>
 </div>
+
+<input #pfpInput class="d-none" type="file">
 
 
 <!--NavBar-->

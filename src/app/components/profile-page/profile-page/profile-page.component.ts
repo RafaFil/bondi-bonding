@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { User } from 'src/app/interfaces/User';
-import { UserService } from 'src/app/services/user.service';
+import { ProfileService } from 'src/app/services/profile.service';
 import { TripFiltersFormComponent } from '../../general/trip-filters-form/trip-filters-form.component';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProfilePageComponent implements OnInit {
 
   user! : User;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : ProfileService) { }
 
   ngOnInit(): void {
     this.getUser("a","a");
@@ -28,12 +28,12 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getUser(username:string,auth:string) {
-    this.user = this.userService.getUser("username","auth");
+    this.user = this.userService.getProfile("username","auth");
   }
 
   saveFilters(){
     const filters = this.filtersForm.filterForm.controls;
-    this.userService.updateUserFilters(); //Parameter
+    this.userService.updateProfileFilters(); //Parameter
   }
 
   onChange(eventData: { edit : boolean }){

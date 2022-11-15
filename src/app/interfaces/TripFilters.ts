@@ -5,7 +5,7 @@ export interface TripFilters {
   }
   gender?: 'Male' | 'Female' | 'Non-binary' | 'Other' | null;
   // Bus schedule
-  likes?: 'Music' | 'Movies' | 'Sports' | 'Arts' | 'Food' | 'Coffee' | 'Games' | 'TV' | null;
+  likes?: ('Music' | 'Movies' | 'Sports' | 'Arts' | 'Food' | 'Coffee' | 'Games' | 'TV' | null)[];
 }
 
 export const GENDER_OPTIONS = [ '-- None --', 'Male', 'Female', 'Non-binary', 'Other' ] as const;

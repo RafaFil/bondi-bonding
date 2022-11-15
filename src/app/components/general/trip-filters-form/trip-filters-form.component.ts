@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
@@ -12,6 +12,8 @@ import { TripFilters, GENDER_OPTIONS, LIKES_OPTIONS } from 'src/app/interfaces';
   styleUrls: ['./trip-filters-form.component.sass']
 })
 export class TripFiltersFormComponent implements OnInit {
+
+  @Input() defaultFilters?: TripFilters;
 
   genderOptions = GENDER_OPTIONS;
   likesOptions = LIKES_OPTIONS;
@@ -29,6 +31,9 @@ export class TripFiltersFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.defaultFilters) {
+      this.setDefaultFilters();
+    }
   }
 
   checkMaxAge(): void {
@@ -85,7 +90,7 @@ export class TripFiltersFormComponent implements OnInit {
     return;
   }
 
-  removeLikeFromLike(likeToRemove : MatChip){
+  removeLikeFromLike(likeToRemove : MatChip) {
     const value = this.filterForm.controls.likes.value;
     value.forEach(like => {
       if (like === likeToRemove.value) {
@@ -95,6 +100,22 @@ export class TripFiltersFormComponent implements OnInit {
     return this.chipLikesArr.splice(
       this.chipLikesArr.indexOf(likeToRemove),1
     )
+  }
+
+  setDefaultFilters() {
+    const controls = this.filterForm.controls;
+    if (this.defaultFilters?.ageRange) {
+      controls.minAge.setValue(`${this.defaultFilters.ageRange.min}`);
+      controls.maxAge.setValue(`${this.defaultFilters.ageRange.max}`);
+    }
+    /*if (this.defaultFilters?.gender) {
+      //controls.gender.setValue(`${this.defaultFilters.gender}`);
+    }
+    if (this.defaultFilters?.likes) {
+      if (this.defaultFilters?.likes.length <= 3) {
+        controls.likes.setValue(this.defaultFilters.likes);
+      }
+    }*/
   }
 
 }

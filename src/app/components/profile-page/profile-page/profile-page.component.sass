@@ -23,10 +23,22 @@
     width: 100%
     height: 100%
 
-.bb-user-div
+.bb-user-photo
     margin-top: 10px
     width: 100px
     height: 100px
+    display: flex
+    position: relative
+
+.bb-user-pfp-edit
+    position: absolute
+    right: -10%
+    font-size: 2rem
+    width: fit-content
+    height: 100%
+
+.bb-user-filters
+    margin-top: 5%
 
 .bb-name
     text-align: center
@@ -44,5 +56,12 @@
     margin-right: auto
     //height: 500px
     //overflow: scroll
+
+:host ::ng-deep .mat-tab-header
+    top:0
+    z-index: 1000
+    position: sticky
+    position: -webkit-sticky
+    background: white
 
 

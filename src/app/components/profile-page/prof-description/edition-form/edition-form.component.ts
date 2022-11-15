@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces';
 
 @Component({
@@ -12,19 +12,20 @@ export class EditionFormComponent implements OnInit {
   @Input() user!: User;
   hide = true;
   repeatPassword = false;
+  editForm?: FormGroup;
 
-  editForm = this.formBuilder.group(
-    {
-      username : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]],
-      password : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(16)]],
-      phone : ['',[Validators.required]],
-      email : ['',[Validators.required,Validators.email]],
-    }
-  )
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.editForm = this.formBuilder.group(
+      {
+        username: [this.user.username, [Validators.required,Validators.minLength(3), Validators.maxLength(15)]],
+        phone: [this.user.phone, [Validators.required, Validators.pattern('[0-9]+')]],
+        email: [this.user.email, [Validators.required, Validators.email]],
+        description: [this.user.description, [Validators.required, Validators.maxLength(256)]]
+      }
+    )
   }
 
 }

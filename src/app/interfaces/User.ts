@@ -1,3 +1,5 @@
+import { TripFilters } from "./TripFilters";
+
 export interface User {
   uid?: string;
   name?: string;
@@ -8,4 +10,5 @@ export interface User {
   email?: string;
   iconUrl?: string;
   description?: string;
+  filters?: TripFilters;
 }

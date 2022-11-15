@@ -6,7 +6,7 @@ import { User } from '../interfaces/User';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class ProfileService {
 
   user: User ={
     uid: "1",
@@ -18,17 +18,29 @@ export class UserService {
     birthdate: "10/10/00",
     gender:"cat",
     phone:"1122",
-    email: "myemail@email.com"
+    email: "myemail@email.com",
+    filters: {
+      ageRange :{
+        min : 22,
+        max : 69
+      },
+      gender: "Male",
+      likes: ["TV","Games","Music"]
+    }
   };
 
   constructor() { }
 
-  getUser(username : string, auth : string) : User {
+  getProfile(username : string, auth : string) : User {
     return this.user;
   }
 
-  updateUserFilters(formsControl? : string){ //Ver objeto 
+  updateProfileFilters(formsControl? : string){ //Ver objeto 
     //something
+  }
+
+  updatePfp(){
+
   }
 
 }
