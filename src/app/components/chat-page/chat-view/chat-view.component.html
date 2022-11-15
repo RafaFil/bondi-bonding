@@ -1,0 +1,18 @@
+<div *ngIf="chat">
+    <div class="app-chat-feed-header">
+        <app-chat-feed-header [chat]="chat"></app-chat-feed-header>
+    </div>
+
+    <section #chatSection class="overflow-auto bb-chat-section">
+        <app-chat-feed [messages]="chat.chatMessages || []">
+      </app-chat-feed>
+    </section>
+
+
+
+    <div class="app-chat-feed-input">
+        <app-chat-feed-input [chat]="chat"
+            (messageSent)="isScrollToBottom = true">
+        </app-chat-feed-input>
+    </div>
+</div>

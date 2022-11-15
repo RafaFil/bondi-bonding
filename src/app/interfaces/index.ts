@@ -10,3 +10,8 @@ export * from './User';
 export * from './TripFilters';
 export * from './TripCreateResult';
 export * from './Faq';
+export * from './Chat';
+export * from './ChatMessage';
+export * from './ChatMessageContent';
+export * from './ChatsInfo';
+export * from './SendMessageResult';

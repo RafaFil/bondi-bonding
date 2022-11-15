@@ -1,0 +1,20 @@
+
+<app-navbar activePage="Chat"></app-navbar>
+
+<article class="bb-chat-page-article">
+  <app-chat-feed-header
+    *ngIf="temporalChats && temporalChats.length > 0"
+    [title]="'Temporal chats'"
+    [showMenu]="false">
+  </app-chat-feed-header>
+  <app-chats-list [chats]="temporalChats">
+  </app-chats-list>
+
+  <app-chat-feed-header
+    *ngIf="permanentChats && permanentChats.length > 0"
+    [title]="'Permanent chats'"
+    [showMenu]="false">
+  </app-chat-feed-header>
+  <app-chats-list [chats]="permanentChats">
+  </app-chats-list>
+</article>

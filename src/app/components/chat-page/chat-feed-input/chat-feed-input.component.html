@@ -1,0 +1,10 @@
+<form #inputForm class="bb-chat-feed-footer row gx-3" (submit)="$event.preventDefault();
+                                                                sendMessage(messageInput)">
+  <mat-form-field class="col bb-message-input"
+    appearance="outline"
+    color="primary">
+    <input #messageInput matInput placeholder="Enter a message here">
+  </mat-form-field>
+
+  <mat-icon class="col-auto bb-send-icon" color="primary" (click)="sendMessage(messageInput)">send</mat-icon>
+</form>

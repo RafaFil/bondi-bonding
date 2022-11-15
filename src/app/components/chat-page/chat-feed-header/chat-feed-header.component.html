@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row class="bb-feed-header">
+
+      <a routerLink="/chat" *ngIf="showMenu">
+        <button mat-icon-button>
+          <mat-icon class="bb-back-icon">arrow_back</mat-icon>
+        </button>
+      </a>
+
+      <div>
+        <span class="bb-title">{{toolbarTitle}}</span>
+      </div>
+
+      <button mat-icon-button *ngIf="showMenu" [matMenuTriggerFor]="menu" #matMenuTriggerFor>
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openBlockDialog()">
+          <mat-icon>block</mat-icon>
+          <span>Block user</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteDialog()">
+          <mat-icon>delete</mat-icon>
+          <span>Delete chat</span>
+        </button>
+        <button mat-menu-item (click)="openSnackBarPermanentRequest()">
+          <mat-icon>sentiment_satisfied_alt</mat-icon>
+          <span>Make chat permanent</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar-row>
+</mat-toolbar>
+

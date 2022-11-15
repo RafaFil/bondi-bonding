@@ -5,21 +5,20 @@
 
         <a class="bb-navbar-link bb-home-link col d-flex justify-content-center {{homeActiveSelector}}"
             routerLink="/home">
-          <mat-icon class="bb-navbar-icon" color="primary">map</mat-icon>
+          <mat-icon class="bb-navbar-icon {{homeActiveSelector}}">map</mat-icon>
         </a>
 
-        <a class="bb-navbar-link bb-profile-link col d-flex justify-content-center {{homeChatSelector}}"
+        <a class="bb-navbar-link bb-chat-link col d-flex justify-content-center {{homeChatSelector}}"
             routerLink="/chat">
-          <mat-icon class="bb-navbar-icon"
+          <mat-icon class="bb-navbar-icon {{homeChatSelector}}"
             [matBadge]="unreadedChats"
             matBadgeColor="warn"
-            [matBadgeHidden]="isBadgeHidden"
-            color="primary">chat</mat-icon>
+            [matBadgeHidden]="isBadgeHidden">chat</mat-icon>
         </a>
 
-        <a class="bb-navbar-link bb-chat-link col d-flex justify-content-center {{homeProfileSelector}}"
+        <a class="bb-navbar-link bb-profile-link col d-flex justify-content-center {{homeProfileSelector}}"
             routerLink="/profile">
-          <mat-icon class="bb-navbar-icon" color="primary">person</mat-icon>
+          <mat-icon class="bb-navbar-icon {{homeProfileSelector}}">person</mat-icon>
         </a>
 
     </div>

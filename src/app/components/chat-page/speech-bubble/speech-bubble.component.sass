@@ -1,0 +1,61 @@
+$outgoing-background: #488817
+$incoming-background: #E8E8E8
+
+.bb-outgoing-speech
+    margin-left: 15%
+
+.bb-incoming-speech
+   margin-right: 15%
+
+.speech-bubble
+    position: relative
+
+    padding: 1rem
+    margin-top: 1.3rem
+    margin-bottom: 1.3rem
+
+    max-width: 85%
+    width: fit-content
+
+    border-radius: 15px
+    background: $outgoing-background
+
+    font-family: 'DM Sans'
+    font-weight: 500
+    text-decoration: none
+    color: whitesmoke
+
+    &.outgoing
+        margin-right: 3rem
+        margin-left: auto
+
+        &:before
+            content: ""
+            width: 0px
+            height: 0px
+            position: absolute
+            border-left: 15px solid $outgoing-background
+            border-right: 15px solid transparent
+            border-top: 15px solid $outgoing-background
+            border-bottom: 15px solid transparent
+            right: -16px
+            top: 0px
+
+    &.incoming
+        margin-left: 3rem
+        margin-right: auto
+
+        background: $incoming-background
+        color: black
+
+        &:before
+            content: ""
+            width: 0px
+            height: 0px
+            position: absolute
+            border-left: 15px solid transparent
+            border-right: 15px solid $incoming-background
+            border-top: 15px solid $incoming-background
+            border-bottom: 15px solid transparent
+            left: -16px
+            top: 0px

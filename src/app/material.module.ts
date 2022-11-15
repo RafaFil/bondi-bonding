@@ -18,7 +18,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatBadgeModule } from '@angular/material/badge';
-
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const MaterialComponents = [
     MatFormFieldModule,
@@ -38,7 +40,10 @@ const MaterialComponents = [
     MatTabsModule,
     MatToolbarModule,
     MatDividerModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatListModule,
+    MatMenuModule,
+    MatSnackBarModule
 ];
 
 @NgModule({

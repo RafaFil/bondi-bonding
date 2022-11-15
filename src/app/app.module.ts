@@ -45,6 +45,18 @@ import { CreateTripFormComponent } from './components/general/create-trip/create
 import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component'
 import { FaqAccordionComponent } from './components/faq-page/faq-accordion/faq-accordion.component'
 import { NavbarComponent } from './components/general/navbar/navbar.component';
+import { SpeechBubbleComponent } from './components/chat-page/speech-bubble/speech-bubble.component';
+import { ChatFeedComponent } from './components/chat-page/chat-feed/chat-feed.component';
+import { ChatFeedHeaderComponent } from './components/chat-page/chat-feed-header/chat-feed-header.component';
+import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
+import { ChatPreviewComponent } from './components/chats-section/chat-preview/chat-preview.component';
+import { ChatsListComponent } from './components/chats-section/chats-list/chats-list.component';
+import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
+import { ChatFeedInputComponent } from './components/chat-page/chat-feed-input/chat-feed-input.component';
+import { BaseDialogComponent } from './components/general/base-dialog/base-dialog.component';
+import { BlockDialogComponent } from './components/chat-page/block-dialog/block-dialog.component';
+import { DeleteDialogComponent } from './components/chat-page/delete-dialog/delete-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -85,7 +97,18 @@ import { NavbarComponent } from './components/general/navbar/navbar.component';
     CreateTripFormComponent,
     FaqPageComponent,
     FaqAccordionComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpeechBubbleComponent,
+    ChatFeedComponent,
+    ChatFeedHeaderComponent,
+    ChatViewComponent,
+    ChatPreviewComponent,
+    ChatsListComponent,
+    ChatsViewComponent,
+    ChatFeedInputComponent,
+    BaseDialogComponent,
+    BlockDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
