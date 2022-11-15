@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { User } from '../interfaces/User';
 
 @Injectable({
@@ -31,15 +31,15 @@ export class ProfileService {
 
   constructor() { }
 
-  getProfile(username : string, auth : string) : User {
-    return this.user;
+  getProfile(username : string, auth : string) : Observable<User> {
+    return of(this.user);
   }
 
-  updateProfileFilters(formsControl? : string){ //Ver objeto 
+  updateProfileFilters(formsControl? : string) { //Ver objeto 
     //something
   }
 
-  updatePfp(){
+  updatePfp() {
 
   }
 

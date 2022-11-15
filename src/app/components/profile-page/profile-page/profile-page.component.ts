@@ -28,7 +28,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getUser(username:string,auth:string) {
-    this.user = this.userService.getProfile("username","auth");
+    this.userService.getProfile("a","a").subscribe(user => this.user = user);
   }
 
   saveFilters(){
