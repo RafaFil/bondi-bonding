@@ -10,12 +10,11 @@ import { TripFiltersFormComponent } from '../../general/trip-filters-form/trip-f
 })
 export class ProfilePageComponent implements OnInit {
 
+  editionModeOn: boolean = false;
+  user!: User;
+
   @ViewChild("#UserFilters") filtersForm !: TripFiltersFormComponent;
-  
 
-  editionModeOn = false;
-
-  user! : User;
 
   constructor(private userService : ProfileService) { }
 
