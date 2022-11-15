@@ -1,17 +1,17 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row class="bb-feed-header">
 
-      <a routerLink="/chat" *ngIf="showIcons">
+      <a routerLink="/chat" *ngIf="showMenu">
         <button mat-icon-button>
           <mat-icon class="bb-back-icon">arrow_back</mat-icon>
         </button>
       </a>
 
       <div>
-        <span class="bb-title">{{title}}</span>
+        <span class="bb-title">{{toolbarTitle}}</span>
       </div>
 
-      <button mat-icon-button *ngIf="showIcons" [matMenuTriggerFor]="menu" #matMenuTriggerFor>
+      <button mat-icon-button *ngIf="showMenu" [matMenuTriggerFor]="menu" #matMenuTriggerFor>
         <mat-icon>more_vert</mat-icon>
       </button>
 

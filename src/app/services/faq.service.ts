@@ -1,7 +1,8 @@
-import { MOCKED_FAQS } from './../mocks/faq.mock';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+
 import { Faq } from '../interfaces';
+import { MOCKED_FAQS } from './../mocks';
 
 @Injectable({
   providedIn: 'root'

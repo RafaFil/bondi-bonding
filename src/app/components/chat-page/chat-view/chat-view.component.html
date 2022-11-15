@@ -1,6 +1,6 @@
 <div *ngIf="chat">
     <div class="app-chat-feed-header">
-        <app-chat-feed-header [title]="chat.to!.name!"></app-chat-feed-header>
+        <app-chat-feed-header [chat]="chat"></app-chat-feed-header>
     </div>
 
     <section #chatSection class="overflow-auto bb-chat-section">

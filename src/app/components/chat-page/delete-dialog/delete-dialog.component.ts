@@ -1,5 +1,8 @@
-import { DomElementSchemaRegistry } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { User } from 'src/app/interfaces';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-delete-dialog',
@@ -8,13 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private chatService: ChatService,
+              private dialogRef: MatDialogRef<DeleteDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) private data: { chatId: string, afterDeleteFn: () => void }) { }
 
   ngOnInit(): void {
   }
 
   deleteChat(){
-    
+    this.chatService.deleteChat(this.data.chatId)
+    .subscribe( () => {
+      this.data.afterDeleteFn();
+      this.dialogRef.close();
+    });
   }
 
 }

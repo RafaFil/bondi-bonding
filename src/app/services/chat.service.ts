@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { Chat, ChatMessage, ChatsInfo } from '../interfaces';
-import { SendMessageResult } from '../interfaces/SendMessageResult';
-import { MOCKED_CHAT, MOCKED_CHATS_INFO, MOCKED_SEND_MESSAGE_RESULT } from '../mocks/chat.mock';
+
+import { Chat, ChatMessage, ChatsInfo, SendMessageResult } from '../interfaces';
+import { MOCKED_CHAT, MOCKED_CHATS_INFO, MOCKED_SEND_MESSAGE_RESULT } from '../mocks';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,14 @@ export class ChatService {
   sendMessage(message: ChatMessage): Observable<SendMessageResult> {
     this.mockedChat.chatMessages!.push(message);
     return of( this.mockedResult );
+  }
+
+  createPermanentChatRequest(chatId: string): Observable<any> {
+    return of(undefined);
+  }
+
+  deleteChat(chatId: string): Observable<any> {
+    return of(undefined);
   }
 
 }

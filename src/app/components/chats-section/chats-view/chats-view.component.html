@@ -5,7 +5,7 @@
   <app-chat-feed-header
     *ngIf="temporalChats && temporalChats.length > 0"
     [title]="'Temporal chats'"
-    [showIcons]="false">
+    [showMenu]="false">
   </app-chat-feed-header>
   <app-chats-list [chats]="temporalChats">
   </app-chats-list>
@@ -13,7 +13,7 @@
   <app-chat-feed-header
     *ngIf="permanentChats && permanentChats.length > 0"
     [title]="'Permanent chats'"
-    [showIcons]="false">
+    [showMenu]="false">
   </app-chat-feed-header>
   <app-chats-list [chats]="permanentChats">
   </app-chats-list>
