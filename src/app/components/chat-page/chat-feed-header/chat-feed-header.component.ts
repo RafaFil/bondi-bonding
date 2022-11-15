@@ -14,8 +14,6 @@ export class ChatFeedHeaderComponent implements OnInit {
   @Input() title!: string;
   @Input() showIcons: boolean = true;
 
-  //@ViewChild('menuTrigger') menuTrigger !: MatMenuTrigger;
-
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -23,12 +21,10 @@ export class ChatFeedHeaderComponent implements OnInit {
 
   openBlockDialog(){
     const dialogRef = this.dialog.open(BlockDialogComponent);
-    //dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
   }
 
   openDeleteDialog(){
     const dialogRef = this.dialog.open(DeleteDialogComponent);
-    //dialogRef.afterClosed().subscribe(() => this.menuTrigger.focus())
   }
 
   openSnackBarPermanentRequest(){

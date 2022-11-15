@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Chat } from 'src/app/interfaces';
@@ -12,6 +12,8 @@ import { ChatService } from 'src/app/services/chat.service';
 export class ChatFeedInputComponent implements OnInit {
 
   @Input() chat!: Chat;
+
+  @Output() messageSent = new EventEmitter();
 
   constructor(private chatService: ChatService,
               private snackBar: MatSnackBar) {}
@@ -32,6 +34,7 @@ export class ChatFeedInputComponent implements OnInit {
     .subscribe(result => {
       if (result.sent) {
         messageInput.value = '';
+        this.messageSent.emit();
       } else {
         this.snackBar.open(`An error occured while trying to send your last message, please try again.`,
           undefined,
