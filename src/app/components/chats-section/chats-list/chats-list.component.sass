@@ -1,2 +1,8 @@
 .bb-chat-list
   padding-top: 0px
+  max-height: calc(100vh - 7rem)
+  overflow-y: auto
+
+@media (min-height: 700px)
+  .bb-chat-list
+    max-height: calc(100vh - 9rem)

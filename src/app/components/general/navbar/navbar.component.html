@@ -1,25 +1,24 @@
 <mat-toolbar class="bb-navbar">
-  <mat-toolbar-row class="justify-content-center w-100 p-0">
+  <mat-toolbar-row class="justify-content-center p-0">
+    <div class="bb-toolbar-row-content row h-100">
 
-    <div class="row w-100 h-100">
+      <a class="bb-navbar-link bb-home-link col d-flex justify-content-center {{homeActiveSelector}}"
+          routerLink="/home">
+        <mat-icon class="bb-navbar-icon {{homeActiveSelector}}">map</mat-icon>
+      </a>
 
-        <a class="bb-navbar-link bb-home-link col d-flex justify-content-center {{homeActiveSelector}}"
-            routerLink="/home">
-          <mat-icon class="bb-navbar-icon {{homeActiveSelector}}">map</mat-icon>
-        </a>
+      <a class="bb-navbar-link bb-chat-link col d-flex justify-content-center {{homeChatSelector}}"
+          routerLink="/chat">
+        <mat-icon class="bb-navbar-icon {{homeChatSelector}}"
+          [matBadge]="unreadedChats"
+          matBadgeColor="warn"
+          [matBadgeHidden]="isBadgeHidden">chat</mat-icon>
+      </a>
 
-        <a class="bb-navbar-link bb-chat-link col d-flex justify-content-center {{homeChatSelector}}"
-            routerLink="/chat">
-          <mat-icon class="bb-navbar-icon {{homeChatSelector}}"
-            [matBadge]="unreadedChats"
-            matBadgeColor="warn"
-            [matBadgeHidden]="isBadgeHidden">chat</mat-icon>
-        </a>
-
-        <a class="bb-navbar-link bb-profile-link col d-flex justify-content-center {{homeProfileSelector}}"
-            routerLink="/profile">
-          <mat-icon class="bb-navbar-icon {{homeProfileSelector}}">person</mat-icon>
-        </a>
+      <a class="bb-navbar-link bb-profile-link col d-flex justify-content-center {{homeProfileSelector}}"
+          routerLink="/profile">
+        <mat-icon class="bb-navbar-icon {{homeProfileSelector}}">person</mat-icon>
+      </a>
 
     </div>
   </mat-toolbar-row>
