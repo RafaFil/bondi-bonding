@@ -11,12 +11,12 @@ export class ProfileService {
   user: User ={
     uid: "1",
     name: "John Titor",
-    username: "@JoyBoy64",
+    username: "juancarlos",
     iconUrl: "https://pbs.twimg.com/profile_images/1302962150302982146/NTb6iGpC_400x400.jpg",
 
     description: "A very sociable guy who enjoy anime and otaku stuff like anime, manga, jpop, and japan, i love japan",
     birthdate: "10/10/00",
-    gender:"cat",
+    gender: "Male",
     phone:"1122",
     email: "myemail@email.com",
     filters: {
@@ -35,11 +35,21 @@ export class ProfileService {
     return of(this.user);
   }
 
+  updatePublicProfile( data: {
+    isEdit: boolean,
+    username?: string,
+    phone?: string,
+    email?: string,
+    description?: string
+  }): Observable<any> {
+    return of(undefined);
+  }
+
   updateProfileFilters(formsControl? : string) { //Ver objeto
     //something
   }
 
-  updatePfp() {
+  updateProfilePicture() {
 
   }
 

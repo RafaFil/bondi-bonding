@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces';
 
@@ -13,6 +13,14 @@ export class EditionFormComponent implements OnInit {
 
   @Input() user!: User;
 
+  @Output() editEnd = new EventEmitter<{
+    isEdit: boolean,
+    username?: string,
+    phone?: string,
+    email?: string,
+    description?: string
+  }>();
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -24,6 +32,15 @@ export class EditionFormComponent implements OnInit {
         description: [this.user.description, [Validators.required, Validators.maxLength(256)]]
       }
     );
+  }
+
+  submitEdit() {
+    const value = { ...this.editForm?.value, isEdit: true };
+    this.editEnd.emit(value);
+  }
+
+  cancelEdit() {
+    this.editEnd.emit({ isEdit: false });
   }
 
 }

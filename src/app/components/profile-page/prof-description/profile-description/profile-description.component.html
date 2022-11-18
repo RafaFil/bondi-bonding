@@ -1,13 +1,4 @@
 <div class="bb-description">
   <app-data-view *ngIf="!isEdit" [user]="user"></app-data-view>
-  <app-edition-form *ngIf="isEdit" [user]="user"></app-edition-form>
-
-  <div class="bb-edition-opt" *ngIf="isEdit">
-    <button mat-raised-button class="bb-btn bb-btn-change" (click)="onChanges()">
-      DISMISS
-    </button>
-    <button mat-raised-button class="bb-btn bb-btn-change" color="primary" (click)="onChanges()" >
-      SAVE CHANGES
-    </button>
-  </div>
+  <app-edition-form *ngIf="isEdit" [user]="user" (editEnd)="handleEditEnd($event)"></app-edition-form>
 </div>

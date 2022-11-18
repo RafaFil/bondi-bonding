@@ -12,13 +12,21 @@ import { TripFiltersFormComponent } from '../../general/trip-filters-form/trip-f
 })
 export class ProfilePageComponent implements OnInit {
 
-  editionModeOn: boolean = false;
+  isEditMode: boolean = false;
+  isOwnProfile: boolean = false;
   user!: User;
 
   @ViewChild("#UserFilters") filtersForm !: TripFiltersFormComponent;
 
+  get showMenuAndFilters(): boolean {
+    if (!this.isOwnProfile) {
+      return false;
+    } else {
+      return !this.isEditMode;
+    }
+  }
 
-  constructor(private userService: ProfileService,
+  constructor(private profileService: ProfileService,
               private route: ActivatedRoute,
               private authService: AuthService) { }
 
@@ -26,27 +34,42 @@ export class ProfilePageComponent implements OnInit {
     this.getUser();
   }
 
-  enterEditionMode(){
-    this.editionModeOn = true;
+  enterEditionMode() {
+    if (this.isOwnProfile) {
+      this.isEditMode = true;
+    }
   }
 
   getUser() {
     const username = this.route.snapshot.paramMap.get('username');
     if (username) {
-      this.userService.getProfile(username)
-      .subscribe(user => this.user = user);
+      this.profileService.getProfile(username)
+      .subscribe(user => {
+        this.user = user
+        this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
+        console.log(this.user.username);
+        console.log(this.authService.runningUser!.username);
+      });
     } else {
-      this.userService.getProfile(this.authService.runningUser!.username!)
-      .subscribe(user => this.user = user);
+      this.profileService.getProfile(this.authService.runningUser!.username!)
+      .subscribe(user => {
+        this.user = user;
+        this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
+        console.log(this.user.username);
+        console.log(this.authService.runningUser!.username);
+
+      });
     }
   }
 
   saveFilters(){
     const filters = this.filtersForm.filterForm.controls;
-    this.userService.updateProfileFilters(); //Parameter
+    this.profileService.updateProfileFilters(); //Parameter
   }
 
-  onChange(eventData: { edit : boolean }){
-    this.editionModeOn = eventData.edit;
+  closeEditMode(eventData: { edit : boolean }) {
+    if (this.isOwnProfile) {
+      this.isEditMode = eventData.edit;
+    }
   }
 }

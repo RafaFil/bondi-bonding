@@ -62,7 +62,6 @@ import { EditionFormComponent } from './components/profile-page/prof-description
 import { DataViewComponent } from './components/profile-page/prof-description/data-view/data-view.component';
 import { LikesFilterDialogComponent } from './components/general/likes-filter-dialog/likes-filter-dialog.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +117,7 @@ import { LikesFilterDialogComponent } from './components/general/likes-filter-di
     ProfilePageComponent,
     EditionFormComponent,
     DataViewComponent,
-    LikesFilterDialogComponent
+    LikesFilterDialogComponent,
   ],
   imports: [
     BrowserModule,

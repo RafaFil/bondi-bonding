@@ -36,9 +36,13 @@
 
       <!--Likes field-->
       <mat-form-field class="bb-likes-input" appearance="outline">
-        <mat-label>Tell us whaddya like</mat-label>
+        <mat-label>Hobbies and things you enjoy</mat-label>
         <mat-chip-list #chipList selectable multiple>
-          <mat-chip #c="matChip" *ngFor="let like of likesOptions" [value]="like" (click)="selectChip(c)">
+          <mat-chip #c="matChip"
+            *ngFor="let like of likesOptions"
+            [value]="like"
+            (click)="selectChip(c)"
+            >
             {{like}}
           </mat-chip>
           <input matInput>
@@ -47,6 +51,6 @@
       </mat-form-field>
 
       </div>
-      
+
 
 </form>

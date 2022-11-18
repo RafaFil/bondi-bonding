@@ -10,6 +10,19 @@ export class DataViewComponent implements OnInit {
 
   @Input() user!: User;
 
+  get genderIcon(): string {
+    //"Male" | "Female" | "Non-binary" | "Other"
+    switch(this.user.gender) {
+      case 'Male':
+        return 'male';
+      break;
+      case 'Female':
+        return 'female';
+      break;
+    }
+    return '';
+  }
+
   constructor() { }
 
   ngOnInit(): void {

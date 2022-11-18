@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { Component, OnInit, EventEmitter, Output, Input, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { MatChip } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -11,26 +11,32 @@ import { TripFilters, GENDER_OPTIONS, LIKES_OPTIONS } from 'src/app/interfaces';
   templateUrl: './trip-filters-form.component.html',
   styleUrls: ['./trip-filters-form.component.sass']
 })
-export class TripFiltersFormComponent implements OnInit {
-
-  @Input() defaultFilters?: TripFilters;
+export class TripFiltersFormComponent implements OnInit, AfterViewInit {
 
   genderOptions = GENDER_OPTIONS;
   likesOptions = LIKES_OPTIONS;
+  chipLikesArr: MatChip[] = [];
+  allChips: MatChip[] = [];
+
   filterForm = this.formBuilder.group({
     minAge: [ '', [ Validators.pattern('^[0-9]{2,3}$'), Validators.min(18)] ],
     maxAge: [ '', [ Validators.pattern('^[0-9]{2,3}$') ] ],
-    gender: [ undefined ],
+    gender: new FormControl<"Male" | "Female" | "Non-binary" | "Other" | null | undefined>(null),
     likes : this.formBuilder.array<string>([])
   });
 
-  @Output() tripFiltersSubmit = new EventEmitter<TripFilters>()
+  @Input() defaultFilters?: TripFilters;
 
-  constructor(private formBuilder: FormBuilder, private dialog: MatDialog) {
+  @Output() tripFiltersSubmit = new EventEmitter<TripFilters>();
 
-  }
+  @ViewChildren(MatChip)
+  chips?: QueryList<MatChip>;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private dialog: MatDialog) { }
+
+  ngOnInit(): void { }
+
+  ngAfterViewInit(): void {
     if (this.defaultFilters) {
       this.setDefaultFilters();
     }
@@ -61,20 +67,18 @@ export class TripFiltersFormComponent implements OnInit {
 
     this.tripFiltersSubmit.emit( filters );
   }
-  
-  chipLikesArr : MatChip[] = [];
 
-  selectChip(chip: MatChip){
-    if(chip.selected){
+  selectChip(chip: MatChip) {
+    if (chip.selected) {
       chip.deselect();
       this.removeLikeFromLike(chip);
       return;
     }
 
     chip.toggleSelected();
-    let popedLike = this.addLikeToLikes(chip);
+    const popedLike = this.addLikeToLikes(chip);
 
-    if(popedLike){
+    if (popedLike) {
       popedLike.deselect();
     }
   }
@@ -83,7 +87,7 @@ export class TripFiltersFormComponent implements OnInit {
     const value = this.filterForm.controls.likes.value;
     value.unshift( newLike.value )
     this.chipLikesArr.unshift(newLike);
-    if (value.length > 3) { 
+    if (value.length > 3) {
       value.pop();
       return this.chipLikesArr.pop()
     }
@@ -104,18 +108,30 @@ export class TripFiltersFormComponent implements OnInit {
 
   setDefaultFilters() {
     const controls = this.filterForm.controls;
+
     if (this.defaultFilters?.ageRange) {
       controls.minAge.setValue(`${this.defaultFilters.ageRange.min}`);
       controls.maxAge.setValue(`${this.defaultFilters.ageRange.max}`);
     }
-    /*if (this.defaultFilters?.gender) {
-      //controls.gender.setValue(`${this.defaultFilters.gender}`);
+
+    if (this.defaultFilters?.gender) {
+      controls.gender.setValue(`${this.defaultFilters!.gender}`);
     }
-    if (this.defaultFilters?.likes) {
-      if (this.defaultFilters?.likes.length <= 3) {
-        controls.likes.setValue(this.defaultFilters.likes);
+
+    if (this.defaultFilters?.likes && this.defaultFilters?.likes.length <= 3) {
+      if (!this.chips) {
+        return;
       }
-    }*/
+
+      for (const like of this.defaultFilters.likes) {
+        for (const chip of this.chips) {
+          if (chip.value === like) {
+            this.selectChip(chip);
+            break;
+          }
+        }
+      }
+    }
   }
 
 }

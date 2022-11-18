@@ -54,4 +54,12 @@
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
     </mat-form-field>
 
+    <div class="bb-edition-opt">
+      <button mat-raised-button class="bb-btn bb-btn-change" (click)="cancelEdit()">
+        DISMISS
+      </button>
+      <button mat-raised-button class="bb-btn bb-btn-change" color="primary" (click)="submitEdit()" >
+        SAVE CHANGES
+      </button>
+    </div>
 </form>

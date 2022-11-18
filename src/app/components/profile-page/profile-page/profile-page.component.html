@@ -1,7 +1,7 @@
 <app-navbar [activePage]="'Profile'"></app-navbar>
 <div class="bb-user-info">
 
-    <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="!editionModeOn">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="showMenuAndFilters">
         <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
@@ -11,29 +11,35 @@
         </button>
     </mat-menu>
 
-    <div class="bb-user-photo" *ngIf="!editionModeOn">
-            <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
+    <div class="bb-user-photo" *ngIf="!isEditMode">
+        <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
     </div>
 
-    <div class="bb-user-photo bb-edit-mode" *ngIf="editionModeOn" (click)="pfpInput.click()">
+    <div class="bb-user-photo bb-edit-mode" *ngIf="isEditMode" (click)="pfpInput.click()">
         <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
         <mat-icon  class="bb-user-pfp-edit">add_photo_alternate</mat-icon>
     </div>
         <h1 class="bb-name">{{user.name}}</h1>
-        <h3 class="bb-username">{{user.username}}</h3>
+        <h3 class="bb-username">@{{user.username}}</h3>
 </div>
 
 <!--TABS-->
 <mat-tab-group mat-align-tabs="center" color="primary">
+
     <mat-tab label="Profile">
         <div class="bb-profile-tab-content">
-            <app-profile-description [isEdit]="editionModeOn" [user]="user" (closeEditMode)="onChange($event)"></app-profile-description>
+            <app-profile-description
+              [isEdit]="isEditMode"
+              [user]="user"
+              (closeEditMode)="closeEditMode($event)"
+            ></app-profile-description>
         </div>
     </mat-tab>
-    <mat-tab label="Filters" *ngIf="!editionModeOn">
+
+    <mat-tab label="Filters" *ngIf="showMenuAndFilters">
         <div class="bb-profile-tab-content">
-            <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
-            <button class="bb-btn bb-save-filters-btn" mat-raised-button color="primary">SAVE FILTERS</button>
+          <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
+          <button class="bb-btn bb-save-filters-btn" mat-raised-button color="primary">SAVE FILTERS</button>
         </div>
     </mat-tab>
 
