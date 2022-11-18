@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'faq' , component: FaqPageComponent },
   { path: 'chat' , component: ChatsViewComponent },
   { path: 'chat/:chatId', component: ChatViewComponent},
+  { path: 'profile/:username', component: ProfilePageComponent },
   { path: 'profile', component: ProfilePageComponent }
 ];
 

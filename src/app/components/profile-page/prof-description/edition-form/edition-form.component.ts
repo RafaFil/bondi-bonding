@@ -9,11 +9,9 @@ import { User } from 'src/app/interfaces';
 })
 export class EditionFormComponent implements OnInit {
 
-  @Input() user!: User;
-  hide = true;
-  repeatPassword = false;
   editForm?: FormGroup;
 
+  @Input() user!: User;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -25,7 +23,7 @@ export class EditionFormComponent implements OnInit {
         email: [this.user.email, [Validators.required, Validators.email]],
         description: [this.user.description, [Validators.required, Validators.maxLength(256)]]
       }
-    )
+    );
   }
 
 }

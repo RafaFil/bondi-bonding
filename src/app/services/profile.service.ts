@@ -13,7 +13,7 @@ export class ProfileService {
     name: "John Titor",
     username: "@JoyBoy64",
     iconUrl: "https://pbs.twimg.com/profile_images/1302962150302982146/NTb6iGpC_400x400.jpg",
-  
+
     description: "A very sociable guy who enjoy anime and otaku stuff like anime, manga, jpop, and japan, i love japan",
     birthdate: "10/10/00",
     gender:"cat",
@@ -31,11 +31,11 @@ export class ProfileService {
 
   constructor() { }
 
-  getProfile(username : string, auth : string) : Observable<User> {
+  getProfile(username : string) : Observable<User> {
     return of(this.user);
   }
 
-  updateProfileFilters(formsControl? : string) { //Ver objeto 
+  updateProfileFilters(formsControl? : string) { //Ver objeto
     //something
   }
 

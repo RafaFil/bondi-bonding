@@ -24,22 +24,20 @@
 </div>
 
 <!--TABS-->
-<div class="bb-tabs">
-    <mat-tab-group mat-align-tabs="center" color="primary">
-        <mat-tab label="Profile">
-            <div class="bb-profile-tab-content">
-                <app-profile-description [isEdit]="editionModeOn" [user]="user" (closeEditMode)="onChange($event)"></app-profile-description>
-            </div>
-        </mat-tab>
-        <mat-tab label="Filters" *ngIf="!editionModeOn">
-            <div class="bb-profile-tab-content">
-                <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
-                <button mat-raised-button color="primary">Save Filters</button>
-            </div>
-        </mat-tab>
+<mat-tab-group mat-align-tabs="center" color="primary">
+    <mat-tab label="Profile">
+        <div class="bb-profile-tab-content">
+            <app-profile-description [isEdit]="editionModeOn" [user]="user" (closeEditMode)="onChange($event)"></app-profile-description>
+        </div>
+    </mat-tab>
+    <mat-tab label="Filters" *ngIf="!editionModeOn">
+        <div class="bb-profile-tab-content">
+            <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
+            <button class="bb-btn bb-save-filters-btn" mat-raised-button color="primary">SAVE FILTERS</button>
+        </div>
+    </mat-tab>
 
-    </mat-tab-group>
-</div>
+</mat-tab-group>
 
 <input #pfpInput class="d-none" type="file">
 

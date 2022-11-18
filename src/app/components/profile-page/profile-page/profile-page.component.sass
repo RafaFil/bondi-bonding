@@ -11,6 +11,10 @@
     right: 1rem
     top: 1rem
 
+@media (min-width: 850px)
+  .bb-profile-menu
+    left: 70%
+
 .bb-btn-menu-opt
     width: 7rem
     height: 3rem
@@ -56,17 +60,13 @@
 .bb-profile-tab-content
     width: calc(100% - 3.2rem)
     max-width: 500px
+
     display: block
     margin-left: auto
     margin-right: auto
-    //height: 500px
-    //overflow: scroll
+    margin-top: 1.5rem
+    overflow-y: auto
 
-:host ::ng-deep .mat-tab-header
-    top:0
-    z-index: 1000
-    position: sticky
-    position: -webkit-sticky
-    background: white
-
-
+.bb-save-filters-btn
+  display: block
+  margin: auto

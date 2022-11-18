@@ -15,14 +15,14 @@
     </mat-form-field>
 
     <!--Age and gender not editable-->
-    <div class="two-col">
-        <div class="left">
+    <div class="row">
+        <div class="col-6">
             <mat-form-field appearance="outline">
                 <mat-label>Birthdate</mat-label>
                 <input matInput  placeholder="{{user.birthdate}}" disabled>
             </mat-form-field>
         </div>
-        <div class="right">
+        <div class="col-6">
         <mat-form-field appearance="outline">
             <mat-label>Gender</mat-label>
             <input matInput placeholder="{{user.gender}}" disabled>
@@ -33,7 +33,7 @@
     <!--Phone-->
     <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input tpye="tel" matInput placeholder="Phone" formControlName="phone" placeholder="{{user.phone}}"> 
+        <input type="tel" matInput placeholder="Phone" formControlName="phone" placeholder="{{user.phone}}">
         <mat-icon matPrefix color="primary">phone</mat-icon>
         <mat-error>Invalid phone</mat-error>
     </mat-form-field>
