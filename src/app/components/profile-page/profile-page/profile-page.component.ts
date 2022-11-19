@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { TripFilters } from 'src/app/interfaces';
 import { User } from 'src/app/interfaces/User';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfileService } from 'src/app/services/profile.service';
-import { TripFiltersFormComponent } from '../../general/trip-filters-form/trip-filters-form.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -16,8 +17,6 @@ export class ProfilePageComponent implements OnInit {
   isOwnProfile: boolean = false;
   user!: User;
 
-  @ViewChild("#UserFilters") filtersForm !: TripFiltersFormComponent;
-
   get showMenuAndFilters(): boolean {
     if (!this.isOwnProfile) {
       return false;
@@ -28,7 +27,8 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(private profileService: ProfileService,
               private route: ActivatedRoute,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getUser();
@@ -47,24 +47,31 @@ export class ProfilePageComponent implements OnInit {
       .subscribe(user => {
         this.user = user
         this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
-        console.log(this.user.username);
-        console.log(this.authService.runningUser!.username);
       });
     } else {
       this.profileService.getProfile(this.authService.runningUser!.username!)
       .subscribe(user => {
         this.user = user;
         this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
-        console.log(this.user.username);
-        console.log(this.authService.runningUser!.username);
-
       });
     }
   }
 
-  saveFilters(){
-    const filters = this.filtersForm.filterForm.controls;
-    this.profileService.updateProfileFilters(); //Parameter
+  saveFilters($event: TripFilters) {
+    this.profileService.updateProfileFilters($event)
+    .subscribe(result => {
+      let msg;
+
+      if (result.success) {
+        msg = 'Your trip filters have been updated successfully.';
+      } else {
+        msg = 'There was an error while updating your trip filters, please try again later.';
+      }
+
+      this.snackBar.open(msg, '', {
+        duration: 3000
+      });
+    });
   }
 
   closeEditMode(eventData: { edit : boolean }) {

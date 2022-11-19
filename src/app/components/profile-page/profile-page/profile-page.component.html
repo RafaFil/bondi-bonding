@@ -38,8 +38,17 @@
 
     <mat-tab label="Filters" *ngIf="showMenuAndFilters">
         <div class="bb-profile-tab-content">
-          <app-trip-filters-form #UserFilters [defaultFilters]="user.filters"></app-trip-filters-form>
-          <button class="bb-btn bb-save-filters-btn" mat-raised-button color="primary">SAVE FILTERS</button>
+          <app-trip-filters-form
+            #tripFiltersForm
+            [defaultFilters]="user.filters"
+            (tripFiltersSubmit)="saveFilters($event)"
+            >
+          </app-trip-filters-form>
+          <button class="bb-btn bb-save-filters-btn"
+            mat-raised-button color="primary"
+            (click)="tripFiltersForm.handleTripFiltersSubmit()"
+            >SAVE FILTERS
+          </button>
         </div>
     </mat-tab>
 

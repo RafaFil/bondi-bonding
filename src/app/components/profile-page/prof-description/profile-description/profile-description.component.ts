@@ -2,6 +2,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-profile-description',
@@ -15,7 +16,8 @@ export class ProfileDescriptionComponent implements OnInit {
 
   @Output() closeEditMode = new EventEmitter<{ edit: boolean }>();
 
-  constructor(private profileService: ProfileService) { }
+  constructor(private profileService: ProfileService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -28,10 +30,15 @@ export class ProfileDescriptionComponent implements OnInit {
     description?: string
   }) {
     if (this.isEdit) {
-      this.profileService.updatePublicProfile($event);
+      this.profileService.updatePublicProfile($event)
+      .subscribe(result => {
+        if (result.success) {
+          this.closeEditMode.emit({edit : false});
+        } else {
+          this.snackBar.open('There was an error while updating your public profile.');
+        }
+      });
     }
-
-    this.closeEditMode.emit({edit : false});
   }
 
 }

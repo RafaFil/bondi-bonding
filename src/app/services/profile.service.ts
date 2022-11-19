@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
+import { TripFilters } from '../interfaces';
 import { User } from '../interfaces/User';
 
 @Injectable({
@@ -41,12 +42,16 @@ export class ProfileService {
     phone?: string,
     email?: string,
     description?: string
-  }): Observable<any> {
-    return of(undefined);
+  }): Observable<{
+    success: boolean
+  }> {
+    return of({ success: true });
   }
 
-  updateProfileFilters(formsControl? : string) { //Ver objeto
-    //something
+  updateProfileFilters(filters: TripFilters): Observable<{
+    success: boolean
+  }> { //Ver objeto
+    return of({ success: true });
   }
 
   updateProfilePicture() {
