@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { MapService } from 'src/app/services/map.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { BusStop, SearchResult } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
@@ -9,15 +10,10 @@ import { BusService } from 'src/app/services/bus.service';
   styleUrls: ['./home-page.component.sass']
 })
 export class HomePageComponent implements OnInit {
-  busStops: BusStop[] = [];
+
   searchResult?: SearchResult;
 
-  constructor(private busService: BusService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.busService.getStops()
-    .subscribe(busStops => {
-      this.busStops = busStops;
-    });
-  }
+  ngOnInit(): void { }
 }

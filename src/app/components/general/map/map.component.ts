@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 
-import { EaseToOptions, Map, Marker } from 'maplibre-gl';
+import { Map, Marker } from 'maplibre-gl';
 
 import { MapMarker } from 'src/app/interfaces';
 import { MapService } from 'src/app/services/map.service';

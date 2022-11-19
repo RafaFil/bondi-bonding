@@ -61,6 +61,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page/pro
 import { EditionFormComponent } from './components/profile-page/prof-description/edition-form/edition-form.component';
 import { DataViewComponent } from './components/profile-page/prof-description/data-view/data-view.component';
 import { LikesFilterDialogComponent } from './components/general/likes-filter-dialog/likes-filter-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -126,7 +127,8 @@ import { LikesFilterDialogComponent } from './components/general/likes-filter-di
     MaterialModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
