@@ -1,0 +1,62 @@
+<form *ngIf="editForm" [formGroup]="editForm" color="primary" class="bb-edition-form">
+    <!--Name not editable-->
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix color="primary">person</mat-icon>
+        <input matInput placeholder="{{user.name}}" disabled color="primary">
+    </mat-form-field>
+
+    <!--Username-->
+    <mat-form-field appearance="outline">
+        <mat-icon matPrefix color="primary">person</mat-icon>
+        <mat-label>Username</mat-label>
+        <input matInput placeholder="{{user.username}}" formControlName="username">
+        <mat-error>Username must be between 3 and 10 characters</mat-error>
+    </mat-form-field>
+
+    <!--Age and gender not editable-->
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field appearance="outline">
+                <input matInput placeholder="{{user.birthdate}}" disabled>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="{{user.gender}}" disabled>
+        </mat-form-field>
+        </div>
+    </div>
+
+    <!--Phone-->
+    <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input type="tel" matInput placeholder="Phone" formControlName="phone" placeholder="{{user.phone}}">
+        <mat-icon matPrefix color="primary">phone</mat-icon>
+        <mat-error>Invalid phone</mat-error>
+    </mat-form-field>
+
+    <!--Email-->
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput placeholder="Email" formControlName="email" placeholder="{{user.email}}">
+        <mat-icon matPrefix color="primary">mail</mat-icon>
+        <mat-error>Invalid email</mat-error>
+    </mat-form-field>
+
+    <!--Description-->
+    <mat-form-field apperance="outline">
+        <mat-label>Description</mat-label>
+        <textarea #message matInput maxlength="256" formControlName="description" placeholder="{{user.description}}"></textarea>
+        <mat-hint align="start"><strong>Don't disclose personal info</strong> </mat-hint>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+
+    <div class="bb-edition-opt">
+      <button mat-raised-button class="bb-btn bb-btn-change" (click)="cancelEdit()">
+        DISMISS
+      </button>
+      <button mat-raised-button class="bb-btn bb-btn-change" color="primary" (click)="submitEdit()" >
+        SAVE CHANGES
+      </button>
+    </div>
+</form>

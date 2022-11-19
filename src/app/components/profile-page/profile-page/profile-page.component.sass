@@ -1,0 +1,72 @@
+.bb-user-info
+    display: flex
+    flex-direction: column
+    width: 100%
+    height: 15%
+    align-items: center
+
+.bb-profile-menu
+    position: fixed
+    left: auto
+    right: 1rem
+    top: 1rem
+
+@media (min-width: 850px)
+  .bb-profile-menu
+    left: 70%
+
+.bb-btn-menu-opt
+    width: 7rem
+    height: 3rem
+
+.bb-profile-menu-item
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    height: 100%
+
+.bb-user-photo
+    margin-top: 10px
+
+    width: 100px
+    height: 100px
+    display: flex
+
+    position: relative
+
+    &.bb-edit-mode
+        cursor: pointer
+
+.bb-user-pfp-edit
+    position: absolute
+    right: -10%
+    font-size: 2rem
+    width: fit-content
+    height: 100%
+
+.bb-user-filters
+    margin-top: 5%
+
+.bb-name
+    text-align: center
+    font-weight: bold
+    margin: 0
+
+.bb-username
+    text-align: center
+
+.bb-profile-tab-content
+    width: calc(100% - 3.2rem)
+    max-width: 500px
+
+    display: block
+    margin-left: auto
+    margin-right: auto
+    margin-top: 1.5rem
+    overflow-y: auto
+
+.bb-save-filters-btn
+  display: block
+  margin: auto

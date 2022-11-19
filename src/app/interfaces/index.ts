@@ -1,6 +1,5 @@
 export * from './AuthRequest';
 export * from './BusLine';
-export * from './BusLineVariant';
 export * from './BusStop';
 export * from './GeoPoint';
 export * from './MapMarker';

@@ -1,0 +1,4 @@
+<div class="bb-description">
+  <app-data-view *ngIf="!isEdit" [user]="user"></app-data-view>
+  <app-edition-form *ngIf="isEdit" [user]="user" (editEnd)="handleEditEnd($event)"></app-edition-form>
+</div>

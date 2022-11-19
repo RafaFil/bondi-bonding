@@ -1,0 +1,31 @@
+<mat-list>
+
+    <mat-list-item>
+        <p>{{user.description}}</p>
+    </mat-list-item>
+
+    <mat-list-item>
+        <mat-icon mat-list-icon color="primary">calendar_today</mat-icon>
+        <div mat-line>Birthdate</div>
+        <div mat-line>{{user.birthdate}}</div>
+    </mat-list-item>
+
+    <mat-list-item>
+        <mat-icon mat-list-icon color="primary">{{genderIcon}}</mat-icon>
+        <div mat-line>Gender</div>
+        <div mat-line>{{user.gender}}</div>
+    </mat-list-item>
+
+    <mat-list-item>
+        <mat-icon mat-list-icon color="primary">phone</mat-icon>
+        <div mat-line>Phone</div>
+        <div mat-line>{{user.phone}}</div>
+    </mat-list-item>
+
+    <mat-list-item>
+        <mat-icon mat-list-icon color="primary">email</mat-icon>
+        <div mat-line>Mail</div>
+        <div mat-line>{{user.email}}</div>
+    </mat-list-item>
+
+</mat-list>

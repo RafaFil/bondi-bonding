@@ -3,7 +3,6 @@ import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { TripFiltersFormComponent } from '../trip-filters-form/trip-filters-form.component';
 
 @Component({
   selector: 'app-filters-modal-content',
@@ -11,17 +10,13 @@ import { TripFiltersFormComponent } from '../trip-filters-form/trip-filters-form
   styleUrls: ['./filters-modal-content.component.sass']
 })
 export class FiltersModalContentComponent implements OnInit {
-  @ViewChild('filtersForm') filtersForm?: TripFiltersFormComponent;
 
   constructor(private dialogRef: MatDialogRef<FiltersModalContentComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: { callbackFn: (tripFilters: TripFilters) => void }) { }
+              @Inject(MAT_DIALOG_DATA) public data: {
+                callbackFn: (tripFilters: TripFilters) => void
+              }) { }
 
   ngOnInit(): void {
-  }
-
-  handleSaveFilters() {
-    if (!this.filtersForm)    return;
-    this.filtersForm.handleTripFiltersSubmit();
   }
 
   handleFiltersSubmit($event: TripFilters) {

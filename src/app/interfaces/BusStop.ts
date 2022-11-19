@@ -1,4 +1,3 @@
-import { BusLine } from "./BusLine";
 import { GeoPoint } from "./GeoPoint";
 
 export interface BusStop {
