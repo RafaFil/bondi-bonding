@@ -5,6 +5,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LayoutModule } from '@angular/cdk/layout';
 
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
 import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
 import { UpdatePasswordFormComponent } from './components/init-page/update-password-form/update-password-form.component';
@@ -61,7 +63,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page/pro
 import { EditionFormComponent } from './components/profile-page/prof-description/edition-form/edition-form.component';
 import { DataViewComponent } from './components/profile-page/prof-description/data-view/data-view.component';
 import { LikesFilterDialogComponent } from './components/general/likes-filter-dialog/likes-filter-dialog.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -130,7 +132,13 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

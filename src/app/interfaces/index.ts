@@ -1,4 +1,5 @@
 export * from './AuthRequest';
+export * from './AuthResponse';
 export * from './BusLine';
 export * from './BusStop';
 export * from './GeoPoint';
