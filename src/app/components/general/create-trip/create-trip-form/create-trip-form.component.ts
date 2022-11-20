@@ -33,7 +33,7 @@ export class CreateTripFormComponent implements OnInit {
     this.busService.getStops()
     .subscribe( (result: StopsResponse) => {
       if (result.success) {
-        this.stops = result.data
+        this.stops = result.data!
       } else {
         this.snackBar.open('An error ocurred while retrieving bus stops. Please reload this page or try again later.',
             '', { duration: 3000 });
@@ -46,7 +46,7 @@ export class CreateTripFormComponent implements OnInit {
     this.busService.getLinesByStop(selectedStop.busstopId!)
     .subscribe((response: LinesResponse) => {
       if (response.success) {
-        this.lines = response.data;
+        this.lines = response.data!;
       } else {
         this.snackBar.open(`There has been an error while retrieving bus lines. Please try again later.`, '', {
           duration: 3000

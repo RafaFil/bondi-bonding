@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProfileDescriptionComponent implements OnInit {
 
   @Input() user!: User;
-  @Input() isEdit : boolean = true;
+  @Input() isEdit: boolean = true;
+  @Input() profilePicture?: File;
 
   @Output() closeEditMode = new EventEmitter<{ edit: boolean }>();
 

@@ -57,7 +57,7 @@ export class StopContentHeaderComponent implements OnInit {
     this.busService.getLinesByStop(this.stop.busstopId!)
     .subscribe((response: LinesResponse) => {
       if (response.success) {
-        this.busLines = response.data;
+        this.busLines = response.data!;
       } else {
         this.snackBar.open(`There has been an error while retrieving bus lines. Please try again later.`, '', {
           duration: 3000

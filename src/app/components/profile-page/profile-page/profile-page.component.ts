@@ -13,6 +13,7 @@ import { ProfileService } from 'src/app/services/profile.service';
 })
 export class ProfilePageComponent implements OnInit {
 
+  profilePicture?: File;
   isEditMode: boolean = false;
   isOwnProfile: boolean = false;
   user!: User;
@@ -78,5 +79,16 @@ export class ProfilePageComponent implements OnInit {
     if (this.isOwnProfile) {
       this.isEditMode = eventData.edit;
     }
+  }
+
+  handleProfilePictureChange($event: Event) {
+    const { files } = $event.target as HTMLInputElement;
+    if (!files) {
+      this.profilePicture = undefined;
+      return;
+    }
+
+    this.profilePicture = files[0];
+    this.profileService.uploadProfilePicture(this.profilePicture!);
   }
 }

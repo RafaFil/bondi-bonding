@@ -1,8 +1,11 @@
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { TripFilters } from '../interfaces';
 import { User } from '../interfaces/User';
+
+const PROFILE_PICTURE_ENDPOINT = `${environment.baseUrl}/profilePicture`;
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +33,7 @@ export class ProfileService {
     }
   };
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getProfile(username : string) : Observable<User> {
     return of(this.user);
@@ -54,8 +57,21 @@ export class ProfileService {
     return of({ success: true });
   }
 
-  updateProfilePicture() {
+  uploadProfilePicture(file: File): Observable<{
+    success: boolean,
+    data?: string,
+    message?: string
+  }> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
 
+    this.http.get<any>(PROFILE_PICTURE_ENDPOINT);
+    console.log(PROFILE_PICTURE_ENDPOINT);
+    return this.http.post<{
+      success: boolean,
+      data?: string,
+      message?: string
+    }>(PROFILE_PICTURE_ENDPOINT, formData);
   }
 
 }
