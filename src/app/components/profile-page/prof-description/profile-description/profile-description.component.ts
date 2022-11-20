@@ -1,6 +1,5 @@
 import { ProfileService } from 'src/app/services/profile.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -12,7 +11,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class ProfileDescriptionComponent implements OnInit {
 
   @Input() user!: User;
-  @Input() isEdit : boolean = true;
+  @Input() isEdit: boolean = true;
+  @Input() profilePicture?: File;
 
   @Output() closeEditMode = new EventEmitter<{ edit: boolean }>();
 
@@ -29,16 +29,45 @@ export class ProfileDescriptionComponent implements OnInit {
     email?: string,
     description?: string
   }) {
-    if (this.isEdit) {
-      this.profileService.updatePublicProfile($event)
-      .subscribe(result => {
-        if (result.success) {
-          this.closeEditMode.emit({edit : false});
-        } else {
-          this.snackBar.open('There was an error while updating your public profile.');
-        }
-      });
+    if (!this.isEdit) return;
+
+    if (!this.profilePicture) {
+      this.handleProfileUpdate($event);
+      return;
     }
+
+    this.profileService.uploadProfilePicture(this.profilePicture)
+    .subscribe(result => {
+      if (result.success) {
+        this.handleProfileUpdate({ ...$event, iconKey: result.data });
+        return;
+      }
+
+      this.handleProfileUpdate($event);
+    });
+  }
+
+  handleProfileUpdate($event: {
+    isEdit: boolean,
+    username?: string,
+    phone?: string,
+    email?: string,
+    description?: string,
+    iconKey?: string
+  }) {
+    this.profileService.updatePublicProfile($event)
+    .subscribe(result => {
+      let msg;
+
+      if (result.success) {
+        this.closeEditMode.emit({edit : false});
+        msg = 'Your profile has been updated successfully.';
+      } else {
+        msg = 'There was an error while updating your public profile.';
+      }
+
+      this.snackBar.open(msg, '', { duration: 3000 });
+    });
   }
 
 }

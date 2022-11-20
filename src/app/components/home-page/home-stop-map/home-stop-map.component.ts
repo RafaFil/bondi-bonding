@@ -87,7 +87,7 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
     this.busService.getStopsCallback(
       (response: StopsResponse) => {
         if (response.success) {
-          this.busStops = response.data;
+          this.busStops = response.data!;
         } else {
           this.snackBar.open('An error ocurred while retrieving bus stops. Please reload this page or try again later.',
             '', { duration: 3000 });
@@ -107,7 +107,7 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
     this.busService.getStops(true)
     .subscribe( (response: StopsResponse ) => {
       if (response.success) {
-        this.busStops = response.data;
+        this.busStops = response.data!;
         this.isRetrievingStops = false;
         this.isStopsChange = true;
       }

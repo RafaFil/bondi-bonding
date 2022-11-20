@@ -1,4 +1,5 @@
 <app-navbar [activePage]="'Profile'"></app-navbar>
+
 <div class="bb-user-info">
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="showMenuAndFilters">
@@ -19,8 +20,8 @@
         <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
         <mat-icon  class="bb-user-pfp-edit">add_photo_alternate</mat-icon>
     </div>
-        <h1 class="bb-name">{{user.name}}</h1>
-        <h3 class="bb-username">@{{user.username}}</h3>
+    <h1 class="bb-name">{{user.name}}</h1>
+    <h3 class="bb-username">@{{user.username}}</h3>
 </div>
 
 <!--TABS-->
@@ -30,6 +31,7 @@
         <div class="bb-profile-tab-content">
             <app-profile-description
               [isEdit]="isEditMode"
+              [profilePicture]="profilePicture"
               [user]="user"
               (closeEditMode)="closeEditMode($event)"
             ></app-profile-description>
@@ -54,7 +56,7 @@
 
 </mat-tab-group>
 
-<input #pfpInput class="d-none" type="file">
-
-
-<!--NavBar-->
+<input #pfpInput
+  class="d-none"
+  type="file"
+  (change)="handleProfilePictureChange($event)">
