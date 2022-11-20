@@ -1,7 +1,9 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { StopsResponse } from './../../../../interfaces/StopsResponse';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 
-import { BusLine, BusStop, TripCreateResult } from 'src/app/interfaces';
+import { BusLine, BusStop, LinesResponse, TripCreateResult } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
 import { MapService } from 'src/app/services/map.service';
 import { TripService } from 'src/app/services/trip.service';
@@ -24,17 +26,33 @@ export class CreateTripFormComponent implements OnInit {
 
   constructor(public tripService: TripService,
               private busService: BusService,
-              private mapService: MapService) { }
+              private mapService: MapService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.busService.getStops()
-    .subscribe( result => this.stops = result );
+    .subscribe( (result: StopsResponse) => {
+      if (result.success) {
+        this.stops = result.data
+      } else {
+        this.snackBar.open('An error ocurred while retrieving bus stops. Please reload this page or try again later.',
+            '', { duration: 3000 });
+      }
+    });
   }
 
   handleBusStopSelect($event: MatSelectChange) {
     const selectedStop = $event.value as BusStop;
-    this.busService.getLinesByStop(selectedStop)
-    .subscribe( result => this.lines = result );
+    this.busService.getLinesByStop(selectedStop.busstopId!)
+    .subscribe((response: LinesResponse) => {
+      if (response.success) {
+        this.lines = response.data;
+      } else {
+        this.snackBar.open(`There has been an error while retrieving bus lines. Please try again later.`, '', {
+          duration: 3000
+        });
+      }
+    });
 
     this.formControls.stop.setValue(selectedStop!);
 

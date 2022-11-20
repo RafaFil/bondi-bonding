@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatSelect, MatSelectChange } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { BusLine, BusStop, Trip } from 'src/app/interfaces';
+import { BusLine, BusStop, LinesResponse, Trip } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
 
 @Component({
@@ -30,7 +31,8 @@ export class StopContentHeaderComponent implements OnInit {
     return this.clickedTime;
   }
 
-  constructor(private busService: BusService) {}
+  constructor(private busService: BusService,
+              private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.setClickedTime();
@@ -52,8 +54,16 @@ export class StopContentHeaderComponent implements OnInit {
   setBusLines() {
     if (this.readOnlyLine) return;
 
-    this.busService.getLinesByStop(this.stop)
-    .subscribe(lineArr => this.busLines = lineArr);
+    this.busService.getLinesByStop(this.stop.busstopId!)
+    .subscribe((response: LinesResponse) => {
+      if (response.success) {
+        this.busLines = response.data;
+      } else {
+        this.snackBar.open(`There has been an error while retrieving bus lines. Please try again later.`, '', {
+          duration: 3000
+        });
+      }
+    });
   }
 
   handleLineSelect($event: MatSelectChange) {

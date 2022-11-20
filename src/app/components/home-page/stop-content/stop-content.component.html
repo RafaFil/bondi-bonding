@@ -1,4 +1,4 @@
-<div class="bb-stop-content">
+<div class="bb-stop-content" *ngIf="stop">
   <app-stop-content-header #stopContentHeader [stop]="stop" (lineSelect)="handleLineChange($event)"></app-stop-content-header>
   <div class="bb-stop-users">
     <app-user-stop-item-group #userItemGroup [trips]="trips"></app-user-stop-item-group>

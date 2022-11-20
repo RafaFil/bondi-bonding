@@ -1,3 +1,4 @@
+import { LocationService } from './location.service';
 import { Injectable } from '@angular/core';
 import { EaseToOptions, Map } from 'maplibre-gl';
 import { BusStop } from '../interfaces';
@@ -31,5 +32,18 @@ export class MapService {
       ],
       zoom: this.zoomLevels.ZOOM_IN
     });
+  }
+
+  getCenter(): [ number, number ] | undefined {
+    if (this.map) {
+      const { lng, lat } = this.map.getCenter();
+      return [ lng, lat ];
+    }
+
+    return undefined;
+  }
+
+  getZoom(): number {
+    return this.map.getZoom();
   }
 }
