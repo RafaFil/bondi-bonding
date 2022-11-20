@@ -18,15 +18,6 @@ export class MapService {
   zoomLevels = ZOOM_LEVELS;
   map!: Map;
 
-  getCenter(): [ number, number ] | undefined {
-    if (this.map) {
-      const { lng, lat } = this.map.getCenter();
-      return [ lng, lat ];
-    }
-
-    return undefined;
-  }
-
   constructor() { }
 
   easeTo (options: EaseToOptions) {
@@ -41,5 +32,18 @@ export class MapService {
       ],
       zoom: this.zoomLevels.ZOOM_IN
     });
+  }
+
+  getCenter(): [ number, number ] | undefined {
+    if (this.map) {
+      const { lng, lat } = this.map.getCenter();
+      return [ lng, lat ];
+    }
+
+    return undefined;
+  }
+
+  getZoom(): number {
+    return this.map.getZoom();
   }
 }

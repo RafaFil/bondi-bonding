@@ -12,6 +12,11 @@ import { LocationService } from '../../../services/location.service';
   styleUrls: ['./map.component.sass']
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  private map!: Map;
+  private defaultZoom: number = this.mapService.zoomLevels.NO_LOCATION;
+  private currentMarkers: Marker[] = [];
+
   @Input() markers: MapMarker[] = [];
 
   @Output() mapClick = new EventEmitter<MouseEvent>();
@@ -19,9 +24,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('map')
   private mapContainer!: ElementRef<HTMLElement>;
-
-  private map!: Map;
-  private defaultZoom: number = this.mapService.zoomLevels.NO_LOCATION;
 
   constructor(private locationService: LocationService,
               private mapService: MapService) { }
@@ -66,13 +68,21 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadMarkers(): void {
-    for (const marker of this.markers) {
-      new Marker(
-        { element: marker.elementRef.nativeElement }
-      )
-      .setLngLat( marker.coordinates )
-      .addTo(this.map);
+    for (const marker of this.currentMarkers) {
+      marker.remove();
     }
+    this.currentMarkers.length = 0;
+
+    for (const marker of this.markers) {
+      this.currentMarkers.push(
+        new Marker(
+          { element: marker.elementRef.nativeElement }
+        )
+        .setLngLat( marker.coordinates )
+        .addTo(this.map)
+      );
+    }
+    this.map.resize();
   }
 
   emitMapClick($event: MouseEvent) {

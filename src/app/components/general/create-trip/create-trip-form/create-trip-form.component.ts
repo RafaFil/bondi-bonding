@@ -3,7 +3,7 @@ import { StopsResponse } from './../../../../interfaces/StopsResponse';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 
-import { BusLine, BusStop, TripCreateResult } from 'src/app/interfaces';
+import { BusLine, BusStop, LinesResponse, TripCreateResult } from 'src/app/interfaces';
 import { BusService } from 'src/app/services/bus.service';
 import { MapService } from 'src/app/services/map.service';
 import { TripService } from 'src/app/services/trip.service';
@@ -43,8 +43,16 @@ export class CreateTripFormComponent implements OnInit {
 
   handleBusStopSelect($event: MatSelectChange) {
     const selectedStop = $event.value as BusStop;
-    this.busService.getLinesByStop(selectedStop)
-    .subscribe( result => this.lines = result );
+    this.busService.getLinesByStop(selectedStop.busstopId!)
+    .subscribe((response: LinesResponse) => {
+      if (response.success) {
+        this.lines = response.data;
+      } else {
+        this.snackBar.open(`There has been an error while retrieving bus lines. Please try again later.`, '', {
+          duration: 3000
+        });
+      }
+    });
 
     this.formControls.stop.setValue(selectedStop!);
 

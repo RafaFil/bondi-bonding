@@ -15,7 +15,7 @@ export class StopContentComponent implements OnInit {
 
   trips: Trip[] = [];
 
-  @Input() stop: BusStop = {};
+  @Input() stop?: BusStop;
 
   @ViewChild('userItemGroup')
   userItemGroup?: UserStopItemGroupComponent;
@@ -40,7 +40,7 @@ export class StopContentComponent implements OnInit {
 
   handleLineChange(line: BusLine): void {
     this.clearSelectedUser();
-    this.tripsService.getTripsByStopAndLine(this.stop, line)
+    this.tripsService.getTripsByStopAndLine(this.stop!, line)
       .subscribe(tripArr => this.trips = tripArr);
   }
 

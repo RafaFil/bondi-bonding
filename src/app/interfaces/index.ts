@@ -15,3 +15,4 @@ export * from './ChatMessageContent';
 export * from './ChatsInfo';
 export * from './SendMessageResult';
 export * from './StopsResponse';
+export * from './LinesResponse';

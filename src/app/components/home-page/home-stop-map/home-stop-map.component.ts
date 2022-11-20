@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { StopsResponse } from './../../../interfaces/StopsResponse';
 import { MapService } from 'src/app/services/map.service';
-import { Component, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, AfterViewInit, AfterViewChecked } from '@angular/core';
 
 import { BusStop, SearchResult } from 'src/app/interfaces';
 import { SlidingSheetComponent } from './../../general/sliding-sheet/sliding-sheet.component';
@@ -14,11 +14,12 @@ import { StopMapComponent } from '../../general/stop-map/stop-map/stop-map.compo
   templateUrl: './home-stop-map.component.html',
   styleUrls: ['./home-stop-map.component.sass']
 })
-export class HomeStopMapComponent implements OnInit, AfterViewInit {
+export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
   searchResult?: SearchResult;
   busStops: BusStop[] = [];
   isRetrievingStops: boolean = false;
+  isStopsChange: boolean = false;
 
   @ViewChild('stopMap')
   stopMap?: StopMapComponent;
@@ -29,9 +30,9 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit {
   @ViewChild('stopContent')
   stopContent?: StopContentComponent;
 
-  get selectedStop(): BusStop {
+  get selectedStop(): BusStop | undefined {
     const busStop = this.busService.getSelectedStop();
-    return busStop ? busStop : {};
+    return busStop ? busStop : undefined;
   }
 
   constructor(private busService: BusService,
@@ -45,7 +46,14 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.mapService.map.on('moveend', () => this.getStopsOnMove());
+    this.mapService.map.on('dragend', () => this.getStopsOnMove());
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.isStopsChange) {
+      this.stopMap?.setMapMarkers();
+      this.isStopsChange = false;
+    }
   }
 
   handleStopSelect(busStop: BusStop) {
@@ -85,6 +93,7 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit {
             '', { duration: 3000 });
         }
         this.isRetrievingStops = false;
+        this.isStopsChange = true;
       },
       true
     );
@@ -99,8 +108,8 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit {
     .subscribe( (response: StopsResponse ) => {
       if (response.success) {
         this.busStops = response.data;
-        this.stopMap?.setMapMarkers();
         this.isRetrievingStops = false;
+        this.isStopsChange = true;
       }
     });
   }

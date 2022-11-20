@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, QueryList, ViewChild, ViewChildren } from '@angular/core';
 
 import { BusStop, MapMarker } from 'src/app/interfaces';
 import { MapService } from 'src/app/services/map.service';
@@ -10,7 +10,7 @@ import { BusStopComponent } from '../bus-stop/bus-stop.component';
   templateUrl: './stop-map.component.html',
   styleUrls: ['./stop-map.component.sass']
 })
-export class StopMapComponent implements OnInit, AfterViewInit {
+export class StopMapComponent implements OnInit {
   showStops: boolean = true;
   busStopMarkers: MapMarker[] = [];
 
@@ -28,10 +28,6 @@ export class StopMapComponent implements OnInit, AfterViewInit {
   constructor(private mapService: MapService) { }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    this.setMapMarkers();
   }
 
   setMapMarkers(): void {
