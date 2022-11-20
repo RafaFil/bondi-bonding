@@ -44,7 +44,8 @@ export class ProfileService {
     username?: string,
     phone?: string,
     email?: string,
-    description?: string
+    description?: string,
+    iconKey?: string
   }): Observable<{
     success: boolean
   }> {
@@ -65,8 +66,6 @@ export class ProfileService {
     const formData = new FormData();
     formData.append('file', file, file.name);
 
-    this.http.get<any>(PROFILE_PICTURE_ENDPOINT);
-    console.log(PROFILE_PICTURE_ENDPOINT);
     return this.http.post<{
       success: boolean,
       data?: string,

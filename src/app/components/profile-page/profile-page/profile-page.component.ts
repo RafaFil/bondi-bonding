@@ -83,12 +83,11 @@ export class ProfilePageComponent implements OnInit {
 
   handleProfilePictureChange($event: Event) {
     const { files } = $event.target as HTMLInputElement;
-    if (!files) {
+    if (!files || files.length === 0) {
       this.profilePicture = undefined;
       return;
     }
 
     this.profilePicture = files[0];
-    this.profileService.uploadProfilePicture(this.profilePicture!);
   }
 }
