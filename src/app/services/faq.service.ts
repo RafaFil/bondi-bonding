@@ -3,15 +3,29 @@ import { Injectable } from '@angular/core';
 
 import { Faq } from '../interfaces';
 import { MOCKED_FAQS } from './../mocks';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const STATIC_CONTENT_ENDPOINT = `${environment.baseUrl}/static/faqs`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class FaqService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getFaqs(): Observable<Faq[]> {
-    return of(MOCKED_FAQS);
+  getFaqs(): Observable<
+    {
+      success: boolean,
+      data? : Faq[],
+      message?: string
+    }
+  > {
+    return this.http.get<    {
+      success: boolean,
+      data? : Faq[],
+      message?: string
+    }>(STATIC_CONTENT_ENDPOINT);
   }
 }

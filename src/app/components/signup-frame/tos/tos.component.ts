@@ -8,11 +8,12 @@ import { TosService } from 'src/app/services/tos.service';
 })
 export class TosComponent implements OnInit {
 
-  tos: string = '';
+  tos : string | undefined = "";
 
   constructor(public tosService: TosService) { }
 
   ngOnInit(): void {
-    this.tosService.getTos().subscribe( tos => this.tos = tos );
+    this.tosService.getTos().subscribe( 
+      tos => this.tos = tos.data?.[0].text);
   }
 }
