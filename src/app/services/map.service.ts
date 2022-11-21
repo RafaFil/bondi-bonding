@@ -1,6 +1,8 @@
-import { LocationService } from './location.service';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EaseToOptions, Map } from 'maplibre-gl';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { BusStop } from '../interfaces';
 
 const ZOOM_LEVELS = {
@@ -11,14 +13,17 @@ const ZOOM_LEVELS = {
   NO_LOCATION: 10
 };
 
+const MAP_ENDPOINT = `${environment.baseUrl}/map`;
+
 @Injectable({
   providedIn: 'root'
 })
 export class MapService {
   zoomLevels = ZOOM_LEVELS;
+  mapGetObs?: Observable<any>;
   map!: Map;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   easeTo (options: EaseToOptions) {
     this.map.easeTo(options);
@@ -45,5 +50,10 @@ export class MapService {
 
   getZoom(): number {
     return this.map.getZoom();
+  }
+
+  getStyleUrl(): Observable<{ success: boolean, data?: string, message?: string }> {
+    this.mapGetObs = this.http.get<{ success: boolean, data?: string,  message?: string }>(MAP_ENDPOINT);
+    return this.mapGetObs;
   }
 }

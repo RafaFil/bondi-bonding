@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Map, Marker } from 'maplibre-gl';
 
@@ -26,25 +27,33 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   private mapContainer!: ElementRef<HTMLElement>;
 
   constructor(private locationService: LocationService,
-              private mapService: MapService) { }
+              private mapService: MapService,
+              private router: Router) { }
 
   ngOnInit(): void { }
 
   ngAfterViewInit(): void {
-    this.map = new Map({
-      container: this.mapContainer.nativeElement,
-      style: this.locationService.getStyleUrl(),
-      zoom: this.defaultZoom,
+    this.mapService.getStyleUrl().subscribe( result => {
+      if (!result.success) {
+        return;
+      }
+
+      this.map = new Map({
+        container: this.mapContainer.nativeElement,
+        style: result.data!,
+        zoom: this.defaultZoom,
+      });
+      this.mapService.map = this.map;
+
+      this.map.on('zoom',
+        () => this.zoomChange.emit(this.map.getZoom())
+      );
+
+      this.locationService.getCurrentPosition(
+        (position) => this.handlePositionFound(position)
+      );
     });
-    this.mapService.map = this.map;
 
-    this.map.on('zoom',
-      () => this.zoomChange.emit(this.map.getZoom())
-    );
-
-    this.locationService.getCurrentPosition(
-      (position) => this.handlePositionFound(position)
-    )
   }
 
   ngOnDestroy() {
