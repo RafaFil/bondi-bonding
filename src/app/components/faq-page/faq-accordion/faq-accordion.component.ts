@@ -8,14 +8,18 @@ import { Faq } from 'src/app/interfaces';
   styleUrls: ['./faq-accordion.component.sass']
 })
 export class FaqAccordionComponent implements OnInit {
-  faqs: Faq[] | undefined = [];
+  faqs?: Faq[];
   panelOpenState = false;
+  faqsExist = true;
 
   constructor(private faqService: FaqService) { }
 
   ngOnInit(): void {
     this.faqService.getFaqs()
-    .subscribe(faqs => this.faqs = faqs.data);
+    .subscribe(faqs => {
+      this.faqs = faqs.data;
+      this.faqsExist = faqs.success;
+    });
   }
 
   setPanelState(state: boolean) {

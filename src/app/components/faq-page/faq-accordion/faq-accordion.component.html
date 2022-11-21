@@ -1,4 +1,7 @@
-<mat-accordion>
+<p *ngIf="!faqsExist">
+  An error ocurred while loading FAQs, please try again later.
+</p>
+<mat-accordion *ngIf="faqsExist">
   <mat-expansion-panel (opened)="setPanelState(true)"
                        (closed)="setPanelState(false)"
                        *ngFor="let faq of faqs">

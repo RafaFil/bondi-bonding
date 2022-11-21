@@ -6,7 +6,7 @@ import { MOCKED_FAQS } from './../mocks';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
-const STATIC_CONTENT_ENDPOINT = `${environment.baseUrl}/static/faqs`;
+const FAQS_ENDPOINT = `${environment.baseUrl}/static/faqs`;
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,6 @@ export class FaqService {
       success: boolean,
       data? : Faq[],
       message?: string
-    }>(STATIC_CONTENT_ENDPOINT);
+    }>(FAQS_ENDPOINT);
   }
 }
