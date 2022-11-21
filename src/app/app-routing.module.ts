@@ -11,6 +11,9 @@ import { HomePageComponent } from './components/home-page/home-page/home-page.co
 import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
 import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
 import { ProfilePageComponent } from './components/profile-page/profile-page/profile-page.component';
+import { ValidateTokenGuard } from './guards/validate-token.guard';
+
+const valTokGuard = [ ValidateTokenGuard ]
 
 const routes: Routes = [
   { path: '', redirectTo: '/init/home', pathMatch: 'full' },
@@ -21,13 +24,13 @@ const routes: Routes = [
     { path: 'resetPassword', component: ResetPasswordFormComponent },
     { path: 'updatePassword', component: UpdatePasswordFormComponent },
   ]},
-  { path: 'home', component: HomePageComponent },
+  { path: 'home', component: HomePageComponent, canLoad: valTokGuard, canActivate: valTokGuard },
   { path: 'signup', component: SignupPageComponent },
   { path: 'faq' , component: FaqPageComponent },
-  { path: 'chat' , component: ChatsViewComponent },
-  { path: 'chat/:chatId', component: ChatViewComponent},
-  { path: 'profile/:username', component: ProfilePageComponent },
-  { path: 'profile', component: ProfilePageComponent }
+  { path: 'chat' , component: ChatsViewComponent, canLoad: valTokGuard, canActivate: valTokGuard },
+  { path: 'chat/:chatId', component: ChatViewComponent, canLoad: valTokGuard, canActivate: valTokGuard },
+  { path: 'profile/:username', component: ProfilePageComponent, canLoad: valTokGuard, canActivate: valTokGuard },
+  { path: 'profile', component: ProfilePageComponent, canLoad: valTokGuard, canActivate: valTokGuard }
 ];
 
 @NgModule({
