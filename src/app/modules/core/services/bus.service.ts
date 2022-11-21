@@ -28,7 +28,7 @@ export class BusService {
 
     let url = STOPS_ENDPOINT;
     if (useLocation) {
-      url = `${STOPS_GEO_ENDPOINT}?lat=${center![1]}&long=${center![0]}`;
+      url = `${STOPS_GEO_ENDPOINT}?lat=${center![1]}&long=${center![0]}&maxDist=1000`;
     }
     return this.http.get<StopsResponse>(url);
   }

@@ -80,6 +80,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.currentMarkers.length = 0;
 
+    this.map.repaint = false;
     for (const marker of this.markers) {
       this.currentMarkers.push(
         new Marker(
@@ -89,6 +90,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         .addTo(this.map)
       );
     }
+    this.map.repaint = true;
+    this.map.triggerRepaint();
     this.map.resize();
   }
 
