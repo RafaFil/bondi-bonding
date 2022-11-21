@@ -1,14 +1,19 @@
-<mat-accordion>
+<p *ngIf="!faqsExist">
+  An error ocurred while loading FAQs, please try again later.
+</p>
+<mat-accordion *ngIf="faqsExist">
   <mat-expansion-panel (opened)="setPanelState(true)"
                        (closed)="setPanelState(false)"
                        *ngFor="let faq of faqs">
       <mat-expansion-panel-header>
-          <mat-panel-title class="bb-title">
-              {{faq.question}}
-          </mat-panel-title>
-          <mat-panel-description>
-              {{faq.hint}}
-          </mat-panel-description>
+        <div class="bb-ac-content">
+            <mat-panel-title class="bb-title">
+                {{faq.question}}
+            </mat-panel-title>
+            <mat-panel-description>
+                {{faq.hint}}
+            </mat-panel-description>
+        </div>
       </mat-expansion-panel-header>
       <p>{{faq.answer}}</p>
   </mat-expansion-panel>

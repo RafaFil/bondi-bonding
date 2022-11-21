@@ -8,11 +8,16 @@ import { TosService } from 'src/app/services/tos.service';
 })
 export class TosComponent implements OnInit {
 
-  tos: string = '';
+  tos?: string = "An error ocurred while loading ToS, please try again later.";
+  tosExist?:boolean;
 
   constructor(public tosService: TosService) { }
 
   ngOnInit(): void {
-    this.tosService.getTos().subscribe( tos => this.tos = tos );
+    this.tosService.getTos().subscribe( 
+      tos => {
+        this.tos = tos.data;
+        this.tosExist = tos.success;
+      });
   }
 }
