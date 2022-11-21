@@ -1,33 +1,46 @@
-import { SignupPageComponent } from './components/signup-frame/signup-page/signup-page.component';
+import { SignupPageComponent } from './modules/pages/signup/pages/signup-page/signup-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FaqPageComponent } from './components/faq-page/faq-page/faq-page.component';
-import { InitHomeComponent } from './components/init-page/init-home/init-home.component';
-import { InitPageComponent } from './components/init-page/init-page/init-page.component';
-import { LoginFormComponent } from './components/init-page/login-form/login-form.component';
-import { ResetPasswordFormComponent } from './components/init-page/reset-password-form/reset-password-form.component';
-import { UpdatePasswordFormComponent } from './components/init-page/update-password-form/update-password-form.component';
-import { HomePageComponent } from './components/home-page/home-page/home-page.component';
-import { ChatsViewComponent } from './components/chats-section/chats-view/chats-view.component';
-import { ChatViewComponent } from './components/chat-page/chat-view/chat-view.component';
-import { ProfilePageComponent } from './components/profile-page/profile-page/profile-page.component';
+import { FaqPageComponent } from './modules/pages/faqs/pages/faq-page/faq-page.component';
+import { ChatsViewComponent } from './modules/pages/chat/pages/chats-view/chats-view.component';
+import { ChatViewComponent } from './modules/pages/chat/pages/chat-view/chat-view.component';
+import { ProfilePageComponent } from './modules/pages/profile/pages/profile-page/profile-page.component';
+import { ValidateTokenGuard } from './modules/core/guards/validate-token.guard';
+import { LandingPageComponent } from './modules/pages/landing/pages/landing-page/landing-page.component';
+
+const valTokGuard = [ ValidateTokenGuard ]
 
 const routes: Routes = [
-  { path: '', redirectTo: '/init/home', pathMatch: 'full' },
-  { path: 'init', component: InitPageComponent, children: [
-    { path: '', redirectTo: '/init/home', pathMatch: 'full' },
-    { path: 'home', component: InitHomeComponent },
-    { path: 'login', component: LoginFormComponent },
-    { path: 'resetPassword', component: ResetPasswordFormComponent },
-    { path: 'updatePassword', component: UpdatePasswordFormComponent },
-  ]},
-  { path: 'home', component: HomePageComponent },
-  { path: 'signup', component: SignupPageComponent },
-  { path: 'faq' , component: FaqPageComponent },
-  { path: 'chat' , component: ChatsViewComponent },
-  { path: 'chat/:chatId', component: ChatViewComponent},
-  { path: 'profile/:username', component: ProfilePageComponent },
-  { path: 'profile', component: ProfilePageComponent }
+  {
+    path: '',
+    loadChildren: () => import('./modules/pages/landing/landing.module').then( m => m.LandingModule ),
+  },
+  {
+    path: 'faq' ,
+    loadChildren: () => import('./modules/pages/faqs/faqs.module').then( m => m.FaqsModule ),
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./modules/pages/signup/signup.module').then( m => m.SignupModule ),
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./modules/pages/home/home.module').then( m => m.HomeModule ),
+    canLoad: [ ValidateTokenGuard ],
+    canActivate: [ ValidateTokenGuard ]
+  },
+  {
+    path: 'chat' ,
+    loadChildren: () => import('./modules/pages/chat/chat.module').then( m => m.ChatModule ),
+    canLoad: [ ValidateTokenGuard ],
+    canActivate: [ ValidateTokenGuard ]
+  },
+  {
+    path: 'profile' ,
+    loadChildren: () => import('./modules/pages/profile/profile.module').then( m => m.ProfileModule ),
+    canLoad: [ ValidateTokenGuard ],
+    canActivate: [ ValidateTokenGuard ]
+  }
 ];
 
 @NgModule({
