@@ -106,6 +106,7 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
     if (this.isRetrievingStops) {
       return;
     }
+
     this.isRetrievingStops = true;
     this.busService.getStops(true)
     .subscribe( (response: StopsResponse ) => {
