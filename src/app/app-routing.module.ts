@@ -1,14 +1,6 @@
-import { SignupPageComponent } from './modules/pages/signup/pages/signup-page/signup-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FaqPageComponent } from './modules/pages/faqs/pages/faq-page/faq-page.component';
-import { ChatsViewComponent } from './modules/pages/chat/pages/chats-view/chats-view.component';
-import { ChatViewComponent } from './modules/pages/chat/pages/chat-view/chat-view.component';
-import { ProfilePageComponent } from './modules/pages/profile/pages/profile-page/profile-page.component';
 import { ValidateTokenGuard } from './modules/core/guards/validate-token.guard';
-import { LandingPageComponent } from './modules/pages/landing/pages/landing-page/landing-page.component';
-
-const valTokGuard = [ ValidateTokenGuard ]
 
 const routes: Routes = [
   {
