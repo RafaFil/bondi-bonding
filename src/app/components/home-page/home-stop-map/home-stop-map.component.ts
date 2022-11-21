@@ -46,7 +46,9 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
   }
 
   ngAfterViewInit(): void {
-    this.mapService.map.on('dragend', () => this.getStopsOnMove());
+    this.mapService.mapGetObs?.subscribe(() => {
+      this.mapService.map.on('dragend', () => this.getStopsOnMove());
+    });
   }
 
   ngAfterViewChecked(): void {

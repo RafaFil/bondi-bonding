@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Map } from 'maplibre-gl';
 
-const API_KEY = 'DQvXkvmrVoZGslcrdv5i'; // MOVE TO BACKEND OR ENVIRONMENTS
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,10 +15,6 @@ export class LocationService {
   }
 
   constructor() {  }
-
-  getStyleUrl(): string {
-    return `https://api.maptiler.com/maps/outdoor/style.json?key=${API_KEY}`;
-  }
 
   getCurrentPosition(
     handlePositionCallback: (p: GeolocationPosition) => void,
