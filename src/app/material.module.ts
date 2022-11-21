@@ -45,7 +45,9 @@ const MaterialComponents = [
     MatListModule,
     MatMenuModule,
     MatSnackBarModule,
-    MatChipsModule
+    MatChipsModule,
+    MatFormFieldModule,
+    MatNativeDateModule
 ];
 
 @NgModule({
