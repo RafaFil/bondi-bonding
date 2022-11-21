@@ -1,19 +1,30 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 
-import { AuthRequest, User } from 'src/app/interfaces';
-import { MOCKED_USER } from '../mocks';
+import { AuthRequest, AuthResponse, User } from 'src/app/interfaces';
+import { environment } from 'src/environments/environment';
+
+const AUTH_ENDPOINT = `${environment.baseUrl}/auth`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  runningUser?: User = MOCKED_USER;
+  runningUser?: User;
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpClient) { }
 
-  doUserAuth(authRequest: AuthRequest): Observable<boolean | undefined> {
-    return of(true);
+  doUserAuth(authRequest: AuthRequest): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(AUTH_ENDPOINT, authRequest)
+    .pipe(
+      tap( response => {
+        if (response.success) {
+          this.runningUser = response.data?.user;
+          localStorage.setItem('token', response.data?.token!);
+        }
+      }),
+      catchError( err => of(err))
+    );
   }
 }

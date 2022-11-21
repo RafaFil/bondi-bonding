@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginFormComponent implements OnInit {
 
+  isFailedAuth: boolean = false;
   loginForm = this.formBuilder.group({
     username: new FormControl('', [ Validators.minLength(4), Validators.required ]),
     password: new FormControl('', [ Validators.minLength(8), Validators.required ])
@@ -39,11 +40,17 @@ export class LoginFormComponent implements OnInit {
     }
 
     this.authService.doUserAuth(this.loginForm.getRawValue() as AuthRequest)
-    .subscribe(result => {
-      if (result) {
+    .subscribe(response => {
+      if (response.success) {
+        this.isFailedAuth = false;
         this.router.navigate(['/home']);
+      } else {
+        this.isFailedAuth = true;
       }
     });
   }
 
+  resetFailedAuth() {
+    this.isFailedAuth = false;
+  }
 }
