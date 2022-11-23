@@ -8,13 +8,15 @@ import { SignupFormsComponent } from './components/signup-forms/signup-forms.com
 import { SignupPageComponent } from './pages/signup-page/signup-page.component';
 import { TosComponent } from './components/tos/tos.component';
 import { IdValidationFormComponent } from './components/id-validation-form/id-validation-form.component';
+import { SignupErrDialogComponent } from './components/signup-err-dialog/signup-err-dialog.component';
 
 @NgModule({
   declarations: [
     SignupFormsComponent,
     SignupPageComponent,
     TosComponent,
-    IdValidationFormComponent
+    IdValidationFormComponent,
+    SignupErrDialogComponent
   ],
   imports: [
     CommonModule,

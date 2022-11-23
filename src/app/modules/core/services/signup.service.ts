@@ -16,12 +16,13 @@ export class SignupService {
   createUser(user : User) : Observable<
   {
     success: boolean,
-    message: string
+    data?:string
+    message?: string
   }> {
-    console.log(user);
     return this.http.post<{
       success: boolean,
-      message: string
+      data? : string
+      message?: string
     }>(SIGNUP_ENDPOINT,user);
   }
 

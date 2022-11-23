@@ -2,10 +2,13 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { config } from 'rxjs';
 import { User } from 'src/app/modules/core/interfaces';
 import { SignupService } from 'src/app/modules/core/services/signup.service';
+import { SignupErrDialogComponent } from '../../components/signup-err-dialog/signup-err-dialog.component';
 import { SignupFormsComponent } from '../../components/signup-forms/signup-forms.component';
 
 
@@ -30,7 +33,8 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
   constructor(private fb : FormBuilder,
               private router: Router,
               private breakpointObserver: BreakpointObserver,
-              private signupService : SignupService) { }
+              private signupService : SignupService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -56,13 +60,24 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
 
   handleSignUp() {
     const user = this.pullFormData();
-    console.log(user);
-    let result : {success:boolean,message:string};
-    this.signupService.createUser(user).subscribe(serviceResult => result = serviceResult);
-    /*if (result.success){
-      this.router.navigate([`/home`]);
-    }*/
-    this.router.navigate([`/home`]);
+    
+    this.signupService.createUser(user).subscribe(serviceResult => {
+      if(!serviceResult.success){
+        if (serviceResult.message?.includes('Duplicate username')) {
+          this.dialog.open(SignupErrDialogComponent, {
+            data: "Duplicate username"
+          });
+        }
+        else {
+          this.dialog.open(SignupErrDialogComponent,{
+            data: "Internal server error, try again later"
+          });
+        }
+      }
+      else {
+        this.router.navigate([`/home`]);
+      }
+    });
   }
 
 }
