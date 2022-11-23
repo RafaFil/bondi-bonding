@@ -1,5 +1,10 @@
-<h1 mat-dialog-title>Error</h1>
+<h1 mat-dialog-title>Ups!</h1>
+
 <div mat-dialog-content>
-    Username is already on use, please try another one
+    {{text}}
+</div>
+
+<div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
 </div>
 

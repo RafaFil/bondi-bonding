@@ -27,6 +27,8 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
     secondCtrl: '',
   });
 
+  @ViewChild('stepper') stepper!: MatStepper;
+
   @ViewChild('signUpForm')
   formData!: SignupFormsComponent;
 
@@ -61,21 +63,22 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
   handleSignUp() {
     const user = this.pullFormData();
     
-    this.signupService.createUser(user).subscribe(serviceResult => {
-      if(!serviceResult.success){
-        if (serviceResult.message?.includes('Duplicate username')) {
-          this.dialog.open(SignupErrDialogComponent, {
-            data: "Duplicate username"
-          });
-        }
-        else {
-          this.dialog.open(SignupErrDialogComponent,{
-            data: "Internal server error, try again later"
-          });
-        }
+    this.signupService.createUser(user).subscribe( () => {
+        this.router.navigate([`/home`]);
+    }, (err) => {
+
+      if (err.error.message?.includes('Duplicate username')) {
+
+        this.stepper.selectedIndex = 0;
+        this.dialog.open(SignupErrDialogComponent, {
+          data: `There was an error while creating your account. Username ${user.username} is taken`
+        });
       }
       else {
-        this.router.navigate([`/home`]);
+
+        this.dialog.open(SignupErrDialogComponent,{
+          data: "Internal server error, try again later"
+        });
       }
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
@@ -8,9 +8,8 @@ import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 })
 export class SignupErrDialogComponent implements OnInit {
 
-  text = MAT_DIALOG_DATA.toString();
-
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public text: any) {
+  }
 
   ngOnInit(): void {
   }

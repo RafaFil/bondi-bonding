@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces';
 
@@ -23,7 +23,7 @@ export class SignupService {
       success: boolean,
       data? : string
       message?: string
-    }>(SIGNUP_ENDPOINT,user);
+    }>(SIGNUP_ENDPOINT,user)
   }
 
 }
