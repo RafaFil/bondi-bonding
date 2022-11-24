@@ -1,11 +1,14 @@
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { TripFilters, Trip, BusStop, BusLine, TripCreateResult } from 'src/app/modules/core/interfaces';
-import { MOCKED_TRIPS } from 'src/app/modules/core/mocks';
+import { TripFilters, Trip, BusStop, BusLine, TripCreateResult, GetTripsResponse } from 'src/app/modules/core/interfaces';
 import { AuthService } from './auth.service';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const TRIPS_ENDPOINT = `${environment.baseUrl}/trips`;
 
 @Injectable({
   providedIn: 'root'
@@ -24,26 +27,35 @@ export class TripService {
   });
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private http: HttpClient) { }
 
   createTrip(): Observable<TripCreateResult> {
-    const formRawValue = this.createTripForm.getRawValue();
+    const tripForm = this.createTripForm.getRawValue();
 
     const newTrip: Trip = {
-      busLineId: formRawValue.busLine!.lineId!,
-      from: formRawValue.from!,
-      schedule: formRawValue.schedule!,
-      stopId: formRawValue.stop!.busstopId!,
-      to: formRawValue.to!,
+      busLineId: tripForm.busLine!.lineId!,
+      from: tripForm.from!,
+      schedule: tripForm.schedule!,
+      stopId: tripForm.stop!.busstopId!,
+      to: tripForm.to!,
       userId: this.authService.runningUser!.uid!,
-      description: formRawValue.description ? formRawValue.description : '',
-      filters: formRawValue.filters!
+      description: tripForm.description ? tripForm.description : '',
+      filters: tripForm.filters!
     };
 
-    return of({ success: true });
+    console.log(this.authService.runningUser!.username);
+
+    return this.http.post<TripCreateResult>(TRIPS_ENDPOINT, {
+      ...newTrip,
+      userId: this.authService.runningUser!.uid
+    });
   }
 
-  getTripsByStopAndLine(stop: BusStop, line: BusLine): Observable<Trip[]> {
-    return of(MOCKED_TRIPS);
+  getTripsByStopAndLine(stopId: string, lineId: string): Observable<GetTripsResponse> {
+    const uid = this.authService.runningUser!.uid;
+    const url = `${TRIPS_ENDPOINT}?stopId=${stopId}&busLineId=${lineId}&userId=${uid}`;
+
+    return this.http.get<GetTripsResponse>(url);
   }
 }

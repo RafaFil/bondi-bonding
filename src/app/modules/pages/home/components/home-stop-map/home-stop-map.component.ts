@@ -36,6 +36,10 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
     return busStop ? busStop : undefined;
   }
 
+  get canGetStops(): boolean {
+    return this.mapService.getZoom() >= this.mapService.zoomLevels.INACCURATE;
+  }
+
   constructor(private busService: BusService,
               private mapService: MapService,
               private snackBar: MatSnackBar) { }
@@ -49,6 +53,7 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
   ngAfterViewInit(): void {
     this.mapService.mapGetObs?.subscribe(() => {
       this.mapService.map.on('dragend', () => this.getStopsOnMove());
+      this.mapService.map.on('zoomend', () => this.getStopsOnMove());
     });
   }
 
@@ -86,6 +91,10 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
   }
 
   getStopsOnInit() {
+    if (!this.canGetStops) {
+      return;
+    }
+
     this.isRetrievingStops = true;
     this.busService.getStopsCallback(
       (response: StopsResponse) => {
@@ -103,6 +112,11 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
   }
 
   getStopsOnMove() {
+    if (!this.canGetStops) {
+      this.busStops = [];
+      return;
+    }
+
     if (this.isRetrievingStops) {
       return;
     }

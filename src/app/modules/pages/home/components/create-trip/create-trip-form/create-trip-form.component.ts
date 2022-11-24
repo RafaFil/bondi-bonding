@@ -2,10 +2,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 
-import { BusLine, BusStop, LinesResponse, StopsResponse, TripCreateResult } from 'src/app/modules/core/interfaces';
+import { BusLine, BusStop, LinesResponse, StopsResponse, TripCreateResult, TripFilters } from 'src/app/modules/core/interfaces';
 import { BusService } from 'src/app/modules/core/services/bus.service';
 import { MapService } from 'src/app/modules/core/services/map.service';
 import { TripService } from 'src/app/modules/core/services/trip.service';
+import { FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'app-create-trip-form',
@@ -29,7 +30,11 @@ export class CreateTripFormComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.busService.getStops()
+    this.setStops();
+  }
+
+  setStops(): void {
+    this.busService.getStops(true, 5000)
     .subscribe( (result: StopsResponse) => {
       if (result.success) {
         this.stops = result.data!
@@ -42,6 +47,7 @@ export class CreateTripFormComponent implements OnInit {
 
   handleBusStopSelect($event: MatSelectChange) {
     const selectedStop = $event.value as BusStop;
+
     this.busService.getLinesByStop(selectedStop.busstopId!)
     .subscribe((response: LinesResponse) => {
       if (response.success) {
@@ -60,13 +66,13 @@ export class CreateTripFormComponent implements OnInit {
     }
   }
 
-  handleTripCreate(): void {
+  handleTripCreate(formDirective: FormGroupDirective): void {
     if (!this.tripService.createTripForm.valid) return;
 
     this.tripService.createTrip().subscribe(
       createTripResult => {
+        formDirective.resetForm();
         this.tripService.createTripForm.reset({});
-        // poner un value en el reset porque si no no resetea
         this.tripCreate.emit(createTripResult);
       }
     );

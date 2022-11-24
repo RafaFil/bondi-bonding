@@ -11,7 +11,6 @@ import { BusStopComponent } from '../bus-stop/bus-stop.component';
   styleUrls: ['./stop-map.component.sass']
 })
 export class StopMapComponent implements OnInit {
-  showStops: boolean = true;
   busStopMarkers: MapMarker[] = [];
 
   @Input() busStops: BusStop[] = [];
@@ -51,10 +50,6 @@ export class StopMapComponent implements OnInit {
     if (emitStopSelect) {
       this.stopSelect.emit(busStop);
     }
-  }
-
-  handleZoomChange(zoomValue: number) {
-    this.showStops = zoomValue >= this.mapService.zoomLevels.NO_LOCATION;
   }
 
   handleMapClick($event: MouseEvent) {

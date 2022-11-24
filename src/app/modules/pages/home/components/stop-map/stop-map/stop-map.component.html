@@ -1,11 +1,9 @@
 <app-map #map
   [markers]="busStopMarkers"
-  (zoomChange)="handleZoomChange($event)"
   (mapClick)="handleMapClick($event)">
 </app-map>
 <app-bus-stop
     *ngFor="let busStop of busStops"
     [busStop]="busStop"
-    [showIcon]="showStops"
     (stopClick)="setSelectedStop($event)">
 </app-bus-stop>

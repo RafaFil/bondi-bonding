@@ -40,8 +40,12 @@ export class StopContentComponent implements OnInit {
 
   handleLineChange(line: BusLine): void {
     this.clearSelectedUser();
-    this.tripsService.getTripsByStopAndLine(this.stop!, line)
-      .subscribe(tripArr => this.trips = tripArr);
+    this.tripsService.getTripsByStopAndLine(this.stop!.busstopId!, line.lineId!)
+      .subscribe(response => {
+        if (response.success) {
+          this.trips = response.data!;
+        }
+      });
   }
 
   handleStartChat(trip: Trip): void {

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TripCreateResult } from 'src/app/modules/core/interfaces';
 import { BusService } from 'src/app/modules/core/services/bus.service';
 import { SlidingSheetComponent } from 'src/app/modules/shared/components/sliding-sheet/sliding-sheet.component';
@@ -13,7 +14,8 @@ export class CreateTripComponent implements OnInit {
   @ViewChild('createTripSheet')
   slidingSheet?: SlidingSheetComponent;
 
-  constructor(private busService: BusService) { }
+  constructor(private busService: BusService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -23,7 +25,14 @@ export class CreateTripComponent implements OnInit {
   }
 
   handleTripCreate(tripCreateResult: TripCreateResult) {
-    this.slidingSheet?.hide();
+    let msg = '';
+    if (tripCreateResult.success) {
+      msg = 'Your trip has been created successfully!';
+      this.slidingSheet?.hide();
+    } else {
+      msg = 'Sorry, there has been an error while creating your trip, please try again in a few minutes.';
+    }
+    this.snackBar.open(msg, '', { duration: 3000 });
   }
 
   handleSheetHide() {

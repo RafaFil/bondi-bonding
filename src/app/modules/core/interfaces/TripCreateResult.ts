@@ -1,7 +1,7 @@
 import { Trip } from './Trip';
 
 export interface TripCreateResult {
-  trip?: Trip;
+  data?: Trip;
   success: boolean;
-  errors?: string[];
+  message?: string;
 }
