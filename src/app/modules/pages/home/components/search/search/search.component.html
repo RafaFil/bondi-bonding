@@ -1,4 +1,4 @@
 <app-search-button (click)="displaySearchForm($event)"></app-search-button>
-<app-sliding-sheet #searchSheet>
-  <app-search-form (bondClick)="handleFormSubmit()"></app-search-form>
+<app-sliding-sheet #searchSheet (sheetHide)="handleSheetHide()">
+  <app-search-form *ngIf="searchSheet.isShowing" (bondClick)="handleFormSubmit()"></app-search-form>
 </app-sliding-sheet>

@@ -2,7 +2,12 @@
   [formGroup]="loginForm"
   (ngSubmit)="handleLoginSubmit()">
 
-  <div class="row">
+  <div *ngIf="isLoading" class="row justify-content-center mt-5">
+    <mat-spinner color="primary"></mat-spinner>
+    <span class="bb-flex-center bb-text-green bb-landing-top-text mt-5">Signing in...</span>
+  </div>
+
+  <div *ngIf="!isLoading" class="row">
 
     <div class="bb-flex-center bb-text-green bb-landing-top-text">
       Log in

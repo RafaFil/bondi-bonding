@@ -98,11 +98,11 @@ export class TripFiltersFormComponent implements OnInit, AfterViewInit {
     const value = this.filterForm.controls.likes.value;
     value.forEach(like => {
       if (like === likeToRemove.value) {
-        value.splice(value.indexOf(like),1);
+        value.splice(value.indexOf(like), 1);
       }
     })
     return this.chipLikesArr.splice(
-      this.chipLikesArr.indexOf(likeToRemove),1
+      this.chipLikesArr.indexOf(likeToRemove), 1
     )
   }
 

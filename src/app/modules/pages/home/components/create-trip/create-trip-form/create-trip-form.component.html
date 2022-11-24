@@ -1,4 +1,4 @@
-<form class="bb-create-trip-form" [formGroup]="tripService.createTripForm">
+<form class="bb-create-trip-form" [formGroup]="tripService.createTripForm" #formDirective="ngForm">
   <p class="bb-text-green bb-create-trip-label">Create</p>
   <div class="overflow-auto bb-scrollable-segment">
     <mat-form-field class="bb-create-trip-form-field"
@@ -62,7 +62,7 @@
     mat-raised-button
     class="bb-btn bb-sliding-form-btn bb-create-btn mt-4"
     color="primary"
-    (click)="handleTripCreate()">
+    (click)="handleTripCreate(formDirective)">
     CREATE
   </button>
 </form>

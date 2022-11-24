@@ -10,7 +10,6 @@ import { BusService } from 'src/app/modules/core/services/bus.service';
 })
 export class BusStopComponent implements OnInit {
   @Input() busStop?: BusStop;
-  @Input() showIcon: boolean = true;
 
   @Output() stopClick = new EventEmitter<BusStop>();
 

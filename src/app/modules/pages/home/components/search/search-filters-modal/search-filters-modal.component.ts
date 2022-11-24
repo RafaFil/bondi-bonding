@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { TripFilters } from 'src/app/modules/core/interfaces';
+import { AuthService } from 'src/app/modules/core/services/auth.service';
 import { SearchService } from 'src/app/modules/core/services/search.service';
 import { FiltersModalContentComponent } from '../filters-modal-content/filters-modal-content.component';
 
@@ -12,21 +13,41 @@ import { FiltersModalContentComponent } from '../filters-modal-content/filters-m
 })
 export class SearchFiltersModalComponent implements OnInit {
 
+  useUserFilters: boolean = true;
+
+  get formControls() {
+    return this.searchService.searchForm.controls;
+  }
+
+  getFilters(): TripFilters | undefined | null {
+    const userFilters = this.authService.runningUser?.filters;
+
+    if (this.useUserFilters && userFilters) {
+      this.formControls.filters.setValue(userFilters);
+    }
+
+    return this.formControls.filters.value;
+  }
+
   constructor(private dialog: MatDialog,
+              private authService: AuthService,
               private searchService: SearchService) { }
 
   ngOnInit(): void {
   }
 
   openFiltersDialog() {
-    this.dialog.open (
+    console.log(this.searchService.searchForm.value);
+    const modalRef = this.dialog.open (
       FiltersModalContentComponent,
-      {
-        data: {
+      { data: {
           callbackFn: (tripFilters: TripFilters) => {
-            this.searchService.searchForm.controls.filters.setValue(tripFilters);
-          }
+            this.formControls.filters.setValue(tripFilters);
+          },
+          defaultFilters: this.getFilters()
         }
-      });
+      }
+    );
+    modalRef.afterOpened().subscribe(() => this.useUserFilters = false);
   }
 }

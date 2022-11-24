@@ -1,4 +1,11 @@
-<div class="bb-search-result-content">
+<div *ngIf="!searchResult.data || searchResult.data.length === 0">
+  <h3 class="bb-no-trips-msg">
+    Sorry, we weren't hable to find any trips for the criteria you set.
+    <br><br>
+    Please try again another time!
+  </h3>
+</div>
+<div *ngIf="searchResult.data && searchResult.data.length > 0" class="bb-search-result-content">
   <div class="mb-3 mt-4">
     <app-stop-content-header
         #stopContentHeader
@@ -12,7 +19,7 @@
   <div class="bb-stop-users overflow-auto">
     <app-user-stop-item-group
         #userItemGroup
-        [trips]="searchResult.trips!"
+        [trips]="searchResult.data"
         (tripChange)="handleTripChange($event)">
     </app-user-stop-item-group>
   </div>

@@ -49,7 +49,7 @@ export class MapService {
   }
 
   getZoom(): number {
-    return this.map.getZoom();
+    return this.map?.getZoom();
   }
 
   getStyleUrl(): Observable<{ success: boolean, data?: string, message?: string }> {

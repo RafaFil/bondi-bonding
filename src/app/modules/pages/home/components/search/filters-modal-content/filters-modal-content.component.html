@@ -2,13 +2,14 @@
 
 <mat-dialog-content class="mat-typography">
   <app-trip-filters-form #filtersForm
+    [defaultFilters]="defaultFilters"
     (tripFiltersSubmit)="handleFiltersSubmit($event)"></app-trip-filters-form>
 </mat-dialog-content>
 
 <mat-dialog-actions align="center">
   <button class="bb-btn bb-text-green"
           mat-raised-button
-          mat-dialog-close
+          (click)="handleCancel()"
           >
           CANCEL
   </button>
