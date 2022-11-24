@@ -64,7 +64,7 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
     const user = this.pullFormData();
     
     this.signupService.createUser(user).subscribe( () => {
-        this.router.navigate([`/home`]);
+        this.router.navigate([`/login`]);
     }, (err) => {
 
       if (err.error.message?.includes('Duplicate username')) {
