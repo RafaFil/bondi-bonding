@@ -1,6 +1,6 @@
 <div class="container">
   <h3 class="bb-signup-title bb-text-green">Sign Up</h3>
-  <mat-stepper #stepper [linear]="false" [orientation]="stepperOrientation">
+  <mat-stepper #stepper [linear]="true" [orientation]="stepperOrientation">
     <mat-step label="Personal Information" [stepControl]="personalInformationGroup">
         <div class="forms-body-container">
             <app-signup-forms #signUpForm ></app-signup-forms>

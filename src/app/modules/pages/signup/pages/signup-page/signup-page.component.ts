@@ -2,9 +2,13 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { StepperOrientation } from '@angular/cdk/stepper';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { config } from 'rxjs';
 import { User } from 'src/app/modules/core/interfaces';
+import { SignupService } from 'src/app/modules/core/services/signup.service';
+import { SignupErrDialogComponent } from '../../components/signup-err-dialog/signup-err-dialog.component';
 import { SignupFormsComponent } from '../../components/signup-forms/signup-forms.component';
 
 
@@ -23,12 +27,16 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
     secondCtrl: '',
   });
 
+  @ViewChild('stepper') stepper!: MatStepper;
+
   @ViewChild('signUpForm')
   formData!: SignupFormsComponent;
 
   constructor(private fb : FormBuilder,
               private router: Router,
-              private breakpointObserver: BreakpointObserver) { }
+              private breakpointObserver: BreakpointObserver,
+              private signupService : SignupService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -45,7 +53,7 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
 
   pullFormData(){
     const user = this.formData.signUpForm.value as User;
-    console.log(user);
+    return user;
   }
 
   toggleAcceptToS(){
@@ -53,8 +61,26 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
   }
 
   handleSignUp() {
-    // TODO: Handle signup
-    this.router.navigate([`/home`]);
+    const user = this.pullFormData();
+    
+    this.signupService.createUser(user).subscribe( () => {
+        this.router.navigate([`/home`]);
+    }, (err) => {
+
+      if (err.error.message?.includes('Duplicate username')) {
+
+        this.stepper.selectedIndex = 0;
+        this.dialog.open(SignupErrDialogComponent, {
+          data: `There was an error while creating your account. Username ${user.username} is taken`
+        });
+      }
+      else {
+
+        this.dialog.open(SignupErrDialogComponent,{
+          data: "Internal server error, try again later"
+        });
+      }
+    });
   }
 
 }
