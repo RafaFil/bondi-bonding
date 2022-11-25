@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 import { PasswordResetService } from 'src/app/modules/core/services/password-reset.service';
 import { PasswordUpdatedDialogComponent } from '../password-updated-dialog/password-updated-dialog.component';
 
@@ -33,14 +34,15 @@ export class UpdatePasswordFormComponent implements OnInit {
     }
 
     const newPassword = this.newPasswordControl.value;
-    const isPasswordUpdated = this.passwordResetService.updatePassword(newPassword);
-
-    this.dialog.open(
-      PasswordUpdatedDialogComponent,
-      { data: isPasswordUpdated }
-    )
-    .afterClosed().subscribe(result => {
-      this.router.navigate(['/init/login']);
+    this.passwordResetService.updatePassword(newPassword)
+    .subscribe(result => {
+      this.dialog.open(
+        PasswordUpdatedDialogComponent,
+        { data: result.success }
+      )
+      .afterClosed().subscribe(() => {
+        this.router.navigate(['/login']);
+      });
     });
   }
 }

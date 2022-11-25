@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PasswordResetService } from 'src/app/modules/core/services/password-reset.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reset-password-form',
@@ -34,7 +35,8 @@ export class ResetPasswordFormComponent implements OnInit {
 
   constructor(private passwordResetService: PasswordResetService,
               private formBuilder: FormBuilder,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -62,16 +64,32 @@ export class ResetPasswordFormComponent implements OnInit {
 
   sendRecoveryCode() {
     const username = this.usernameControl.value;
-    if (this.passwordResetService.sendPasswordRecoveryCode(username)) {
-      this.recoveryCodeControl.enable();
-      this.recoveryCodeControl.addValidators(Validators.required);
-    }
+    this.passwordResetService.sendPasswordRecoveryCode(username)
+    .subscribe(result => {
+      if (result.success) {
+        this.recoveryCodeControl.enable();
+        this.recoveryCodeControl.addValidators(Validators.required);
+        return;
+      }
+
+      this.snackBar.open('There has been an error while trying to send a recovery code. Please try again later.', '', {
+        duration: 3000
+      });
+    });
+
   }
 
   verifyRecoveryCode() {
     const recoveryCode = this.recoveryCodeControl.value;
-    if (this.passwordResetService.verifyPasswordRecoveryCode(recoveryCode!)) {
-      this.router.navigate(['/updatePassword']);
-    }
+    this.passwordResetService.verifyPasswordRecoveryCode(recoveryCode!)
+    .subscribe(result => {
+      if (result.success) {
+        this.router.navigate(['/updatePassword']);
+        return;
+      }
+      this.snackBar.open('There has been an error while verifying your recovery code. Please try again later.', '', {
+        duration: 3000
+      });
+    });
   }
 }
