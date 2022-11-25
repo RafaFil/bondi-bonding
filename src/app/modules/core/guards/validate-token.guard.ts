@@ -16,7 +16,7 @@ export class ValidateTokenGuard implements CanActivate, CanLoad {
       .pipe(
         tap( valid => {
           if ( !valid ) {
-            this.router.navigateByUrl('/landing');
+            this.router.navigateByUrl('/');
           }
         })
       );

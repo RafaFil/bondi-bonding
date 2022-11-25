@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const TOS_ENDPOINT = `${environment.baseUrl}/static/tos`;
@@ -23,6 +23,9 @@ export class TosService {
       success: boolean,
       data? : string,
       message?: string
-    }>(TOS_ENDPOINT);
+    }>(TOS_ENDPOINT)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 }

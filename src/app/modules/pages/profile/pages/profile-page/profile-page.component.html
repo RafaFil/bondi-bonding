@@ -1,6 +1,6 @@
 <app-navbar [activePage]="'Profile'"></app-navbar>
 
-<div class="bb-user-info">
+<div *ngIf="user" class="bb-user-info">
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="showMenuAndFilters">
         <mat-icon>more_vert</mat-icon>
@@ -25,7 +25,7 @@
 </div>
 
 <!--TABS-->
-<mat-tab-group mat-align-tabs="center" color="primary">
+<mat-tab-group *ngIf="user" mat-align-tabs="center" color="primary">
 
     <mat-tab label="Profile">
         <div class="bb-profile-tab-content">
@@ -39,19 +39,22 @@
     </mat-tab>
 
     <mat-tab label="Filters" *ngIf="showMenuAndFilters">
-        <div class="bb-profile-tab-content">
-          <app-trip-filters-form
-            #tripFiltersForm
-            [defaultFilters]="user.filters"
-            (tripFiltersSubmit)="saveFilters($event)"
-            >
-          </app-trip-filters-form>
-          <button class="bb-btn bb-save-filters-btn"
-            mat-raised-button color="primary"
-            (click)="tripFiltersForm.handleTripFiltersSubmit()"
-            >SAVE FILTERS
-          </button>
-        </div>
+      <div *ngIf="isUpdatingFilters" class="row gx-0 justify-content-center mt-5">
+        <mat-spinner color="primary"></mat-spinner>
+      </div>
+      <div class="bb-profile-tab-content" *ngIf="!isUpdatingFilters">
+        <app-trip-filters-form
+          #tripFiltersForm
+          [defaultFilters]="user.filters"
+          (tripFiltersSubmit)="saveFilters($event)"
+          >
+        </app-trip-filters-form>
+        <button class="bb-btn bb-save-filters-btn"
+          mat-raised-button color="primary"
+          (click)="tripFiltersForm.handleTripFiltersSubmit()"
+          >SAVE FILTERS
+        </button>
+      </div>
     </mat-tab>
 
 </mat-tab-group>

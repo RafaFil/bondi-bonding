@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProfileDescriptionComponent implements OnInit {
 
+  @Input() isLoading: boolean = false;
   @Input() user!: User;
   @Input() isEdit: boolean = true;
   @Input() profilePicture?: File;
@@ -55,18 +56,25 @@ export class ProfileDescriptionComponent implements OnInit {
     description?: string,
     iconKey?: string
   }) {
+    if (!$event.isEdit) {
+      this.closeEditMode.emit( { edit : false } );
+      return;
+    }
+    this.isLoading = true;
+
     this.profileService.updatePublicProfile($event)
     .subscribe(result => {
       let msg;
 
       if (result.success) {
-        this.closeEditMode.emit({edit : false});
+        this.closeEditMode.emit( { edit : false } );
         msg = 'Your profile has been updated successfully.';
       } else {
         msg = 'There was an error while updating your public profile.';
       }
 
       this.snackBar.open(msg, '', { duration: 3000 });
+      this.isLoading = false;
     });
   }
 

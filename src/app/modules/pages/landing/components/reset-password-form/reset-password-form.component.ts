@@ -71,7 +71,7 @@ export class ResetPasswordFormComponent implements OnInit {
   verifyRecoveryCode() {
     const recoveryCode = this.recoveryCodeControl.value;
     if (this.passwordResetService.verifyPasswordRecoveryCode(recoveryCode!)) {
-      this.router.navigate(['/landing/updatePassword']);
+      this.router.navigate(['/updatePassword']);
     }
   }
 }

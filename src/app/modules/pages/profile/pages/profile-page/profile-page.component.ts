@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError } from 'rxjs';
 
 import { TripFilters } from 'src/app/modules/core/interfaces';
 import { User } from 'src/app/modules/core/interfaces/User';
@@ -17,6 +18,7 @@ export class ProfilePageComponent implements OnInit {
   profilePicture?: File;
   isEditMode: boolean = false;
   isOwnProfile: boolean = false;
+  isUpdatingFilters: boolean = false;
   user!: User;
 
   get showMenuAndFilters(): boolean {
@@ -28,6 +30,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   constructor(private profileService: ProfileService,
+              private router: Router,
               private route: ActivatedRoute,
               private authService: AuthService,
               private snackBar: MatSnackBar) { }
@@ -43,23 +46,34 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getUser() {
-    const username = this.route.snapshot.paramMap.get('username');
-    if (username) {
-      this.profileService.getProfile(username)
-      .subscribe(user => {
-        this.user = user
-        this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
-      });
-    } else {
-      this.profileService.getProfile(this.authService.runningUser!.username!)
-      .subscribe(user => {
-        this.user = user;
-        this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
-      });
+    let username = this.route.snapshot.paramMap.get('username');
+
+    if (!username) {
+      username = this.authService.runningUser!.username!;
     }
+
+    this.profileService.getProfile(username)
+    .subscribe(result => {
+      console.log(result);
+      if (result.success) {
+        this.user = result.data!;
+
+        if (this.user.birthdate) {
+          this.user.birthdate = new Date(this.user.birthdate).toLocaleDateString();
+        }
+
+        this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
+      } else {
+        this.snackBar.open(`An error ocurred while retrieving the profile for ${username}.`
+        , '', { duration: 3000 });
+        this.router.navigate(['/profile']);
+      }
+    });
   }
 
   saveFilters($event: TripFilters) {
+    this.isUpdatingFilters = true;
+
     this.profileService.updateProfileFilters($event)
     .subscribe(result => {
       let msg;
@@ -73,12 +87,14 @@ export class ProfilePageComponent implements OnInit {
       this.snackBar.open(msg, '', {
         duration: 3000
       });
+      this.isUpdatingFilters = false;
     });
   }
 
   closeEditMode(eventData: { edit : boolean }) {
     if (this.isOwnProfile) {
       this.isEditMode = eventData.edit;
+      this.getUser();
     }
   }
 

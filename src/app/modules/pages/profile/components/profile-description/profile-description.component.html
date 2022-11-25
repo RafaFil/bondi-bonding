@@ -1,4 +1,9 @@
-<div class="bb-description">
+
+<div *ngIf="isLoading" class="row gx-0 justify-content-center mt-5">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading" class="bb-description">
   <app-data-view *ngIf="!isEdit" [user]="user"></app-data-view>
   <app-edition-form *ngIf="isEdit" [user]="user" (editEnd)="handleEditEnd($event)"></app-edition-form>
 </div>
