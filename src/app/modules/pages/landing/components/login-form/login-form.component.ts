@@ -44,14 +44,16 @@ export class LoginFormComponent implements OnInit {
 
     this.authService.doUserAuth(this.loginForm.getRawValue() as AuthRequest)
     .subscribe(response => {
+      console.log(response);
       if (response.success) {
         this.isFailedAuth = false;
         this.router.navigate(['/home'])
         .then(() => this.isLoading = false);
-      } else {
-        this.isFailedAuth = true;
+        return;
       }
 
+      this.isFailedAuth = true;
+      this.isLoading = false;
     });
   }
 

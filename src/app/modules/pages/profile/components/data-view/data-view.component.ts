@@ -15,10 +15,8 @@ export class DataViewComponent implements OnInit {
     switch(this.user.gender) {
       case 'Male':
         return 'male';
-      break;
       case 'Female':
         return 'female';
-      break;
     }
     return '';
   }

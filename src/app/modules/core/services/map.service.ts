@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EaseToOptions, Map } from 'maplibre-gl';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BusStop } from '../interfaces';
 
@@ -53,7 +53,10 @@ export class MapService {
   }
 
   getStyleUrl(): Observable<{ success: boolean, data?: string, message?: string }> {
-    this.mapGetObs = this.http.get<{ success: boolean, data?: string,  message?: string }>(MAP_ENDPOINT);
+    this.mapGetObs = this.http.get<{ success: boolean, data?: string,  message?: string }>(MAP_ENDPOINT)
+    .pipe(
+      catchError( err => of(err))
+    );
     return this.mapGetObs;
   }
 }

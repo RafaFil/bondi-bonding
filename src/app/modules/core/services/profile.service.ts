@@ -1,42 +1,41 @@
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
+
+import { environment } from 'src/environments/environment';
 import { TripFilters } from '../interfaces';
 import { User } from '../interfaces/User';
+import { AuthService } from './auth.service';
 
 const PROFILE_PICTURE_ENDPOINT = `${environment.baseUrl}/profilePicture`;
+const PROFILE_ENDPOINT = `${environment.baseUrl}/profile`;
+const FILTERS_ENDPOINT = `${environment.baseUrl}/filters`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
 
-  user: User ={
-    uid: "1",
-    name: "John Titor",
-    username: "juancarlos",
-    iconUrl: "https://pbs.twimg.com/profile_images/1302962150302982146/NTb6iGpC_400x400.jpg",
+  get runningUser(): User {
+    return this.authService.runningUser!;
+  }
 
-    description: "A very sociable guy who enjoy anime and otaku stuff like anime, manga, jpop, and japan, i love japan",
-    birthdate: "10/10/00",
-    gender: "Male",
-    phone:"1122",
-    email: "myemail@email.com",
-    filters: {
-      ageRange :{
-        min : 22,
-        max : 69
-      },
-      gender: "Male",
-      likes: ["TV","Games","Music"]
-    }
-  };
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
-  constructor(private http: HttpClient) { }
-
-  getProfile(username : string) : Observable<User> {
-    return of(this.user);
+  getProfile(username : string) : Observable<{
+    success: boolean,
+    data?: User,
+    message?: string
+  }> {
+    return this.http.get<{
+      success: boolean,
+      data?: User,
+      message?: string
+    }>(`${PROFILE_ENDPOINT}/${username}`)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
   updatePublicProfile( data: {
@@ -49,13 +48,25 @@ export class ProfileService {
   }): Observable<{
     success: boolean
   }> {
-    return of({ success: true });
+    return this.http.patch<{
+      success: boolean,
+      data?: User,
+      message?: string
+    }>(`${PROFILE_ENDPOINT}/${data.username}`, data)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
   updateProfileFilters(filters: TripFilters): Observable<{
     success: boolean
-  }> { //Ver objeto
-    return of({ success: true });
+  }> {
+    return this.http.put<{
+      success: boolean
+    }>(`${FILTERS_ENDPOINT}/${this.runningUser.username}`, { filters })
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
   uploadProfilePicture(file: File): Observable<{
@@ -70,7 +81,10 @@ export class ProfileService {
       success: boolean,
       data?: string,
       message?: string
-    }>(PROFILE_PICTURE_ENDPOINT, formData);
+    }>(PROFILE_PICTURE_ENDPOINT, formData)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
 }

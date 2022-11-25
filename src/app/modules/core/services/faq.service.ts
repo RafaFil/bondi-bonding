@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 import { Faq } from '../interfaces';
@@ -21,10 +21,13 @@ export class FaqService {
       message?: string
     }
   > {
-    return this.http.get<    {
+    return this.http.get<{
       success: boolean,
       data? : Faq[],
       message?: string
-    }>(FAQS_ENDPOINT);
+    }>(FAQS_ENDPOINT)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../interfaces';
 
@@ -24,6 +24,9 @@ export class SignupService {
       data? : string
       message?: string
     }>(SIGNUP_ENDPOINT,user)
+    .pipe(
+      catchError( err => of(err))
+    )
   }
 
 }

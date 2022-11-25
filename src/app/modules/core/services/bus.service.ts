@@ -1,7 +1,7 @@
 import { StopsResponse } from './../interfaces/StopsResponse';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 import { LocationService } from './location.service';
 import { MapService } from 'src/app/modules/core/services/map.service';
@@ -30,7 +30,10 @@ export class BusService {
     if (useLocation) {
       url = `${STOPS_GEO_ENDPOINT}?lat=${center![1]}&long=${center![0]}&maxDist=${maxDist}`;
     }
-    return this.http.get<StopsResponse>(url);
+    return this.http.get<StopsResponse>(url)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
   getStopsCallback(callbackFn: (res: StopsResponse) => void, useLocation?: boolean, maxDist = 1000): void {
@@ -43,6 +46,9 @@ export class BusService {
       }
 
       this.http.get<StopsResponse>(url)
+      .pipe(
+        catchError( err => of(err))
+      )
       .subscribe(result => {
         callbackFn(result);
       });
@@ -58,6 +64,9 @@ export class BusService {
   }
 
   getLinesByStop(busstopId: string): Observable<LinesResponse> {
-    return this.http.get<LinesResponse>(`${LINES_ENDPOINT}?stopId=${busstopId}`);
+    return this.http.get<LinesResponse>(`${LINES_ENDPOINT}?stopId=${busstopId}`)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 }

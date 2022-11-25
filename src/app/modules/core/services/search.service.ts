@@ -1,7 +1,7 @@
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 import { SearchRequest, SearchResult, TripFilters } from 'src/app/modules/core/interfaces';
 import { AuthService } from './auth.service';
@@ -49,6 +49,9 @@ export class SearchService {
     };
 
     this.searchForm.reset();
-    return this.http.post<SearchResult>(SEARCH_ENDPOINT, searchRequest);
+    return this.http.post<SearchResult>(SEARCH_ENDPOINT, searchRequest)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 }

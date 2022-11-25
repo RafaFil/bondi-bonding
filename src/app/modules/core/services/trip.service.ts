@@ -1,7 +1,7 @@
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
 import { TripFilters, Trip, BusStop, BusLine, TripCreateResult, GetTripsResponse } from 'src/app/modules/core/interfaces';
 import { AuthService } from './auth.service';
@@ -49,13 +49,19 @@ export class TripService {
     return this.http.post<TripCreateResult>(TRIPS_ENDPOINT, {
       ...newTrip,
       userId: this.authService.runningUser!.uid
-    });
+    })
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
   getTripsByStopAndLine(stopId: string, lineId: string): Observable<GetTripsResponse> {
     const uid = this.authService.runningUser!.uid;
     const url = `${TRIPS_ENDPOINT}?stopId=${stopId}&busLineId=${lineId}&userId=${uid}`;
 
-    return this.http.get<GetTripsResponse>(url);
+    return this.http.get<GetTripsResponse>(url)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 }
