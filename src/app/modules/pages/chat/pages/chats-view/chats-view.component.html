@@ -1,7 +1,11 @@
 
-<app-navbar activePage="Chat"></app-navbar>
+<app-navbar class="d-flex" activePage="Chat"></app-navbar>
 
-<article class="bb-chat-page-article">
+<div *ngIf="isLoading" class="row gx-0 justify-content-center mt-5">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+
+<article *ngIf="!isLoading" class="bb-chat-page-article">
   <app-chat-feed-header
     *ngIf="temporalChats && temporalChats.length > 0"
     [title]="'Temporal chats'"

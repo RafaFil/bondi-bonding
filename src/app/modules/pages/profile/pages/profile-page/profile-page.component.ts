@@ -19,6 +19,7 @@ export class ProfilePageComponent implements OnInit {
   isEditMode: boolean = false;
   isOwnProfile: boolean = false;
   isUpdatingFilters: boolean = false;
+  isLoading: boolean = false;
   user!: User;
 
   get showMenuAndFilters(): boolean {
@@ -51,6 +52,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getUser() {
+    this.isLoading = true;
     let username = this.route.snapshot.paramMap.get('username');
 
     if (!username) {
@@ -59,7 +61,8 @@ export class ProfilePageComponent implements OnInit {
 
     this.profileService.getProfile(username)
     .subscribe(result => {
-      console.log(result);
+      this.isLoading = false;
+
       if (result.success) {
         this.user = result.data!;
 
@@ -68,11 +71,13 @@ export class ProfilePageComponent implements OnInit {
         }
 
         this.isOwnProfile = this.user.username === this.authService.runningUser!.username;
-      } else {
-        this.snackBar.open(`An error ocurred while retrieving the profile for ${username}.`
-        , '', { duration: 3000 });
-        this.router.navigate(['/profile']);
+        return;
       }
+
+      this.snackBar.open(`An error ocurred while retrieving the profile for ${username}.`
+      , '', { duration: 3000 });
+
+      this.router.navigate(['/profile']);
     });
   }
 

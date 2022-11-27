@@ -1,39 +1,93 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 
-import { Chat, ChatMessage, ChatsInfo, SendMessageResult } from '../interfaces';
-import { MOCKED_CHAT, MOCKED_CHATS_INFO, MOCKED_SEND_MESSAGE_RESULT } from 'src/app/modules/core/mocks';
+import { Chat, SendMessageResult } from '../interfaces';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
+
+const CHATS_ENDPOINT = `${environment.baseUrl}/chat`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  mockedChatsInfo = MOCKED_CHATS_INFO;
-  mockedChat = MOCKED_CHAT;
-  mockedResult = MOCKED_SEND_MESSAGE_RESULT;
+  constructor(private http: HttpClient,
+              private authService: AuthService) { }
 
-  constructor() { }
-
-  getChatbyId(chatId : string): Observable<Chat> {
-    return of(MOCKED_CHAT);
+  getChatbyId(chatId : string): Observable<{
+    success: boolean,
+    data?: Chat
+  }> {
+    return this.http.get<{
+      success: boolean,
+      data?: Chat
+    }>(`${CHATS_ENDPOINT}/${chatId}`)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
-  getChatPreviews(): Observable<ChatsInfo> {
-    return of(this.mockedChatsInfo);
+  getChatPreviews(): Observable<{
+    success: boolean,
+    data?: Chat[]
+  }> {
+    return this.http.get<{
+      success: boolean,
+      data?: Chat[]
+    }>(CHATS_ENDPOINT)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
-  sendMessage(message: ChatMessage): Observable<SendMessageResult> {
-    this.mockedChat.chatMessages!.push(message);
-    return of( this.mockedResult );
+  getChatByMembers(toUsername: string): Observable<{
+    success: boolean,
+    data?: Chat
+  }> {
+    return this.http.get<{
+      success: boolean,
+      data?: Chat
+    }>(`${CHATS_ENDPOINT}/member/${toUsername}`)
+    .pipe(
+      catchError( err => of(err))
+    );
+  }
+
+  createChat(toUsername: string): Observable<{
+    success: boolean,
+    data?: string
+  }> {
+    return this.http.post<{
+      success: boolean,
+      data?: string
+    }>(CHATS_ENDPOINT, { toUser: toUsername })
+    .pipe(
+      catchError( err => of(err))
+    );
+  }
+
+  sendMessage(message: string, chatId: string): Observable<SendMessageResult> {
+    return this.http.post<SendMessageResult>(`${CHATS_ENDPOINT}/${chatId}`,
+      {
+        sender: this.authService.runningUser?.username,
+        message
+      })
+      .pipe(
+        catchError( err => of(err))
+      );
   }
 
   createPermanentChatRequest(chatId: string): Observable<any> {
     return of(undefined);
   }
 
-  deleteChat(chatId: string): Observable<any> {
-    return of(undefined);
+  deleteChat(chatId: string): Observable<{ success: boolean }> {
+    return this.http.delete<{ success: boolean }>(`${CHATS_ENDPOINT}/${chatId}`)
+    .pipe(
+      catchError( err => of(err))
+    );
   }
 
 }

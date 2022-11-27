@@ -1,7 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 import { BusLine, BusStop, Trip } from 'src/app/modules/core/interfaces';
+import { ChatService } from 'src/app/modules/core/services/chat.service';
+import { HomeButtonsService } from 'src/app/modules/core/services/home-buttons.service';
 import { TripService } from 'src/app/modules/core/services/trip.service';
 import { UserStopItemGroupComponent } from '../../stop-map/user-stop-item-group/user-stop-item-group.component';
 import { StopContentHeaderComponent } from '../stop-content-header/stop-content-header.component';
@@ -24,6 +27,9 @@ export class StopContentComponent implements OnInit {
   stopContentHeader?: StopContentHeaderComponent;
 
   constructor(private tripsService: TripService,
+              private chatService: ChatService,
+              private homeBtns: HomeButtonsService,
+              private snackBar: MatSnackBar,
               private router: Router) {}
 
   ngOnInit(): void {  }
@@ -49,7 +55,29 @@ export class StopContentComponent implements OnInit {
   }
 
   handleStartChat(trip: Trip): void {
-    this.router.navigate([`/chat/${trip.userId}`]);
+    this.chatService.getChatByMembers(trip.user?.username!)
+    .subscribe(result => {
+      if (result.success) {
+        this.homeBtns.showButtons = true;
+        this.router.navigate([`/chat/${result.data!._id}`]);
+        return;
+      }
+
+      this.chatService.createChat(trip.user?.username!)
+      .subscribe(result => {
+        if (result.success) {
+          this.homeBtns.showButtons = true;
+          this.router.navigate([`/chat/${result.data}`]);
+          return;
+        }
+
+        this.snackBar.open(
+          'An error ocurred while trying to start the chat. Please try again later.',
+          '',
+          { duration: 3000 }
+        );
+      });
+    });
   }
 
 }

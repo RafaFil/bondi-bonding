@@ -70,9 +70,9 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
   }
 
   handleStopDeselect() {
+    this.slidingSheet?.hide();
     this.busService.setSelectedStop(undefined);
     this.stopContent?.clear();
-    this.slidingSheet?.hide();
     this.searchResult = undefined;
   }
 
@@ -88,6 +88,8 @@ export class HomeStopMapComponent implements OnInit, AfterViewInit, AfterViewChe
 
   handleSheetHide() {
     this.busService.setSelectedStop(undefined);
+    this.searchResult = undefined;
+    this.stopContent?.clear();
   }
 
   getStopsOnInit() {

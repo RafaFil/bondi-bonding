@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Chat } from 'src/app/modules/core/interfaces';
+import { AuthService } from 'src/app/modules/core/services/auth.service';
 import { ChatService } from 'src/app/modules/core/services/chat.service';
 
 @Component({
@@ -16,25 +17,19 @@ export class ChatFeedInputComponent implements OnInit {
   @Output() messageSent = new EventEmitter();
 
   constructor(private chatService: ChatService,
-              private snackBar: MatSnackBar) {}
+              private snackBar: MatSnackBar,
+              private authService: AuthService) {}
 
   ngOnInit(): void {
   }
 
   sendMessage(messageInput: HTMLInputElement){
-    this.chatService.sendMessage({
-      fromId: this.chat.from?.uid!,
-      toId: this.chat.to?.uid!,
-      content: {
-        type: 'text',
-        value: messageInput.value
-      },
-      sentDate: new Date()
-    })
+    this.chatService.sendMessage(messageInput.value, this.chat._id)
     .subscribe(result => {
-      if (result.sent) {
+      if (result.success) {
         messageInput.value = '';
         this.messageSent.emit();
+
       } else {
         this.snackBar.open(`An error occured while trying to send your last message, please try again.`,
           undefined,

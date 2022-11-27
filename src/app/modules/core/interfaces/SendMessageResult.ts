@@ -1,7 +1,7 @@
 
 export interface SendMessageResult {
-  sent: boolean,
-  messageId?: string
+  success: boolean,
+  data?: string
   error?: {
     message: string;
   }

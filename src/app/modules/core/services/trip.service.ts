@@ -43,9 +43,6 @@ export class TripService {
       description: tripForm.description ? tripForm.description : '',
       filters: tripForm.filters!
     };
-
-    console.log(this.authService.runningUser!.username);
-
     return this.http.post<TripCreateResult>(TRIPS_ENDPOINT, {
       ...newTrip,
       userId: this.authService.runningUser!.uid

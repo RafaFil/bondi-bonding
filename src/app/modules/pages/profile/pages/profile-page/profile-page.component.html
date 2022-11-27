@@ -1,6 +1,10 @@
-<app-navbar [activePage]="'Profile'"></app-navbar>
+<app-navbar class="d-flex" [activePage]="'Profile'"></app-navbar>
 
-<div *ngIf="user" class="bb-user-info">
+<div *ngIf="isLoading" class="row gx-0 justify-content-center mt-5">
+  <mat-spinner color="primary"></mat-spinner>
+</div>
+
+<div *ngIf="user && !isLoading" class="bb-user-info">
 
     <button mat-icon-button [matMenuTriggerFor]="menu" class="bb-profile-menu" *ngIf="showMenuAndFilters">
         <mat-icon>more_vert</mat-icon>
@@ -15,7 +19,8 @@
     </mat-menu>
 
     <div class="bb-user-photo" *ngIf="!isEditMode">
-        <app-user-icon [iconUrl]="user.iconUrl"></app-user-icon>
+        <app-user-icon *ngIf="user.iconUrl" [iconUrl]="user.iconUrl"></app-user-icon>
+        <mat-icon *ngIf="!user.iconUrl" class="bb-default-icon w-100 h-100" color="primary">person</mat-icon>
     </div>
 
     <div class="bb-user-photo bb-edit-mode" *ngIf="isEditMode" (click)="pfpInput.click()">
