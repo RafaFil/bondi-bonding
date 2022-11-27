@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chat } from 'src/app/modules/core/interfaces/Chat';
 import { ChatService } from 'src/app/modules/core/services/chat.service';
@@ -12,6 +12,7 @@ export class ChatViewComponent implements OnInit, AfterViewChecked {
 
   chat?: Chat;
   isScrollToBottom: boolean = true;
+  isError: boolean = false;
 
   @ViewChild('chatSection')
   chatSection?: ElementRef;
@@ -20,9 +21,20 @@ export class ChatViewComponent implements OnInit, AfterViewChecked {
               private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.getChat();
+  }
+
+  getChat() {
     const chatId = `${this.route.snapshot.paramMap.get('chatId')}`;
     this.chatService.getChatbyId(chatId)
-    .subscribe(chat => this.chat = chat);
+    .subscribe(result => {
+      this.isError = !result.success;
+
+      if (result.success) {
+        this.chat = result.data;
+        this.isScrollToBottom = true;
+      }
+    });
   }
 
   ngAfterViewChecked() {

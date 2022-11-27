@@ -37,7 +37,6 @@ export class SearchFiltersModalComponent implements OnInit {
   }
 
   openFiltersDialog() {
-    console.log(this.searchService.searchForm.value);
     const modalRef = this.dialog.open (
       FiltersModalContentComponent,
       { data: {

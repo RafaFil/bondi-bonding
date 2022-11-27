@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Chat } from 'src/app/modules/core/interfaces/Chat';
 import { ChatsInfo } from 'src/app/modules/core/interfaces/ChatsInfo';
 import { ChatService } from 'src/app/modules/core/services/chat.service';
@@ -11,6 +12,7 @@ import { ChatService } from 'src/app/modules/core/services/chat.service';
 export class ChatsViewComponent implements OnInit {
 
   chatsInfo: ChatsInfo = { temporalChats : [], permanentChats: [] };
+  isLoading: boolean = false;
 
   get temporalChats(): Chat[] {
     return this.chatsInfo.temporalChats;
@@ -20,13 +22,30 @@ export class ChatsViewComponent implements OnInit {
     return this.chatsInfo.permanentChats;
   }
 
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.getChatPreviews();
+  }
+
+  getChatPreviews() {
+    this.isLoading = true;
+
     this.chatService.getChatPreviews()
-    .subscribe(chatsInfo => {
-      this.chatsInfo = chatsInfo;
-    })
+    .subscribe(result => {
+      this.isLoading = false;
+
+      if (result.success) {
+        this.chatsInfo.permanentChats = result.data!;
+        return;
+      }
+
+      this.snackBar.open('There has been an error while retrieving chats. Please reload the page or try again later.',
+        '',
+        { duration: 3000 }
+      );
+    });
   }
 
 }

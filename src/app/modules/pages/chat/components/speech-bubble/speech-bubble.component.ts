@@ -12,7 +12,7 @@ export class SpeechBubbleComponent implements OnInit {
   @Input() message!: ChatMessage;
 
   get isOutgoing(): boolean {
-    return this.message.fromId === this.authService.runningUser!.uid;
+    return this.message.sender === this.authService.runningUser!.username;
   }
 
   get speechBubbleType(): 'outgoing' | 'incoming' {

@@ -1,18 +1,22 @@
-<div *ngIf="chat">
-    <div class="app-chat-feed-header">
-        <app-chat-feed-header [chat]="chat"></app-chat-feed-header>
-    </div>
+<div class="bb-chat-feed-header">
+  <app-chat-feed-header [chat]="chat" [showBack]="true" [showMenu]="!isError"></app-chat-feed-header>
+</div>
 
+<div *ngIf="isError">
+  <h3 class="bb-error-msg">
+    There has been an error while loading chat messages. Please try again later.
+  </h3>
+</div>
+
+<div *ngIf="chat && !isError">
     <section #chatSection class="overflow-auto bb-chat-section">
-        <app-chat-feed [messages]="chat.chatMessages || []">
+        <app-chat-feed [messages]="chat.messages || []">
       </app-chat-feed>
     </section>
 
-
-
-    <div class="app-chat-feed-input">
+    <div class="bb-chat-feed-input">
         <app-chat-feed-input [chat]="chat"
-            (messageSent)="isScrollToBottom = true">
+            (messageSent)="getChat()">
         </app-chat-feed-input>
     </div>
 </div>

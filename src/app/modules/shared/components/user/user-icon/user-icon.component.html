@@ -1,3 +1,6 @@
 <div class="bb-rounded-icon-wrapper" *ngIf="iconUrl">
   <img class="bb-user-icon w-100 h-100" src="{{iconUrl}}">
 </div>
+<div class="bb-rounded-icon-wrapper" *ngIf="!iconUrl">
+  <mat-icon class="bb-user-icon w-100 h-100" color="primary">person</mat-icon>
+</div>
