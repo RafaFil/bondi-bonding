@@ -22,6 +22,10 @@ export class ChatsViewComponent implements OnInit {
     return this.chatsInfo.permanentChats;
   }
 
+  get hasNoChats(): boolean {
+    return this.temporalChats.length === 0 && this.permanentChats.length === 0;
+  }
+
   constructor(private chatService: ChatService,
               private snackBar: MatSnackBar) { }
 

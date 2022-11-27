@@ -1,8 +1,6 @@
-import { MapService } from 'src/app/modules/core/services/map.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { BusStop, SearchResult } from 'src/app/modules/core/interfaces';
-import { BusService } from 'src/app/modules/core/services/bus.service';
+import { SearchResult } from 'src/app/modules/core/interfaces';
 
 @Component({
   selector: 'app-home-page',

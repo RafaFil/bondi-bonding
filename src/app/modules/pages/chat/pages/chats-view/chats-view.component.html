@@ -6,6 +6,16 @@
 </div>
 
 <article *ngIf="!isLoading" class="bb-chat-page-article">
+
+  <div *ngIf="hasNoChats">
+    <h3 class="bb-error-msg">
+      Sorry, we found no chats for your user.
+      <br>
+      <br>
+      Try chatting with other Bondi-Bonding users by searching for trips or creating your own.
+    </h3>
+  </div>
+
   <app-chat-feed-header
     *ngIf="temporalChats && temporalChats.length > 0"
     [title]="'Temporal chats'"

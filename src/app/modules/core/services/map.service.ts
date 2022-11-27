@@ -20,7 +20,7 @@ const MAP_ENDPOINT = `${environment.baseUrl}/map`;
 })
 export class MapService {
   zoomLevels = ZOOM_LEVELS;
-  mapGetObs?: Observable<any>;
+  mapGetObs?: Observable<{ success: boolean, data?: string,  message?: string }>;
   map!: Map;
 
   constructor(private http: HttpClient) { }
