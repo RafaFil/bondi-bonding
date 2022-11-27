@@ -56,13 +56,14 @@ export class TripFiltersFormComponent implements OnInit, AfterViewInit {
   handleTripFiltersSubmit() {
     if (!this.filterForm.valid)   return;
 
-    const formValues = this.filterForm.getRawValue();
+    const formValues = this.filterForm.value;
     const filters: TripFilters = {
       gender: formValues.gender,
       ageRange: {
         min: formValues.minAge ? +formValues.minAge : undefined,
         max: formValues.maxAge ? +formValues.maxAge : undefined
-      }
+      },
+      likes: formValues.likes! as ("Music" | "Movies" | "Sports" | "Arts" | "Food" | "Coffee" | "Games" | "TV" | null)[] | undefined
     };
 
     this.tripFiltersSubmit.emit( filters );
@@ -110,8 +111,10 @@ export class TripFiltersFormComponent implements OnInit, AfterViewInit {
     const controls = this.filterForm.controls;
 
     if (this.defaultFilters?.ageRange) {
-      controls.minAge.setValue(`${this.defaultFilters.ageRange.min}`);
-      controls.maxAge.setValue(`${this.defaultFilters.ageRange.max}`);
+      const ageRange = this.defaultFilters.ageRange;
+
+      controls.minAge.setValue(`${ageRange.min ? ageRange.min : ''}`);
+      controls.maxAge.setValue(`${ageRange.max ? ageRange.max : ''}`);
     }
 
     if (this.defaultFilters?.gender) {

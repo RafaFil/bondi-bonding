@@ -90,6 +90,7 @@ export class ProfilePageComponent implements OnInit {
 
       if (result.success) {
         msg = 'Your trip filters have been updated successfully.';
+        this.user.filters = $event;
       } else {
         msg = 'There was an error while updating your trip filters, please try again later.';
       }

@@ -19,6 +19,7 @@ const MAP_ENDPOINT = `${environment.baseUrl}/map`;
   providedIn: 'root'
 })
 export class MapService {
+
   zoomLevels = ZOOM_LEVELS;
   mapGetObs?: Observable<{ success: boolean, data?: string,  message?: string }>;
   map!: Map;
