@@ -21,6 +21,10 @@ export class EditionFormComponent implements OnInit {
     description?: string
   }>();
 
+  get isDisabled(): boolean {
+    return this.editForm ? !this.editForm.valid : false;
+  }
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
