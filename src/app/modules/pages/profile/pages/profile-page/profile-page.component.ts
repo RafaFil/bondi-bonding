@@ -39,6 +39,11 @@ export class ProfilePageComponent implements OnInit {
     this.getUser();
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
+
   enterEditionMode() {
     if (this.isOwnProfile) {
       this.isEditMode = true;
