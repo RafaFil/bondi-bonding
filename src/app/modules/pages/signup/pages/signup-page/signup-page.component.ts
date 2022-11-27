@@ -62,22 +62,21 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
 
   handleSignUp() {
     const user = this.pullFormData();
-    
-    this.signupService.createUser(user).subscribe( () => {
+
+    this.signupService.createUser(user).subscribe( (result) => {
+      if (result.success) {
         this.router.navigate([`/login`]);
-    }, (err) => {
+        return;
+      }
 
-      if (err.error.message?.includes('Duplicate username')) {
-
+      if (result.message?.includes('Duplicate username')) {
         this.stepper.selectedIndex = 0;
         this.dialog.open(SignupErrDialogComponent, {
           data: `There was an error while creating your account. Username ${user.username} is taken`
         });
-      }
-      else {
-
+      } else {
         this.dialog.open(SignupErrDialogComponent,{
-          data: "Internal server error, try again later"
+          data: "Internal server error, try again later."
         });
       }
     });
