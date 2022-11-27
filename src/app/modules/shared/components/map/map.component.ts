@@ -28,7 +28,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private locationService: LocationService,
               private mapService: MapService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.mapService.getStyleUrl().subscribe( result => {
