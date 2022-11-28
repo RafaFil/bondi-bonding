@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SearchResult } from 'src/app/modules/core/interfaces';
+import { HomeButtonsService } from 'src/app/modules/core/services/home-buttons.service';
 
 @Component({
   selector: 'app-home-page',
@@ -11,7 +12,9 @@ export class HomePageComponent implements OnInit {
 
   searchResult?: SearchResult;
 
-  constructor() { }
+  constructor(private homeButtons: HomeButtonsService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.homeButtons.showButtons = true;
+  }
 }

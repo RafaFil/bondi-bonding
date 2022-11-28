@@ -31,7 +31,7 @@ export class TripService {
               private http: HttpClient) { }
 
   createTrip(): Observable<TripCreateResult> {
-    const tripForm = this.createTripForm.getRawValue();
+    const tripForm = this.createTripForm.value;
 
     const newTrip: Trip = {
       busLineId: tripForm.busLine!.lineId!,
@@ -43,10 +43,8 @@ export class TripService {
       description: tripForm.description ? tripForm.description : '',
       filters: tripForm.filters!
     };
-    return this.http.post<TripCreateResult>(TRIPS_ENDPOINT, {
-      ...newTrip,
-      userId: this.authService.runningUser!.uid
-    })
+
+    return this.http.post<TripCreateResult>(TRIPS_ENDPOINT, newTrip)
     .pipe(
       catchError( err => of(err))
     );
