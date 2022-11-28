@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-forms',
@@ -12,13 +12,15 @@ export class SignupFormsComponent implements OnInit {
 
   signUpForm = this.formBuilder.group(
     {
-      name : ['',[Validators.required,Validators.minLength(3)]],
-      username : ['',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]],
+      name : ['',[Validators.required, Validators.minLength(3)]],
+      username : ['',[Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       birthdate : ['',[Validators.required]],
-      password : ['',[Validators.required,Validators.minLength(6),Validators.maxLength(16)]],
+      password : ['',[Validators.required,
+                      Validators.minLength(6),
+                      Validators.maxLength(16),]],
       gender : ['',[Validators.required]],
-      phone : ['',[Validators.required]], // how to validate it :)
-      email : ['',[Validators.required,Validators.email]],
+      phone : ['',[Validators.required, Validators.maxLength(10), Validators.pattern('[0-9]+')]],
+      email : ['',[Validators.required, Validators.email]],
     }
   );
 

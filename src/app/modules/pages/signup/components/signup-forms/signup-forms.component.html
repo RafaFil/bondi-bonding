@@ -3,7 +3,7 @@
     <mat-form-field appearance="outline">
         <mat-icon matPrefix>person</mat-icon>
         <mat-label>Name</mat-label>
-        <input matInput placeholder="Name" [formControl]="signUpForm.controls.name">
+        <input matInput placeholder="Name" [formControl]="signUpForm.controls.name" maxLength="20">
         <mat-error>Please enter your full name</mat-error>
     </mat-form-field>
 
@@ -11,7 +11,7 @@
     <mat-form-field appearance="outline">
       <mat-icon matPrefix>alternate_email</mat-icon>
       <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" [formControl]="signUpForm.controls.username">
+        <input matInput placeholder="Username" [formControl]="signUpForm.controls.username" maxLength="20">
         <mat-error>Username must be between 3 and 10 characters</mat-error>
     </mat-form-field>
 
@@ -21,7 +21,7 @@
         <mat-label>Password</mat-label>
         <input matInput
           [type]="passwordInputType"
-          [formControl]="signUpForm.controls.password">
+          [formControl]="signUpForm.controls.password" maxLength="20">
         <button type="button" mat-icon-button matSuffix (click)="togglePasswordVisibility()">
           <mat-icon color="{{passwordIconColor}}">{{passwordIconName}}</mat-icon>
         </button>
@@ -34,9 +34,10 @@
         <div class="col-7">
             <mat-form-field appearance="outline">
                 <mat-label>Birthdate</mat-label>
-                <input matInput
+                <input matInput 
                   [matDatepicker]="picker"
-                  [formControl]="signUpForm.controls.birthdate">
+                  [formControl]="signUpForm.controls.birthdate" maxLength="20"
+                  >
                 <mat-datepicker-toggle matSuffix
                   [for]="picker">calendar</mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -48,7 +49,6 @@
           <mat-form-field appearance="outline">
               <mat-label>Gender</mat-label>
               <mat-select [formControl]="signUpForm.controls.gender">
-                <!-- TODO: Retrieve from service -->
                   <mat-option value="Male">Male</mat-option>
                   <mat-option value="Female">Female</mat-option>
                   <mat-option value="Non-binary">Non-binary</mat-option>
@@ -60,7 +60,7 @@
     <!--Phone-->
     <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input type="tel" matInput placeholder="Phone" [formControl]="signUpForm.controls.phone">
+        <input type="tel" matInput placeholder="Phone" [formControl]="signUpForm.controls.phone" maxLength="20">
         <mat-icon matPrefix>phone</mat-icon>
         <mat-error>Please enter a valid phone number</mat-error>
     </mat-form-field>
@@ -68,7 +68,7 @@
     <!--Email-->
     <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input type="email" matInput placeholder="Email" [formControl]="signUpForm.controls.email">
+        <input type="email" matInput placeholder="Email" [formControl]="signUpForm.controls.email" maxLength="50">
         <mat-icon matPrefix>mail</mat-icon>
         <mat-error>Please enter a valid email</mat-error>
     </mat-form-field>
