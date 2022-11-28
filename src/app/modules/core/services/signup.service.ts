@@ -17,7 +17,8 @@ export class SignupService {
   {
     success: boolean,
     data?:string
-    message?: string
+    message?: string,
+    error?: { message: string }
   }> {
     return this.http.post<{
       success: boolean,

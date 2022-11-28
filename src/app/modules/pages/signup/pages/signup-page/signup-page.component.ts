@@ -69,7 +69,7 @@ export class SignupPageComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      if (result.message?.includes('Duplicate username')) {
+      if (result.error?.message?.includes('Duplicate username')) {
         this.stepper.selectedIndex = 0;
         this.dialog.open(SignupErrDialogComponent, {
           data: `There was an error while creating your account. Username ${user.username} is taken`
