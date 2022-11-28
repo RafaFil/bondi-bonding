@@ -71,8 +71,10 @@ export class CreateTripFormComponent implements OnInit {
 
     this.tripService.createTrip().subscribe(
       createTripResult => {
-        formDirective.resetForm();
-        this.tripService.createTripForm.reset({});
+        if (createTripResult.success) {
+          formDirective.resetForm();
+          this.tripService.createTripForm.reset({});
+        }
         this.tripCreate.emit(createTripResult);
       }
     );
